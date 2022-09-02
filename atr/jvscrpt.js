@@ -4,7 +4,7 @@ let hidDiv,addCls,inp =gebi('inpWrd'),enter = 'idStart',strt=1,nmGm=localStorage
 opnSite();
 
 
-function opnDiv(dvOpn,ent,fcs){dsply('cntnr','block');dsply(dvOpn,'block');enter=ent;gebi(fcs).focus()}
+function opnDiv(dvOpn,ent,fcs='tpScrl'){dsply('cntnr','block');dsply(dvOpn,'block');enter=ent;fxClk(fcs)}
 
 function hiding() {
     valScnd(localStorage.lvlTim);
@@ -90,7 +90,7 @@ function hidWrd(rnNmb) {
 
 function chInp(el) {
     if (el.style.display=='none' && nmCh>0) {
-        let kys={ent:enter,up:upbt,dw:dwbt}
+        let kys={ent:enter,up:upbt,dw:dwbt};
         fxClk(kys[kyBt])
     }
 }
@@ -100,6 +100,7 @@ function addWrds() {
     inpFr= gebi('nwFr'),tLng=inpEn.value+inpAr.value+inpFr.value;
      enter = 'nwAr';
     gebi('nwEn').focus();tLng=rep(tLng,' ','');
+    fxClk('nwEn')
     if (tLng=='') { 
         dsply('notAdd','block');dsply('isAdd','none');
         setTimeout(() => { dsply('notAdd','none');}, 1000);
@@ -164,7 +165,7 @@ function lstWrd() {
          >×</span><span class="arCl">${arWrd[i]}</span><span class="enCl">${enWrd[i]}</span>
          <span class="frCl">${frWrd[i]}</span></div>`;
     }
-    dvWrd += `<p id="spdlt" class="add aldlt"onclick="opnDiv('dltAll','yesbtn','dltAll')" >delete all</p>`;
+    dvWrd += `<p id="spdlt" class="add aldlt"onclick="opnDiv('dltAll','yesbtn')" >delete all</p>`;
     cntWrd.innerHTML = dvWrd;
 }
 
