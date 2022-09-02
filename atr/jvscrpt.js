@@ -1,5 +1,5 @@
 let hidDiv,addCls,inp =gebi('inpWrd'),enter = 'idStart',strt=1,nmGm=localStorage.nmGmr,arWrd,enWrd,frWrd,nmbr=0,
-    nbWrd=0,lftTm,fxCngr,cngrt='',tmLft,upbt='nwFr',dwbt='nwAr';
+    nbWrd=0,lftTm,fxCngr,cngrt='',tmLft,upbt='nwFr',dwbt='nwAr',nmCh=3,kyBt='ent';
 
 opnSite();
 
@@ -88,6 +88,13 @@ function hidWrd(rnNmb) {
     wToSt('En',enWrd);wToSt('Ar',arWrd);wToSt('Fr',frWrd);
 }
 
+function chInp(el) {
+    if (el.style.display=='none' && nmCh>0) {
+        let kys={ent:enter,up:upbt,dw:dwbt}
+        fxClk(kys[kyBt])
+    }
+}
+
 function addWrds() {
     let inpEn= gebi('nwEn'),inpAr= gebi('nwAr'),
     inpFr= gebi('nwFr'),tLng=inpEn.value+inpAr.value+inpFr.value;
@@ -125,9 +132,9 @@ function dltall() {
 
 function opnSite() {
     addEventListener('keyup',(ev) => {
-        if(ev.keyCode === 13){fxClk(enter)}
-        if(ev.keyCode === 38){fxClk(upbt)}
-        if(ev.keyCode === 40){fxClk(dwbt)}
+        if(ev.keyCode === 13){fxClk(enter);kyBt='ent'}
+        if(ev.keyCode === 38){fxClk(upbt);kyBt='up'}
+        if(ev.keyCode === 40){fxClk(dwbt);kyBt='dw'}
     });
    
    
@@ -145,32 +152,7 @@ function opnSite() {
     }else{gebi('timeLvl').value=30;gebi('tmLft').innerText=30;topScrl('30');lftTm=30}
 
     /*//////// list words \\\\\\\\\  */
-    allWrd(); 
-    
-    let rnNmb,i=0,nwEn=[],nwAr=[],nwFr=[],lstNmbr=[];
-    while (i < enWrd.length) {
-        rnNmb=Math.floor(Math.random()*enWrd.length);
-        if(ind(lstNmbr,rnNmb)==-1){
-            lstNmbr.push(rnNmb) ; i++;
-            nwEn.push(enWrd[rnNmb]);nwAr.push(arWrd[rnNmb]);nwFr.push(frWrd[rnNmb]);
-        }
-    }
-    enWrd=nwEn;arWrd=nwAr;frWrd=nwFr; lstWrd(); stWrd();
-
-    document.querySelectorAll('.ch input').forEach((el)=>{
-        el.addEventListener('click',()=> {
-            if (el.checked) {
-                document.querySelectorAll(el.dataset.lng).forEach(chnCl =>chnCl.style.display='initial');
-                localStorage['ch'+el.id]='true';
-            }else{
-                document.querySelectorAll(el.dataset.lng).forEach(chnCl =>chnCl.style.display='none');
-                localStorage['ch'+el.id]='false';
-            }
-        });
-        if(localStorage['ch'+el.id]=='false'){el.click()}
-    });
-    gebi('nmbWrd').innerText=enWrd.length;
-    
+    allWrd();
     /* gebi('clVu').innerHTML += '<iframe src="https://maktaeliliktroniya.blogspot.com/2022/08/typing-speed.html" '+
                                'frameborder="0"></iframe>';
     dsply('ifrm','none') */
@@ -193,26 +175,59 @@ function stWrd() {
     gebi('lng1').innerText = enWrd[nmbr];gebi('lng2').innerText = frWrd[nmbr];
 }
 
+function cntn() {
+    let rnNmb,i=0,nwEn=[],nwAr=[],nwFr=[],lstNmbr=[];
+    while (i < enWrd.length) {
+        rnNmb=Math.floor(Math.random()*enWrd.length);
+        if(ind(lstNmbr,rnNmb)==-1){
+            lstNmbr.push(rnNmb) ; i++;
+            nwEn.push(enWrd[rnNmb]);nwAr.push(arWrd[rnNmb]);nwFr.push(frWrd[rnNmb]);
+        }
+    }
+    enWrd=nwEn;arWrd=nwAr;frWrd=nwFr; lstWrd(); stWrd();
+    gebi('nmbWrd').innerText=enWrd.length;
+
+    document.querySelectorAll('.ch input').forEach((el)=>{
+        el.addEventListener('click',()=> {
+            if (el.checked) {
+                document.querySelectorAll(el.dataset.lng).forEach(chnCl =>chnCl.style.display='initial');
+                localStorage['ch'+el.id]='true';nmCh++
+            }else{
+                nmCh--; if (nmCh==0) { el.click();return false}
+                document.querySelectorAll(el.dataset.lng).forEach(chnCl =>chnCl.style.display='none');
+                localStorage['ch'+el.id]='false'
+            }
+            
+        });
+        if(localStorage['ch'+el.id]=='false'){el.click()}
+        
+    });
+    
+}
 /* ////// short function \\\\\\\\\\ */
 function ind(inpt,pr,pr2=0) { inpt=inpt.indexOf(pr,pr2);return inpt}
-function gebi(pr) { return document.getElementById(pr);}
+function gebi(pr) { return document.getElementById(pr)}
 function dsply(id,dsply){gebi(id).style.display = dsply}
 function stToDiv(lng) {let Hist = localStorage['stWrd' + lng];Hist = Hist.split('@#'); return Hist}
 function wToSt(lng,lsWrd){localStorage['stWrd' + lng] = lsWrd.join('@#')}
-function rep(inp,pr1,pr2) {return inp.replaceAll(pr1,pr2);}
+function rep(inp,pr1,pr2) {return inp.replaceAll(pr1,pr2)}
 function fxClk(id) {gebi(id).focus();gebi(id).click()}
+
 
 function allWrd() {
     
     if (!localStorage.getItem('stWrdEn')) {
         enWrd=stToDiv('En');arWrd=stToDiv('Ar');frWrd=stToDiv('Fr');
+        cntn()
     }else{
         
-        fetch("wrds.json")
-        .then((result) => {
-          let allRepos = result.json();
-          console.log(allRepos.enWrd);
+        fetch("https://raw.githubusercontent.com/tpspd/tpspd.github.io/main/atr/index.json")
+        .then(rs => rs.json())
+        .then(rp=>{
+            enWrd=rp.enWrd; arWrd=rp.arWrd;frWrd=rp.frWrd;
+            wToSt('En',enWrd);wToSt('Ar',arWrd);wToSt('Fr',frWrd);
+            cntn()
         })
-        /* wToSt('En',enWrd);wToSt('Ar',arWrd);wToSt('Fr',frWrd); */
+          
     }
 }
