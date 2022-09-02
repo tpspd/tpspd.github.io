@@ -1,6 +1,6 @@
-
-  {
-    "enWrd": ["faithful","arise","awake","be","bear","beat","become","befall","beget","begin",
+{
+    "enWrd": [
+      "faithful","arise","awake","be","bear","beat","become","befall","beget","begin",
     "behold","bend","bereave","beseech","beset","bespeak","bet","betake","bethink","bid",
     "bind","bite","bleed","blend","bless","blow","break","breed","bring","broadcast",
     "build","burn","burst","buy","can","cast", "catch","chide","choose","cleave",
@@ -43,7 +43,7 @@
     "عرف","شحن","رقد","أدى الى","أمال","قفز","تعلم","غادر","أعار","سمح",
     "تمدد","أضاء","فقد","صنع","عنى","التقى","حل","أعطا توزيعا سيئا","أخطأ في التوزيع","دخله الشك",
     "أضاع","غشّ","أخطأ في القراءة","أخطأ الكتابة","أفسد","أخطأ","أساء الفهم","حصد","رفع السعر","تجاوز",
-    "تفوق///////","نما","امتطى","تفوق","كسق خسف","أتلف أبلى","تفوق","أظلم","علا","بالغ",
+    "نفوق","نما","امتطى","تفوق","كسق خسف","أتلف أبلى","تفوق","أظلم","علا","بالغ",
     "أبرز فوق","تنصت ضدفة","غطّى","قفز","خنق","تجاوز","اجتاح","راقب","أخطأ الهدف","انتظر",
     "استرد","قلب أسقط","أرهق","شارك","سدد","برهن","وضع","غادر استقال","قرأ",
     "ضمّ","أعد البناء","أعاد الصياغ","أعاد الفعل","عوض","أعاد الصنع","مرة ثانية","أعاده الى مكانه","قال ثانية",
@@ -74,7 +74,7 @@
     "coucher","allumer","perdre","fabriquer","signifier","rencontrer","dissoudre",
     "donner une mauvaise distribution","faire maldonne","rempli de doute","egarer",
     "tromper","mal lire","mal orthographier","gâcher","tromper","mal comprendre","moissonner","enchérir","surpasser",
-    "dip/////","croître","chevaucher","depasser","eclipser","durer","viancre","assombrir","surmonter","exagérer",
+    "dépense","croître","chevaucher","depasser","eclipser","durer","viancre","assombrir","surmonter","exagérer",
     "surplomber","entendre par hasard","couvrir","sauter","recouvrir","ravager","envahir","superviser","rater","endurer",
     "rattraper","renverser","travailler outre mesure","partciper","payer","démontrer","mettre","quitter","lire",
     "relier","reconstruire","remanier","refaire","rembourser","refaire","repasse","remettre","raconter",
@@ -91,5 +91,4 @@
     "assumer","assurer","détruire","dérouler","renverser","réveiller","attaquer","porter","tisser","marier",
     "pleurer","mouiller","gagner","essouffler","retirer","retenir","résister","tordre","ecrire"
     ]
-  }
-
+}
