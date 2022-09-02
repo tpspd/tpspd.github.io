@@ -214,7 +214,7 @@ function fxClk(id) {gebi(id).focus();gebi(id).click()}
 
 function allWrd() {
     
-    if (!localStorage.getItem('stWrdEn')) {
+    if (localStorage.getItem('stWrdEn')) {
         enWrd=stToDiv('En');arWrd=stToDiv('Ar');frWrd=stToDiv('Fr');
         cntn()
     }else{
