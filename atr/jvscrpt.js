@@ -136,8 +136,6 @@ function opnSite() {
         if(ev.keyCode === 38){fxClk(upbt);kyBt='up'}
         if(ev.keyCode === 40){fxClk(dwbt);kyBt='dw'}
     });
-   
-   
     gebi('divplac').addEventListener('click',e =>{e.stopPropagation()});
     inp.oninput = ()=>{
         let  vinp = inp.value;
