@@ -219,7 +219,7 @@ function allWrd() {
         cntn()
     }else{
         
-        fetch("https://raw.githubusercontent.com/tpspd/tpspd.github.io/main/atr/index.json")
+        fetch("https://raw.githubusercontent.com/tpspd/tpspd.github.io/main/atr/wrds.json")
         .then(rs => rs.json())
         .then(rp=>{
             enWrd=rp.enWrd; arWrd=rp.arWrd;frWrd=rp.frWrd;
