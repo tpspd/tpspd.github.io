@@ -8,10 +8,11 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;700&display=swap" > -->
     <link rel="stylesheet" href="atr/style.css">
+    <link rel="manifest" href="manifesttpsp.json" />
+    <link rel="icon"    href="https://calculesite.github.io/calc.png">
     <title>Typing Speed </title>
 </head>
 <body>
-
   <div id="cntnr" class="hidjs" onclick="hiding()"   >
     <!-- <img id="idCnIm" class="cngImg hidjs" src="autre/cng.png" > -->
     <div id="divplac" class="dvPlc" >
@@ -34,16 +35,16 @@
         <div class="ch"><input id="frCh" type="checkbox" data-lng=".frCl" checked > <label for="frCh">French</label></div>
         <button id="okchkd" class="okbtn nofcs dblbtn" onclick="hiding()">ok</button>
       </div>
-
+      
 
       <div id="addWrd" class="nwWord hidjs">
         add New words
         <input id="nwEn" class="inpAdd nofcs enCl" type="text"
-               onclick="enter = 'nwAr';upbt='nwFr';dwbt='nwAr'"  placeholder="English word"/>
+               onclick="enter = 'nwAr';upbt='nwFr';dwbt='nwAr';chInp(this)"  placeholder="English word"/>
         <input id="nwAr" class="inpAdd nofcs arCl" type="text"
-               onclick="enter = 'nwFr';upbt='nwEn';dwbt='nwFr'"  placeholder="Arabic word"/>
+               onclick="enter = 'nwFr';upbt='nwEn';dwbt='nwFr';chInp(this)"  placeholder="Arabic word"/>
         <input id="nwFr" class="inpAdd nofcs frCl" type="text"
-               onclick="enter = 'okAdd';upbt='nwAr';dwbt='nwEn'"  placeholder="French word"/> 
+               onclick="enter = 'okAdd';upbt='nwAr';dwbt='nwEn';chInp(this)"  placeholder="French word"/> 
         <div style="margin-top: 7px;height: 20px;">
           <p id="notAdd" style="color: red;  display:none;">You dont add an word</p>
           <p id="isAdd" style="color: var(--gr);  display:none;">words have been added</p>
