@@ -1,0 +1,336 @@
+:root{
+    --mnCl:#2196f3;
+    --gr:#009688;
+}
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+body{
+    font-family: 'Open Sans', sans-serif;
+}
+
+::-webkit-scrollbar{
+    width: 9px;
+}
+::-webkit-scrollbar-track{
+    background-color: #f6f6f6;
+    margin: -4px 0;
+}
+::-webkit-scrollbar-thumb{
+    background-color: var(--gr);
+    border-radius: 7px;
+}
+
+#cntnr{ /* continer finch */
+    background-color: #7473739e;
+    width: 100%;
+    height: 100%;
+    display: none;
+    position: fixed;
+    background-size: cover;
+    z-index: 1;
+}
+.cngImg{
+    display: none;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    position: fixed;
+    opacity: 0.5;
+}
+.dvPlc{
+    width: 50%;
+    top: 30%;
+    left: 25%;
+    position: fixed;
+    z-index: 2;
+    background-color: white;
+    border-radius: 7px;
+    overflow-y: visible;
+    transition: .3s;
+    border: 3px solid var(--gr);
+    text-align: center;
+    transform: scaleY(1);
+}
+.hidplac{
+    transform: scaleY(0);
+}
+#hid{
+    font-size: 5vh;
+    color: #302e2ed9;
+    float: right;
+    display: block;
+    cursor: pointer;
+    margin: 2% 15px 0px;
+}
+#gmOvr{
+    color: #d70000;
+    font-size: 50px;
+    display: none;
+    padding: 35px;
+    font-weight: bold;
+}
+.divCng{
+    font-size: 35px;
+    display: none;
+    padding: 15px;
+    border-radius: 0 0 7px 7px;
+    font-weight: bold;
+}
+.divCng span{
+    color: var(--gr);
+}
+.nwWord{
+    display: none;
+    font-size: 30px;
+    margin-top: 12px;
+}
+.gmNm{
+    font-size: 27px;
+    padding: 15px;
+    display: none;
+}
+.inpAdd{
+    font-size: 30px;
+    display: block;
+    margin: 20px auto;
+    width: 70%;
+    caret-color: var(--mnCl);
+    padding: 0px;
+    color: var(--mnCl);
+    border: none;
+    text-align: center;
+    border-bottom: 2px solid var(--mnCl);
+    transition: .3s;
+}
+.inpAdd:focus{
+padding: 7px 7px;
+width: 75%;
+}
+
+.nofcs:focus{outline: none;}
+
+
+.okbtn{
+    display: block;
+    color: white;
+    width: 30%;
+    font-size: 22px;
+    background: var(--mnCl);
+    margin: 20px auto 0;
+    padding: 5px 20px;
+    border: 1px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.dblbtn{
+    display: initial;
+    margin: 20px 7px;
+}
+.ch{
+    font-size: 25px;
+    margin: 5px;
+}
+.ch input{
+    width: 15px;
+    height: 15px;
+}
+
+/* .okCng{margin: 2px auto 20px;} */
+.game{
+    background-color: #eee;
+    min-height: 100vh;
+}
+
+.container{
+    margin: auto;
+    max-width: 900px;
+}
+.name{
+    background-color: var(--mnCl);
+    color: white;
+    padding: 30px;
+    font-size: 55px;
+    text-align: center;
+    font-weight: bold;
+}
+.msg{
+    display: flex;
+    justify-content: space-between;
+    background-color: white;
+    padding: 15px;
+    border-radius: 6px;
+    margin: 5px 0;
+}
+.msg span{
+    font-weight: bold;
+    color: #009688;
+}
+.gmr{
+    cursor: pointer;
+    margin-right: 25px;
+}
+/* .msg span::before {
+    content: "( ";
+
+}
+.msg span::after {
+    content: " )";
+} */
+.control{
+    display: flex;
+    justify-content: space-between;
+    background-color: white;
+    padding: 15px;
+    border-radius: 6px;
+}
+.control span{
+    font-weight: bold;
+    color: #009688;
+}
+.shoTime{
+    color: var(--gr);
+    font-size: 15px;
+    border-radius: 4px;
+    text-align: center;
+}
+.shoTime:focus{
+    border: 1px solid var(--mnCl);
+    outline: var(--mnCl) solid 1px;
+}
+
+
+.start{
+    font-size: 30px;
+    font-weight: bold;
+    text-align: center;
+    background: #009688;
+    color: white;
+    padding: 30px;
+    margin: 20px 30%;
+    cursor: pointer;
+    border-radius: 6px;
+}
+.wrds{
+    background-color: white;
+    margin: 15px 0;
+    padding: 15px;
+    display: none;
+    flex-wrap: wrap;
+    justify-content: center;
+    border-radius: 6px;
+    
+}
+.wrds div{
+    margin: 0 10px;
+    text-align: center;
+}
+.wrds div p{
+    margin: 10px;
+    color: var(--gr);
+    font-size: 20px;
+    cursor: pointer;
+}
+.wrd{
+    text-align: center;
+    font-weight: bold;
+    font-size: 60px;
+    color: var(--mnCl);
+}
+.input{
+    margin: 15px 0;
+    width: 100%;
+    display: block;
+    padding: 15px;
+    border: 3px solid var(--mnCl);
+    font-size: 20px;
+    text-align: center;
+    border-radius: 6px;
+    caret-color: var(--mnCl);
+}
+
+.upcoming{
+    background-color: white;
+    margin: 15px 0;
+    padding: 15px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.upcoming div{
+    background-color: var(--mnCl);
+    color: white;
+    font-weight: bold;
+    margin: 4px;
+    padding: 10px;
+    border-radius: 6px;
+}
+.cnNbAdd{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.add{
+    color: var(--gr);
+    margin: auto 10px 3px;
+    padding: 15px 17px 0;
+    font-size: 38px;
+    font-weight: bold;
+    cursor: pointer;
+    text-align: right;
+    width: 220px;
+}
+.name2{
+    font-size: 34px;
+    padding: 17px;
+    border-radius: 10px 10px 0 0;
+}
+.name2 span{
+    margin: 1px 15px;
+}
+
+#nmbWrd{
+    color: var(--mnCl);
+}
+.lngs{
+    font-size: 25px;
+    padding: 8px 10px;
+    width: auto;
+    margin: 11px 5px -5px;
+}
+.nbWrd{
+    cursor:alias;
+}
+
+.upcoming div span{
+    margin: 0 5px;
+}
+.hidWrd{/* hident historik */
+    font-size: 17px;
+    color: white;
+    cursor: pointer;
+} 
+
+.aldlt{
+    text-align: center;
+    padding: 10 px auto -4px;
+    color: red;
+    width: 100%;
+}
+@media (max-width: 700px) {
+    .dvPlc{width: 90%;left: 5%; font-size: 20px;}
+    .name{font-size: 35px;padding: 25px;}
+    .start{font-size: 25px;padding: 20px;margin: 15px 30%;}
+    .add{font-size: 20px;margin: 0 3px 17px;width: 154px;text-align: center;} 
+    .wrd{font-size: 25px;}
+    .lngs{font-size: 19px;padding: 6px 6px; margin: auto;}
+    .upcoming{margin: -16px 0;}
+    .aldlt{margin-bottom: -11px;}
+}
+.clClvu{
+    display: none;
+    width: 90%;
+    height: 90%;
+}
