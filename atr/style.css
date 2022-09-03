@@ -304,36 +304,36 @@ width: 75%;
     margin: 11px 5px -5px;
 }
 .nbWrd{
-    cursor:alias;
+    cursor:alias
 }
 
 .upcoming div span{
-    margin: 0 5px;
+    margin: 0 5px
 }
 .hidWrd{/* hident historik */
     font-size: 17px;
     color: white;
-    cursor: pointer;
+    cursor: pointer
 } 
 
 .aldlt{
     text-align: center;
     padding: 10 px auto -4px;
     color: red;
-    width: 100%;
+    width: 100%
 }
 @media (max-width: 700px) {
-    .dvPlc{width: 90%;left: 5%; font-size: 20px;}
+    .dvPlc{width: 90%;left: 5%; font-size: 20px}
     .name{font-size: 35px;padding: 25px;}
-    .start{font-size: 25px;padding: 20px;margin: 15px 30%;}
-    .add{font-size: 20px;margin: 0 3px 17px;width: 154px;text-align: center;} 
+    .start{font-size: 25px;padding: 20px;margin: 15px 30%}
+    .add{font-size: 20px;margin: 0 3px 17px;width: 154px;text-align: center} 
     .wrd{font-size: 25px;}
-    .lngs{font-size: 19px;padding: 6px 6px; margin: auto;}
-    .upcoming{margin: -16px 0;}
-    .aldlt{margin-bottom: -11px;}
+    .lngs{font-size: 19px;padding: 6px 6px; margin: auto}
+    .upcoming{margin: -16px 0}
+    .aldlt{margin-bottom: 10px;width: 100%}
 }
 .clClvu{
     display: none;
     width: 90%;
-    height: 90%;
+    height: 90%
 }
