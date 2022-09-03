@@ -7,7 +7,7 @@ opnSite();
 
 function opnDiv(dvOpn, ent, fcs = 'tpScrl') {
     dsply('cntnr', 'block'); dsply(dvOpn, 'block'); enter = ent; fxClk(fcs);
-    gebi(fcs).focus();    gebi('divplac').className += ' opPlc';
+    gebi('divplac').className += ' opPlc';
     addCls = setTimeout(() => { gebi('divplac').className = 'dvPlc' }, 10)
 }
 
@@ -74,10 +74,10 @@ function resulte() {
         cngrt = `<div>congratulations <span> ${nmGmr}</span></div>
                <div>You wrote <span> ${nbWrd}</span> words in <span> ${clTm(lftTm, 1)}</span>
                <div id="okcng" onclick="hiding()" class="okbtn okCng nofcs">Ok thanks</div></div>`;
-        gebi('cngrtl').innerHTML = cngrt; opnDiv('cngrtl', 'okcng');
+        gebi('cngrtl').innerHTML = cngrt; opnDiv('cngrtl', 'okcng');gebi('okcng').focus();
         fxCngr = setInterval(() => { if (gebi('cngrtl').innerHTML != cngrt) { gebi('cngrtl').innerHTML = cngrt } }, 500);
         localStorage['top' + lftTm] = nbWrd; localStorage['topGmr' + lftTm] = nmGmr; topScrl(lftTm)
-    } else { opnDiv('gmOvr', 'okgmOvr') }
+    } else { opnDiv('gmOvr', 'okgmOvr');gebi('okgmOvr').focus() }
 }
 
 function hidWrd(rnNmb) {
