@@ -4,11 +4,15 @@ let hidDiv,addCls,inp =gebi('inpWrd'),enter = 'idStart',strt=1,nmGm=localStorage
 opnSite();
 
 
-function opnDiv(dvOpn,ent,fcs='tpScrl'){dsply('cntnr','block');dsply(dvOpn,'block');enter=ent;fxClk(fcs)}
+function opnDiv(dvOpn,ent,fcs='tpScrl'){ 
+    dsply('cntnr','block');dsply(dvOpn,'block');enter=ent;fxClk(fcs);
+    gebi('divplac').className +=' opPlc';  
+    addCls= setTimeout(() => { gebi('divplac').className ='dvPlc' },10)
+}
 
 function hiding() {
     valScnd(localStorage.lvlTim);
-    inp.value=''; enter = 'idStart';clearInterval(tmLft);
+    inp.value=''; enter = 'idStart';
     addCls= setTimeout(() => { gebi('divplac').className +=' hidplac' }, 20)
     hidDiv=  setTimeout(() => {
         gebi('divplac').className = 'dvPlc';
@@ -26,7 +30,6 @@ function topScrl(time) {
       ${localStorage['top'+time]}</span> words in <span>${clTm(time,1)}</span>`
   }else{gebi('tpScrl').innerText = 'Top Score : no One'}
 }
-/* localStorage['top30']=2 */
 /* localStorage.removeItem('top30') */
 function valScnd(time){
     topScrl(time);gebi('tmLft').innerText=clTm(time);enter='idStart';
@@ -70,16 +73,12 @@ function resulte() {
         cngrt =`<div>congratulations <span> ${nmGmr}</span></div>
                <div>You wrote <span> ${nbWrd}</span> words in <span> ${clTm(lftTm,1)}</span>
                <div id="okcng" onclick="hiding()" class="okbtn okCng nofcs">Ok</div></div>`;
-        dsply('cngrtl','block'); gebi('cngrtl').innerHTML =cngrt; 
-        fxCngr=setInterval(() => { if (gebi('cngrtl').innerHTML !=cngrt) {gebi('cngrtl').innerHTML =cngrt } }, 500);
-        localStorage['top'+lftTm]=nbWrd; localStorage['topGmr'+lftTm]=nmGmr;topScrl(lftTm);enter = 'okcng'
-    }else{dsply('gmOvr','block');enter = 'okgmOvr'}
-   
+         gebi('cngrtl').innerHTML =cngrt; opnDiv('cngrtl','okcng');
+        fxCngr=setInterval(()=>{if(gebi('cngrtl').innerHTML !=cngrt){gebi('cngrtl').innerHTML =cngrt}},500);
+        localStorage['top'+lftTm]=nbWrd; localStorage['topGmr'+lftTm]=nmGmr;topScrl(lftTm)
+    }else{opnDiv('gmOvr','okgmOvr')}
 }
- 
-/* localStorage.removeItem('lng0')
-localStorage.removeItem('lng1')
-localStorage.removeItem('lng2') */
+
 function hidWrd(rnNmb) { 
     if(enWrd.length==1){dltall();return false}
     gebi('wrdDiv'+rnNmb).remove();
@@ -151,10 +150,7 @@ function opnSite() {
     }else{gebi('timeLvl').value=30;gebi('tmLft').innerText=30;topScrl('30');lftTm=30}
 
     /*//////// list words \\\\\\\\\  */
-    allWrd();
-    /* gebi('clVu').innerHTML += '<iframe src="https://maktaeliliktroniya.blogspot.com/2022/08/typing-speed.html" '+
-                               'frameborder="0"></iframe>';
-    dsply('ifrm','none') */
+    allWrd()
 }
 /* ////// create list words */
 function lstWrd() {
@@ -186,22 +182,26 @@ function cntn() {
     enWrd=nwEn;arWrd=nwAr;frWrd=nwFr; lstWrd(); stWrd();
     gebi('nmbWrd').innerText=enWrd.length;
 
-    document.querySelectorAll('.ch input').forEach((el)=>{
+    document.querySelectorAll('.ch input').forEach(el=>{
         el.addEventListener('click',()=> {
             if (el.checked) {
-                document.querySelectorAll(el.dataset.lng).forEach(chnCl =>chnCl.style.display='initial');
-                localStorage['ch'+el.id]='true';nmCh++
+                nmCh++; chcd('initial')
             }else{
                 nmCh--; if (nmCh==0) { el.click();return false}
-                document.querySelectorAll(el.dataset.lng).forEach(chnCl =>chnCl.style.display='none');
-                localStorage['ch'+el.id]='false'
+                chcd('none')
             }
-            
+            function chcd(dsp) {
+                document.querySelectorAll(el.dataset.lng).forEach(chnCl => chnCl.style.display=dsp);
+                localStorage['ch'+el.id]=dsp
+            } 
         });
-        if(localStorage['ch'+el.id]=='false'){el.click()}
+        
+        if(localStorage['ch'+el.id]=='none'){el.click()}
         
     });
-    
+    gebi('clVu').innerHTML += `<iframe src="https://maktaeliliktroniya.blogspot.com/2022/08/typing-speed.html" 
+    frameborder="0"></iframe>`;
+     dsply('clVu','none') 
 }
 /* ////// short function \\\\\\\\\\ */
 function ind(inpt,pr,pr2=0) { inpt=inpt.indexOf(pr,pr2);return inpt}
