@@ -42,7 +42,7 @@ body{
 }
 .dvPlc{
     width: 50%;
-    top: 30%;
+    top: 20%;
     left: 25%;
     position: fixed;
     z-index: 2;
@@ -54,8 +54,11 @@ body{
     text-align: center;
     transform: scaleY(1);
 }
-.hidplac{
+.hidplac,.opPlc{
     transform: scaleY(0);
+}
+.opPlc{
+    transition: 0s;
 }
 #hid{
     font-size: 5vh;
