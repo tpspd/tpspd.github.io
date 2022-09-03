@@ -42,12 +42,12 @@ function valScnd(time){
 
 function clTm(time,plc=0) {
     if(time =='∞'){return '∞'}
-    let mtm=Math.floor(time/60) ,stm=time-mtm*60,totlTm,s='' ; stm=stm.toFixed(0)
+    let mtm=0 ,stm,ttlTm,s='';
+    if(time > 59){mtm=Math.floor(time/60);stm=time%60}else{stm=time}
     if(plc==1){if(mtm>0){if(mtm>1){s='s'} return mtm+' minute'+s}else{return stm+' seconds'}}
-     if (stm<10) {stm='0'+stm }
-     if(mtm==0){totlTm=' '+stm+'s'} 
-     totlTm=' '+mtm+':'+stm;
-    return totlTm
+    if (stm<10) {stm='0'+stm }
+    mtm='0'+mtm; ttlTm=' '+mtm+':'+stm;
+    return ttlTm
 }
 
 function gogame() {
@@ -138,12 +138,13 @@ function opnSite() {
     });
     gebi('divplac').addEventListener('click',e =>{e.stopPropagation()});
     inp.oninput = ()=>{
-        let  vinp = inp.value;
+        let  vinp = inp.value.toLocaleLowerCase();
+        enWrd[nmbr]=enWrd[nmbr].toLocaleLowerCase();frWrd[nmbr]=frWrd[nmbr].toLocaleLowerCase();
             if((vinp == arWrd[nmbr] || vinp == enWrd[nmbr] || vinp == frWrd[nmbr])&& vinp!='' && strt==0 ){
                  nmbr++;stWrd();gebi('inpWrd').value='';nbWrd++;gebi('mbrWrd').innerText = nbWrd
             } 
     }
-
+    
     /* //////// localStorage for gimer ... ext */
     if(nmGm){gebi('spNmGm').innerText=nmGm;gebi('nmGm').value= nmGm }else{gebi('spNmGm').innerText='Unknown'}
     if(localStorage.lvlTim){let lvtm=localStorage.lvlTim; gebi('timeLvl').value=lvtm; valScnd(lvtm);lftTm=lvtm
