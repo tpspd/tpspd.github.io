@@ -77,6 +77,7 @@ function resulte() {
         fxCngr=setInterval(()=>{if(gebi('cngrtl').innerHTML !=cngrt){gebi('cngrtl').innerHTML =cngrt}},500);
         localStorage['top'+lftTm]=nbWrd; localStorage['topGmr'+lftTm]=nmGmr;topScrl(lftTm)
     }else{opnDiv('gmOvr','okgmOvr')}
+    gebi('okgmOvr').focus()
 }
 
 function hidWrd(rnNmb) { 
