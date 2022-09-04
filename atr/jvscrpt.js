@@ -1,6 +1,6 @@
-let hidDiv, addCls, inp = gebi('inpWrd'), enter = 'idStart', strt = 1, nmGm = localStorage.nmGmr,
-    arWrd, enWrd, frWrd, nmbr = 0, nbWrd = 0, lftTm, fxCngr, cngrt = '', tmLft,
-    upbt = 'nwFr', dwbt = 'nwAr', nmCh = 3, kyBt = 'ent';
+let hidDiv, inp = gebi('inpWrd'), enter = 'idStart', strt = 1, nmGm = localStorage.nmGmr,
+    arWrd, enWrd, frWrd, nmbr = 0, nbWrd = 0, lftTm, fxCngr, cngrt = '', tmLft, lngTm
+upbt = 'nwFr', dwbt = 'nwAr', nmCh = 3, kyBt = 'ent';
 
 opnSite();
 
@@ -8,13 +8,13 @@ opnSite();
 function opnDiv(dvOpn, ent, fcs = 'tpScrl') {
     dsply('cntnr', 'block'); dsply(dvOpn, 'block'); enter = ent; fxClk(fcs);
     gebi('divplac').className += ' opPlc';
-    addCls = setTimeout(() => { gebi('divplac').className = 'dvPlc' }, 10)
+    setTimeout(() => { gebi('divplac').className = 'dvPlc' }, 10)
 }
 
 function hiding() {
     valScnd(localStorage.lvlTim);
-    inp.value = ''; enter = 'idStart';
-    addCls = setTimeout(() => { gebi('divplac').className += ' hidplac' }, 20)
+    inp.value = '';
+    setTimeout(() => { gebi('divplac').className += ' hidplac' }, 20)
     hidDiv = setTimeout(() => {
         gebi('divplac').className = 'dvPlc';
         document.querySelectorAll('.hidjs').forEach(el => { dsply(el.id, 'none') })
@@ -36,7 +36,7 @@ function valScnd(time) {
     topScrl(time); gebi('tmLft').innerText = clTm(time); enter = 'idStart';
     gebi('mbrWrd').innerText = 0; localStorage.lvlTim = time;
     if (strt == 0) {
-        clearInterval(tmLft); inp.value = '';
+        clrngTm(); inp.value = '';
         dsply('wrdDsply', 'none'); dsply('idStart', 'block'); strt = 1;
     }
 }
@@ -56,14 +56,23 @@ function gogame() {
     dsply('idStart', 'none'); dsply('wrdDsply', 'flex'); gebi('inpWrd').focus(); enter = 'tpScrl'; strt = 0;
     gebi('mbrWrd').innerText = 0; nbWrd = 0; lftTm = localStorage.lvlTim;
     if (lftTm == '∞') { return false }
-    let sntLft;
+    let sntLft, lngLfTm = lftTm * 40, rstLngtm = lngLfTm, rslt;
     tmLft = setInterval(() => {
         lftTm--; sntLft = clTm(lftTm); gebi('tmLft').innerText = sntLft;
-        if (lftTm == 0) { clearInterval(tmLft); resulte(); }
+        if (lftTm == 0) { clrngTm(); resulte(); }
     }, 1000);
 
-
+    lngTm = setInterval(() => {
+        rstLngtm--; rslt = (rstLngtm * 100 / lngLfTm).toFixed(1) + '%';
+        gebi('lngTm').style.width = rslt;
+    }, 25);
 }
+
+function clrngTm() {
+    clearInterval(tmLft); clearInterval(lngTm);
+    gebi('lngTm').style.width = '100%'
+}
+
 function resulte() {
     if (gebi('cntnr').style.display == 'block') { hiding(); setTimeout(() => { resulte() }, 500); return false }
     lftTm = localStorage.lvlTim; dsply('wrdDsply', 'none'); dsply('idStart', 'block'); strt = 1; inp.value = '';
@@ -74,10 +83,11 @@ function resulte() {
         cngrt = `<div>congratulations <span> ${nmGmr}</span></div>
                <div>You wrote <span> ${nbWrd}</span> words in <span> ${clTm(lftTm, 1)}</span>
                <div id="okcng" onclick="hiding()" class="okbtn okCng nofcs">Ok thanks</div></div>`;
-        gebi('cngrtl').innerHTML = cngrt; opnDiv('cngrtl', 'okcng');gebi('okcng').focus();
+        gebi('cngrtl').innerHTML = cngrt; opnDiv('cngrtl', 'okcng'); gebi('okcng').focus();
         fxCngr = setInterval(() => { if (gebi('cngrtl').innerHTML != cngrt) { gebi('cngrtl').innerHTML = cngrt } }, 500);
         localStorage['top' + lftTm] = nbWrd; localStorage['topGmr' + lftTm] = nmGmr; topScrl(lftTm)
-    } else { opnDiv('gmOvr', 'okgmOvr');gebi('okgmOvr').focus() }
+    } else { opnDiv('gmOvr', 'okgmOvr'); }
+    gebi('idStart').focus()
 }
 
 function hidWrd(rnNmb) {
@@ -120,13 +130,12 @@ function isAddWrd(inpWrd, arrWrd, lng) {
 }
 
 function dltall() {
-    cntWrd = gebi('cntWrds').innerHTML = ''; enter = 'idStart';
+    cntWrd = gebi('cntWrds').innerHTML = ''; 
     dsply('wrdDsply', 'none'); dsply('idStart', 'block');
-    enWrd = []; arWrd = []; frWrd = []; nmbr = 0; strt = 1;
+    enWrd = []; arWrd = []; frWrd = []; nmbr = 0;
     localStorage.removeItem('stWrdEn'); localStorage.removeItem('stWrdAr');
     localStorage.removeItem('stWrdFr'); gebi('nmbWrd').innerText = 0;
-    clearInterval(tmLft);
-    valScnd(localStorage.lvlTim); hiding();
+    hiding();
 }
 
 
@@ -204,6 +213,7 @@ function cntn() {
     frameborder="0"></iframe>`;
     dsply('clVu', 'none')
 }
+
 /* ////// short function \\\\\\\\\\ */
 function ind(inpt, pr, pr2 = 0) { inpt = inpt.indexOf(pr, pr2); return inpt }
 function gebi(pr) { return document.getElementById(pr) }
@@ -212,7 +222,6 @@ function stToDiv(lng) { let Hist = localStorage['stWrd' + lng]; Hist = Hist.spli
 function wToSt(lng, lsWrd) { localStorage['stWrd' + lng] = lsWrd.join('@#') }
 function rep(inp, pr1, pr2) { return inp.replaceAll(pr1, pr2) }
 function fxClk(id) { gebi(id).focus(); gebi(id).click() }
-
 
 function allWrd() {
 
