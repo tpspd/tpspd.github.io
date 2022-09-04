@@ -149,8 +149,8 @@ function opnSite() {
     /* //////// localStorage for gimer ... ext */
     if (nmGm) { gebi('spNmGm').innerText = nmGm; gebi('nmGm').value = nmGm } else { gebi('spNmGm').innerText = 'Unknown' }
     if (localStorage.lvlTim) {
-        let lvtm = localStorage.lvlTim; gebi('timeLvl').value = lvtm; valScnd(lvtm); lftTm = lvtm
-    } else { gebi('timeLvl').value = 30; gebi('tmLft').innerText = 30; topScrl('30'); lftTm = 30 }
+        valScnd(localStorage.lvlTim)
+    } else { valScnd(30) }
 
     /*//////// list words \\\\\\\\\  */
     allWrd()
