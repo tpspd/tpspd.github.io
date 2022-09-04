@@ -1,46 +1,53 @@
-:root{
-    --mnCl:#2196f3;
-    --gr:#009688;
+:root {
+    --mnCl: #2196f3;
+    --gr: #009688
 }
-*{
+
+* {
     box-sizing: border-box;
     margin: 0;
-    padding: 0;
-}
-body{
-    font-family: 'Open Sans', sans-serif;
+    padding: 0
 }
 
-::-webkit-scrollbar{
-    width: 9px;
+body {
+    font-family: 'Open Sans', sans-serif
 }
-::-webkit-scrollbar-track{
+
+::-webkit-scrollbar {
+    width: 9px
+}
+
+::-webkit-scrollbar-track {
     background-color: #f6f6f6;
-    margin: -4px 0;
-}
-::-webkit-scrollbar-thumb{
-    background-color: var(--gr);
-    border-radius: 7px;
+    margin: -4px 0
 }
 
-#cntnr{ /* continer finch */
+::-webkit-scrollbar-thumb {
+    background-color: var(--gr);
+    border-radius: 7px
+}
+
+#cntnr {
+    /* continer finch */
     background-color: #7473739e;
     width: 100%;
     height: 100%;
     display: none;
     position: fixed;
     background-size: cover;
-    z-index: 1;
+    z-index: 1
 }
-.cngImg{
+
+.cngImg {
     display: none;
     width: 100%;
     height: 100%;
     z-index: 0;
     position: fixed;
-    opacity: 0.5;
+    opacity: 0.5
 }
-.dvPlc{
+
+.dvPlc {
     width: 50%;
     top: 20%;
     left: 25%;
@@ -52,50 +59,60 @@ body{
     transition: .3s;
     border: 3px solid var(--gr);
     text-align: center;
-    transform: scaleY(1);
+    transform: scaleY(1)
 }
-.hidplac,.opPlc{
-    transform: scaleY(0);
+
+.hidplac,
+.opPlc {
+    transform: scaleY(0)
 }
-.opPlc{
-    transition: 0s;
+
+.opPlc {
+    transition: 0s
 }
-#hid{
+
+#hid {
     font-size: 5vh;
     color: #302e2ed9;
     float: right;
     display: block;
     cursor: pointer;
-    margin: 2% 15px 0px;
+    margin: 2% 15px 0px
 }
-#gmOvr{
+
+#gmOvr {
     color: #d70000;
     font-size: 50px;
     display: none;
     padding: 35px;
-    font-weight: bold;
+    font-weight: bold
 }
-.divCng{
+
+.divCng {
     font-size: 35px;
     display: none;
     padding: 15px;
     border-radius: 0 0 7px 7px;
-    font-weight: bold;
+    font-weight: bold
 }
-.divCng span{
-    color: var(--gr);
+
+.divCng span {
+    color: var(--gr)
 }
-.nwWord{
+
+.nwWord {
     display: none;
     font-size: 30px;
-    margin-top: 12px;
+    margin-top: 12px
 }
-.gmNm{
+
+.gmNm {
     font-size: 27px;
     padding: 15px;
-    display: none;
+    display: none
 }
-.inpAdd{
+
+.inpAdd {
     font-size: 30px;
     display: block;
     margin: 20px auto;
@@ -106,143 +123,164 @@ body{
     border: none;
     text-align: center;
     border-bottom: 2px solid var(--mnCl);
-    transition: .3s;
-}
-.inpAdd:focus{
-padding: 7px 7px;
-width: 75%;
+    transition: .3s
 }
 
-.nofcs:focus{outline: none;}
+.inpAdd:focus {
+    padding: 7px 7px;
+    width: 75%
+}
+
+.nofcs:focus {
+    outline: none
+}
 
 
-.okbtn{
+.okbtn {
     display: block;
     color: white;
-    width: 30%;
+    width: fit-content;
     font-size: 22px;
     background: var(--mnCl);
     margin: 20px auto 0;
     padding: 5px 20px;
     border: 1px;
     border-radius: 5px;
-    cursor: pointer;
+    cursor: pointer
 }
-.dblbtn{
+
+.dblbtn {
     display: initial;
-    margin: 20px 7px;
+    margin: 20px 7px
 }
-.ch{
+
+.ch {
     font-size: 25px;
-    margin: 5px;
+    margin: 5px
 }
-.ch input{
+
+.ch input {
     width: 15px;
-    height: 15px;
+    height: 15px
 }
 
-/* .okCng{margin: 2px auto 20px;} */
-.game{
+.game {
     background-color: #eee;
-    min-height: 100vh;
+    min-height: 100vh
 }
 
-.container{
+.container {
     margin: auto;
-    max-width: 900px;
+    max-width: 900px
 }
-.name{
+
+.name {
     background-color: var(--mnCl);
     color: white;
     padding: 30px;
     font-size: 55px;
     text-align: center;
-    font-weight: bold;
+    font-weight: bold
 }
-.msg{
-    display: flex;
-    justify-content: space-between;
-    background-color: white;
-    padding: 15px;
-    border-radius: 6px;
-    margin: 5px 0;
-}
-.msg span{
-    font-weight: bold;
-    color: #009688;
-}
-.gmr{
-    cursor: pointer;
-    margin-right: 25px;
-}
-/* .msg span::before {
-    content: "( ";
 
-}
-.msg span::after {
-    content: " )";
-} */
-.control{
+.msg {
     display: flex;
     justify-content: space-between;
     background-color: white;
     padding: 15px;
     border-radius: 6px;
+    margin: 5px 0
 }
-.control span{
+
+.msg span {
     font-weight: bold;
-    color: #009688;
+    color: var(--gr)
 }
-.shoTime{
+
+.gmr {
+    cursor: pointer;
+    margin-right: 25px
+}
+
+.control {
+    display: flex;
+    justify-content: space-between;
+    background-color: white;
+    padding: 15px;
+    border-radius: 6px
+}
+
+.control span {
+    font-weight: bold;
+    color: var(--gr)
+}
+
+.shoTime {
     color: var(--gr);
     font-size: 15px;
     border-radius: 4px;
-    text-align: center;
+    text-align: center
 }
-.shoTime:focus{
+
+.shoTime:focus {
     border: 1px solid var(--mnCl);
-    outline: var(--mnCl) solid 1px;
+    outline: var(--mnCl) solid 1px
 }
 
+.cntTm {
+    margin: -4px 15px 0;
+    background-color: #00968847
+}
 
-.start{
+.cntTm div {
+    background-color: var(--gr);
+    width: 100%;
+    height: 4px;
+    border-radius: 2px
+}
+
+.start {
     font-size: 30px;
     font-weight: bold;
     text-align: center;
-    background: #009688;
+    background: var(--gr);
     color: white;
     padding: 30px;
     margin: 20px 30%;
     cursor: pointer;
-    border-radius: 6px;
+    border-radius: 6px
 }
-.wrds{
+
+.wrds {
     background-color: white;
     margin: 15px 0;
     padding: 15px;
     display: none;
     flex-wrap: wrap;
     justify-content: center;
-    border-radius: 6px;
-    
+    border-radius: 6px
 }
-.wrds div{
+
+.wrds div {
     margin: 0 10px;
-    text-align: center;
+    text-align: center
 }
-.wrds div p{
+
+.wrds div p {
     margin: 10px;
     color: var(--gr);
     font-size: 20px;
-    cursor: pointer;
+    cursor: pointer
 }
-.wrd{
+
+.wrd {
     text-align: center;
     font-weight: bold;
     font-size: 60px;
-    color: var(--mnCl);
+    color: var(--mnCl)
 }
-.input{
+
+.input {
     margin: 15px 0;
     width: 100%;
     display: block;
@@ -251,31 +289,34 @@ width: 75%;
     font-size: 20px;
     text-align: center;
     border-radius: 6px;
-    caret-color: var(--mnCl);
+    caret-color: var(--mnCl)
 }
 
-.upcoming{
+.upcoming {
     background-color: white;
     margin: 15px 0;
     padding: 15px;
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: center
 }
-.upcoming div{
+
+.upcoming div {
     background-color: var(--mnCl);
     color: white;
     font-weight: bold;
     margin: 4px;
     padding: 10px;
-    border-radius: 6px;
+    border-radius: 6px
 }
-.cnNbAdd{
+
+.cnNbAdd {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: center
 }
-.add{
+
+.add {
     color: var(--gr);
     margin: auto 10px 3px;
     padding: 15px 17px 0;
@@ -283,56 +324,98 @@ width: 75%;
     font-weight: bold;
     cursor: pointer;
     text-align: right;
-    width: 230px;
-}
-.name2{
-    font-size: 34px;
-    padding: 17px;
-    border-radius: 10px 10px 0 0;
-}
-.name2 span{
-    margin: 1px 15px;
+    width: 230px
 }
 
-#nmbWrd{
-    color: var(--mnCl);
+.name2 {
+    font-size: 34px;
+    padding: 17px;
+    border-radius: 10px 10px 0 0
 }
-.lngs{
+
+.name2 span {
+    margin: 1px 15px
+}
+
+#nmbWrd {
+    color: var(--mnCl)
+}
+
+.lngs {
     font-size: 25px;
     padding: 8px 10px;
     width: auto;
-    margin: 11px 5px -5px;
-}
-.nbWrd{
-    cursor:alias
+    margin: 11px 5px -5px
 }
 
-.upcoming div span{
+.nbWrd {
+    cursor: alias
+}
+
+.upcoming div span {
     margin: 0 5px
 }
-.hidWrd{/* hident historik */
+
+.hidWrd {
+    /* hident historik */
     font-size: 17px;
     color: white;
     cursor: pointer
-} 
+}
 
-.aldlt{
+.aldlt {
     text-align: center;
     padding: 10 px auto -4px;
     color: red;
     width: 100%
 }
+
 @media (max-width: 700px) {
-    .dvPlc{width: 90%;left: 5%; font-size: 20px}
-    .name{font-size: 35px;padding: 25px;}
-    .start{font-size: 25px;padding: 20px;margin: 15px 30%}
-    .add{font-size: 20px;margin: 0 3px 17px;width: 154px;text-align: center} 
-    .wrd{font-size: 25px;}
-    .lngs{font-size: 19px;padding: 6px 6px; margin: auto}
-    .upcoming{margin: -16px 0}
-    .aldlt{margin-bottom: 10px;width: 100%}
+    .dvPlc {
+        width: 90%;
+        left: 5%;
+        font-size: 20px
+    }
+
+    .name {
+        font-size: 35px;
+        padding: 25px
+    }
+
+    .start {
+        font-size: 25px;
+        padding: 20px;
+        margin: 15px 30%
+    }
+
+    .add {
+        font-size: 20px;
+        margin: 0 3px 17px;
+        width: 154px;
+        text-align: center
+    }
+
+    .wrd {
+        font-size: 25px
+    }
+
+    .lngs {
+        font-size: 19px;
+        padding: 6px 6px;
+        margin: auto
+    }
+
+    .upcoming {
+        margin: -16px 0
+    }
+
+    .aldlt {
+        margin-bottom: 10px;
+        width: 100%
+    }
 }
-.clClvu{
+
+.clClvu {
     display: none;
     width: 90%;
     height: 90%
