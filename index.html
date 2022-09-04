@@ -11,7 +11,7 @@
 </head>
 <body>
   <div id="cntnr" class="hidjs" onclick="hiding()">
-    <div id="divplac" class="dvPlc" >
+    <div id="divplac" class="dvPlc">
       <span id="hid" onclick="hiding()" >×</span>
       <hr style="margin-top:8.2vh;">
       <span id="gmOvr" class="hidjs">Gime Over <button id="okgmOvr" onclick="hiding()" class="okbtn nofcs">Ok</button></span>
@@ -68,6 +68,7 @@
           <div class="gmr" onclick="opnDiv('dvNmGm','nmbtn','nmGm')"> Gamer : <span id="spNmGm" ></span> </div>
           <div id="tpScrl" class="list"></div>
         </div>
+
         <div class="control">
           <div class="time">Time left : <span id="tmLft">30</span></div>
           <div ><span id="mbrWrd" >0 </span> Words</div>
@@ -80,7 +81,11 @@
               <option value="∞">infinity </option>
             </select>
           </div>
-      </div>
+        </div>
+        <div class="cntTm">
+          <div id="lngTm"></div>
+        </div>
+
         <div id="idStart" class="start" onclick="gogame();">Start</div>
         <div id="wrdDsply" class="wrds">
           <div class="arCl"><p>ar</p><div id="lng0" class="wrd"></div></div>
