@@ -98,14 +98,10 @@ function hidWrd(rnNmb) {
     lstWrd(); gebi('nmbWrd').innerText = enWrd.length;
     wToSt('En', enWrd); wToSt('Ar', arWrd); wToSt('Fr', frWrd);
 }
-
+/* 
 function chInp(el) {
-    chTyp(el);
-    if (el.style.display == 'none' && nmCh > 0) {
-        let kys = { ent: enter, up: upbt, dw: dwbt };
-        fxClk(kys[kyBt])
-    }
-}
+   
+} */
 
 function chTyp(el) { el.type = 'search'; setTimeout(() => el.type = 'text', 500) }
 
@@ -152,9 +148,9 @@ function opnSite() {
     });
     gebi('divplac').addEventListener('click', e => { e.stopPropagation() });
     inp.oninput = () => {
-        let vinp = inp.value.toLocaleLowerCase();
-        enWrd[nmbr] = enWrd[nmbr].toLocaleLowerCase(); frWrd[nmbr] = frWrd[nmbr].toLocaleLowerCase();
-        if ((vinp == arWrd[nmbr] || vinp == enWrd[nmbr] || vinp == frWrd[nmbr]) && vinp != '' && strt == 0) {
+        let vinp = inp.value.toLocaleLowerCase(),en = enWrd[nmbr].toLocaleLowerCase(), 
+        fr = frWrd[nmbr].toLocaleLowerCase();
+        if ((vinp == arWrd[nmbr] || vinp == en || vinp == fr) && vinp != '' && strt == 0) {
             nmbr++; stWrd(); gebi('inpWrd').value = ''; nbWrd++; gebi('mbrWrd').innerText = nbWrd
         }
     }
@@ -165,6 +161,17 @@ function opnSite() {
         valScnd(localStorage.lvlTim)
     } else { valScnd(30) }
 
+    document.querySelectorAll('.inpAdd').forEach(el=>{
+        el.addEventListener('click',()=>{
+            chTyp(el);
+            if (el.style.display == 'none' && nmCh > 0) {
+                let kys = { ent: enter, up: upbt, dw: dwbt };
+                fxClk(kys[kyBt])
+            }
+        })
+    })
+    
+    
     /*//////// list words \\\\\\\\\  */
     allWrd()
 }
