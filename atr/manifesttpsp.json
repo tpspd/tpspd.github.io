@@ -1,5 +1,5 @@
 { 
-    "short_name": "tpsp", 
+    "short_name": "typing speed", 
     "name": "typing speed", 
     "icons": [{  
         "src": "/atr/tpsp192.png", 
@@ -11,7 +11,7 @@
         "type": "image/png", 
         "sizes": "512x512" 
     } ],
-    "start_url": "/typspd.html", 
+    "start_url": "./typspd.html", 
     "background_color": "#3367D6", 
     "display": "standalone", 
     "theme_color": "#3367D6" 
