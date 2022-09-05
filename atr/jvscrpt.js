@@ -6,7 +6,7 @@ opnSite();
 
 
 function opnDiv(dvOpn, ent, fcs = 'tpScrl') {
-    dsply('cntnr', 'block'); dsply(dvOpn, 'block'); enter = ent; fxClk(fcs);
+    fxClk(fcs);dsply('cntnr', 'block'); dsply(dvOpn, 'block'); enter = ent;
     gebi('divplac').className += ' opPlc';
     setTimeout(() => { gebi('divplac').className = 'dvPlc' }, 10)
 }
