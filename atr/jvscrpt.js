@@ -75,11 +75,11 @@ function clrngTm() {
 
 function resulte() {
     if (gebi('cntnr').style.display == 'block') { hiding(); setTimeout(() => { resulte() }, 500); return false }
-gebi('chLng').focus();
+
     lftTm = localStorage.lvlTim; dsply('wrdDsply', 'none'); dsply('idStart', 'block'); strt = 1; inp.value = '';
     let tpSc = localStorage['top' + lftTm], nmGmr = gebi('spNmGm').innerText;
     gebi('tmLft').innerText = clTm(lftTm); dsply('cntnr', 'block');
-
+gebi('chLng').focus();
     if ((nbWrd > 0 && tpSc == undefined) || nbWrd > tpSc) {
         cngrt = `<div>congratulations <span> ${nmGmr}</span></div>
                <div>You wrote <span> ${nbWrd}</span> words in <span> ${clTm(lftTm, 1)}</span>
