@@ -12,14 +12,14 @@
 <body>
   <div id="cntnr" class="hidjs" onclick="hiding()">
     <div id="divplac" class="dvPlc">
-      <span id="hid" onclick="hiding()" >×</span>
+      <span id="hid" onclick="hiding()">×</span>
       <hr style="margin-top:8.2vh;">
       <span id="gmOvr" class="hidjs">Gime Over <button id="okgmOvr" onclick="hiding()" class="okbtn nofcs">Ok</button></span>
       
       <div id="cngrtl" class="divCng hidjs"></div>
 
       <div id="dvNmGm" class="gmNm hidjs">
-        Yor Name  <input type="text" id="nmGm" class="inpAdd nofcs" />
+        Yor Name  <input type="text" id="nmGm" class="inpAdd nofcs" spellcheck="false"/>
         <button id="nmbtn" class="okbtn nofcs" onclick="nmGmr() " >Ok</button>
       </div>
 
@@ -35,11 +35,11 @@
 
       <div id="addWrd" class="nwWord hidjs">
         add New words
-        <input id="nwEn" class="inpAdd nofcs enCl" type="text"
+        <input id="nwEn" class="inpAdd nofcs enCl" type="password" autocapitalize="off" spellcheck="false"
                onclick="enter = 'nwAr';upbt='nwFr';dwbt='nwAr';chInp(this)"  placeholder="English word"/>
-        <input id="nwAr" class="inpAdd nofcs arCl" type="text"
+        <input id="nwAr" class="inpAdd nofcs arCl" type="password" autocapitalize="off" spellcheck="false"
                onclick="enter = 'nwFr';upbt='nwEn';dwbt='nwFr';chInp(this)"  placeholder="Arabic word"/>
-        <input id="nwFr" class="inpAdd nofcs frCl" type="text"
+        <input id="nwFr" class="inpAdd nofcs frCl" type="password" autocapitalize="off" spellcheck="false"
                onclick="enter = 'okAdd';upbt='nwAr';dwbt='nwEn';chInp(this)"  placeholder="French word"/> 
         <div style="margin-top: 7px;height: 20px;">
           <p id="notAdd" style="color: red;  display:none;">You dont add an word</p>
@@ -92,12 +92,13 @@
           <div class="enCl"><p>En</p><div id="lng1" class="wrd"></div></div>
           <div class="frCl"><p>Fr</p><div id="lng2" class="wrd"></div></div>
         </div>
-        <input id="inpWrd" type="text" onclick="gogame();" class="input nofcs" onpaste="return false"  >
+        <input id="inpWrd" type="password" onclick="gogame();" class="input nofcs" autocapitalize="off"
+         onpaste="return false" spellcheck="false" >
         <div style="background-color: white;border-radius: 10px;">
           <div class="name name2" >Words</div>
           <div  class="cnNbAdd">
             <span class="add nbWrd"><span id="nmbWrd"></span> words</span> 
-            <button id="chLng"  class="okbtn lngs nofcs" onclick="opnDiv('chLng','okchkd')">Langes</button>
+            <button id="btnLng" class="okbtn lngs nofcs" onclick="opnDiv('chLng','okchkd')">Langes</button>
             <p class="add" onclick="opnDiv('addWrd','nwAr','nwEn')">+ add</p>
           </div>
           <div id="cntWrds" class="upcoming"></div> 
