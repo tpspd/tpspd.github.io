@@ -19,7 +19,7 @@
       <div id="cngrtl" class="divCng hidjs"></div>
 
       <div id="dvNmGm" class="gmNm hidjs">
-        Yor Name  <input type="text" id="nmGm" class="inpAdd nofcs" spellcheck="false"/>
+        Yor Name  <input type="search" id="nmGm" class="inpAdd nofcs" spellcheck="false" onclick=""/>
         <button id="nmbtn" class="okbtn nofcs" onclick="nmGmr() " >Ok</button>
       </div>
 
@@ -35,11 +35,11 @@
 
       <div id="addWrd" class="nwWord hidjs">
         add New words
-        <input id="nwEn" class="inpAdd nofcs enCl" type="password" autocapitalize="off" spellcheck="false"
+        <input id="nwEn" class="inpAdd nofcs enCl" type="search" autocapitalize="off" spellcheck="false"
                onclick="enter = 'nwAr';upbt='nwFr';dwbt='nwAr';chInp(this)"  placeholder="English word"/>
-        <input id="nwAr" class="inpAdd nofcs arCl" type="password" autocapitalize="off" spellcheck="false"
+        <input id="nwAr" class="inpAdd nofcs arCl" type="search" autocapitalize="off" spellcheck="false"
                onclick="enter = 'nwFr';upbt='nwEn';dwbt='nwFr';chInp(this)"  placeholder="Arabic word"/>
-        <input id="nwFr" class="inpAdd nofcs frCl" type="password" autocapitalize="off" spellcheck="false"
+        <input id="nwFr" class="inpAdd nofcs frCl" type="search" autocapitalize="off" spellcheck="false"
                onclick="enter = 'okAdd';upbt='nwAr';dwbt='nwEn';chInp(this)"  placeholder="French word"/> 
         <div style="margin-top: 7px;height: 20px;">
           <p id="notAdd" style="color: red;  display:none;">You dont add an word</p>
