@@ -75,6 +75,7 @@ function clrngTm() {
 
 function resulte() {
     if (gebi('cntnr').style.display == 'block') { hiding(); setTimeout(() => { resulte() }, 500); return false }
+gebi('chLng').focus();
     lftTm = localStorage.lvlTim; dsply('wrdDsply', 'none'); dsply('idStart', 'block'); strt = 1; inp.value = '';
     let tpSc = localStorage['top' + lftTm], nmGmr = gebi('spNmGm').innerText;
     gebi('tmLft').innerText = clTm(lftTm); dsply('cntnr', 'block');
@@ -87,7 +88,7 @@ function resulte() {
         fxCngr = setInterval(() => { if (gebi('cngrtl').innerHTML != cngrt) { gebi('cngrtl').innerHTML = cngrt } }, 500);
         localStorage['top' + lftTm] = nbWrd; localStorage['topGmr' + lftTm] = nmGmr; topScrl(lftTm)
     } else { opnDiv('gmOvr', 'okgmOvr'); }
-    gebi('idStart').focus()
+    
 }
 
 function hidWrd(rnNmb) {
