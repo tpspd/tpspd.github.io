@@ -53,6 +53,7 @@ function clTm(time, plc = 0) {
 
 function gogame() {
     if (enWrd.length == 0 || strt == 0) { return false }
+    chTyp(inp);
     dsply('idStart', 'none'); dsply('wrdDsply', 'flex'); gebi('inpWrd').focus(); enter = 'tpScrl'; strt = 0;
     gebi('mbrWrd').innerText = 0; nbWrd = 0; lftTm = localStorage.lvlTim;
     if (lftTm == '∞') { return false }
@@ -75,11 +76,10 @@ function clrngTm() {
 
 function resulte() {
     if (gebi('cntnr').style.display == 'block') { hiding(); setTimeout(() => { resulte() }, 500); return false }
-
     lftTm = localStorage.lvlTim; dsply('wrdDsply', 'none'); dsply('idStart', 'block'); strt = 1; inp.value = '';
     let tpSc = localStorage['top' + lftTm], nmGmr = gebi('spNmGm').innerText;
     gebi('tmLft').innerText = clTm(lftTm); dsply('cntnr', 'block');
-gebi('chLng').focus();
+
     if ((nbWrd > 0 && tpSc == undefined) || nbWrd > tpSc) {
         cngrt = `<div>congratulations <span> ${nmGmr}</span></div>
                <div>You wrote <span> ${nbWrd}</span> words in <span> ${clTm(lftTm, 1)}</span>
@@ -88,7 +88,7 @@ gebi('chLng').focus();
         fxCngr = setInterval(() => { if (gebi('cngrtl').innerHTML != cngrt) { gebi('cngrtl').innerHTML = cngrt } }, 500);
         localStorage['top' + lftTm] = nbWrd; localStorage['topGmr' + lftTm] = nmGmr; topScrl(lftTm)
     } else { opnDiv('gmOvr', 'okgmOvr'); }
-    
+    gebi('btnLng').focus();
 }
 
 function hidWrd(rnNmb) {
@@ -100,11 +100,14 @@ function hidWrd(rnNmb) {
 }
 
 function chInp(el) {
+    chTyp(el);
     if (el.style.display == 'none' && nmCh > 0) {
         let kys = { ent: enter, up: upbt, dw: dwbt };
         fxClk(kys[kyBt])
     }
 }
+
+function chTyp(el) { el.type = 'search'; setTimeout(() => el.type = 'text', 500) }
 
 function addWrds() {
     let inpEn = gebi('nwEn'), inpAr = gebi('nwAr'),
@@ -131,7 +134,7 @@ function isAddWrd(inpWrd, arrWrd, lng) {
 }
 
 function dltall() {
-    cntWrd = gebi('cntWrds').innerHTML = ''; 
+    cntWrd = gebi('cntWrds').innerHTML = '';
     dsply('wrdDsply', 'none'); dsply('idStart', 'block');
     enWrd = []; arWrd = []; frWrd = []; nmbr = 0;
     localStorage.removeItem('stWrdEn'); localStorage.removeItem('stWrdAr');
