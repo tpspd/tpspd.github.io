@@ -1,14 +1,16 @@
 let hidDiv, inp = gebi('inpWrd'), enter = 'idStart', strt = 1, nmGm = localStorage.nmGmr,
-    arWrd, enWrd, frWrd, nmbr = 0, nbWrd = 0, lftTm, fxCngr, cngrt = '', tmLft, lngTm
-upbt = 'nwFr', dwbt = 'nwAr', nmCh = 3, kyBt = 'ent';
+    arWrd, enWrd, frWrd, nmbr = 0, nbWrd = 0, lftTm, fxCngr, cngrt = '', tmLft, lngTm,
+    upbt = 'nwFr', dwbt = 'nwAr', nmCh = 3, kyBt = 'ent';
 
 opnSite();
 
-
 function opnDiv(dvOpn, ent, fcs = 'tpScrl') {
-    fxClk(fcs);dsply('cntnr', 'block'); dsply(dvOpn, 'block'); enter = ent;
+     dsply('cntnr', 'block'); dsply(dvOpn, 'block'); enter = ent;
     gebi('divplac').className += ' opPlc';
-    setTimeout(() => { gebi('divplac').className = 'dvPlc' }, 10)
+    setTimeout(() => {
+        gebi('divplac').className = 'dvPlc';fxClk(fcs);
+    }, 10);
+
 }
 
 function hiding() {
@@ -52,8 +54,9 @@ function clTm(time, plc = 0) {
 }
 
 function gogame() {
-    if (enWrd.length == 0 || strt == 0) { return false }
     chTyp(inp);
+    if (enWrd.length == 0 || strt == 0) { return false }
+
     dsply('idStart', 'none'); dsply('wrdDsply', 'flex'); gebi('inpWrd').focus(); enter = 'tpScrl'; strt = 0;
     gebi('mbrWrd').innerText = 0; nbWrd = 0; lftTm = localStorage.lvlTim;
     if (lftTm == '∞') { return false }
@@ -98,19 +101,21 @@ function hidWrd(rnNmb) {
     lstWrd(); gebi('nmbWrd').innerText = enWrd.length;
     wToSt('En', enWrd); wToSt('Ar', arWrd); wToSt('Fr', frWrd);
 }
-/* 
+ 
 function chInp(el) {
-   
-} */
+   if (el.style.display == 'none') {
+    const ky={up:upbt ,dw : dwbt , ent:enter};
+    fxClk(ky[kyBt]);
+   }
+} 
 
-function chTyp(el) { el.type = 'search'; setTimeout(() => el.type = 'text', 500) }
+function chTyp(el) { el.type = 'search'; setTimeout(() => { el.type = 'text' }, 1000) }
 
 function addWrds() {
     let inpEn = gebi('nwEn'), inpAr = gebi('nwAr'),
         inpFr = gebi('nwFr'), tLng = inpEn.value + inpAr.value + inpFr.value;
     enter = 'nwAr';
-    gebi('nwEn').focus(); tLng = rep(tLng, ' ', '');
-    fxClk('nwEn')
+    tLng = rep(tLng, ' ', '');
     if (tLng == '') {
         dsply('notAdd', 'block'); dsply('isAdd', 'none');
         setTimeout(() => { dsply('notAdd', 'none'); }, 1000);
@@ -120,7 +125,9 @@ function addWrds() {
         lstWrd(); gebi('nmbWrd').innerText = enWrd.length;
         if (enWrd.length == 1) { stWrd() }
     }
-
+    setTimeout(() => {
+        fxClk('nwEn');
+    }, 10);
 }
 
 function isAddWrd(inpWrd, arrWrd, lng) {
@@ -146,10 +153,10 @@ function opnSite() {
         if (ev.keyCode === 38) { fxClk(upbt); kyBt = 'up' }
         if (ev.keyCode === 40) { fxClk(dwbt); kyBt = 'dw' }
     });
-    gebi('divplac').addEventListener('click', e => { e.stopPropagation() });
+    gebi('divplac').addEventListener('click', e => { e.stopPropagation(); });
     inp.oninput = () => {
-        let vinp = inp.value.toLocaleLowerCase(),en = enWrd[nmbr].toLocaleLowerCase(), 
-        fr = frWrd[nmbr].toLocaleLowerCase();
+        let vinp = inp.value.toLocaleLowerCase(), en = enWrd[nmbr].toLocaleLowerCase(),
+            fr = frWrd[nmbr].toLocaleLowerCase();
         if ((vinp == arWrd[nmbr] || vinp == en || vinp == fr) && vinp != '' && strt == 0) {
             nmbr++; stWrd(); gebi('inpWrd').value = ''; nbWrd++; gebi('mbrWrd').innerText = nbWrd
         }
@@ -160,37 +167,14 @@ function opnSite() {
     if (localStorage.lvlTim) {
         valScnd(localStorage.lvlTim)
     } else { valScnd(30) }
+   
+    // prevent form submit
+    const form = document.querySelectorAll("form");
+    form.forEach(el=>{el.addEventListener('submit',  ev =>{ ev.preventDefault() })})
+   
 
-    document.querySelectorAll('.inpAdd').forEach(el=>{
-        el.addEventListener('click',()=>{
-            chTyp(el);
-            if (el.style.display == 'none' && nmCh > 0) {
-                let kys = { ent: enter, up: upbt, dw: dwbt };
-                fxClk(kys[kyBt])
-            }
-        })
-    })
-    
-    
     /*//////// list words \\\\\\\\\  */
     allWrd()
-}
-/* ////// create list words */
-function lstWrd() {
-    let cntWrd = gebi('cntWrds'), dvWrd = '';
-
-    for (let i = 0; i < enWrd.length; i++) {
-        dvWrd += `<div id="wrdDiv${i}"><span id="hidWrd${i}"class="hidWrd"onclick="hidWrd(${i})"
-         >×</span><span class="arCl">${arWrd[i]}</span><span class="enCl">${enWrd[i]}</span>
-         <span class="frCl">${frWrd[i]}</span></div>`;
-    }
-    dvWrd += `<p id="spdlt" class="add aldlt"onclick="opnDiv('dltAll','yesbtn')" >delete all</p>`;
-    cntWrd.innerHTML = dvWrd;
-}
-
-function stWrd() {
-    if (nmbr == enWrd.length) { nmbr = 0 } gebi('lng0').innerText = arWrd[nmbr];
-    gebi('lng1').innerText = enWrd[nmbr]; gebi('lng2').innerText = frWrd[nmbr];
 }
 
 function cntn() {
@@ -224,6 +208,25 @@ function cntn() {
     frameborder="0"></iframe>`;
     dsply('clVu', 'none')
 }
+
+/* ////// create list words */
+function lstWrd() {
+    let cntWrd = gebi('cntWrds'), dvWrd = '';
+
+    for (let i = 0; i < enWrd.length; i++) {
+        dvWrd += `<div id="wrdDiv${i}"><span id="hidWrd${i}"class="hidWrd"onclick="hidWrd(${i})"
+         >×</span><span class="arCl">${arWrd[i]}</span><span class="enCl">${enWrd[i]}</span>
+         <span class="frCl">${frWrd[i]}</span></div>`;
+    }
+    dvWrd += `<p id="spdlt" class="add aldlt"onclick="opnDiv('dltAll','yesbtn')" >delete all</p>`;
+    cntWrd.innerHTML = dvWrd;
+}
+
+function stWrd() {
+    if (nmbr == enWrd.length) { nmbr = 0 } gebi('lng0').innerText = arWrd[nmbr];
+    gebi('lng1').innerText = enWrd[nmbr]; gebi('lng2').innerText = frWrd[nmbr];
+}
+
 
 /* ////// short function \\\\\\\\\\ */
 function ind(inpt, pr, pr2 = 0) { inpt = inpt.indexOf(pr, pr2); return inpt }
