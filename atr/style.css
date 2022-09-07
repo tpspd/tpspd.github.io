@@ -44,6 +44,7 @@ body {
     top: 20%;
     left: 25%;
     position: fixed;
+    /*font-size :30px;*/
     z-index: 2;
     background-color: white;
     border-radius: 7px;
@@ -94,8 +95,8 @@ body {
 
 .nwWord {
     display: none;
-    font-size: 30px;
-    margin-top: 12px
+    font-size: 5vh;
+    margin-top: 2vh
 }
 
 .gmNm {
@@ -105,9 +106,10 @@ body {
 }
 
 .inpAdd {
-    font-size: 30px;
+    font-size: 4vh;
     display: block;
-    margin: 20px auto;
+    text-align: center;
+    margin: 4vh auto;
     width: 70%;
     caret-color: var(--mnCl);
     padding: 0px;
@@ -131,9 +133,9 @@ body {
     display: block;
     color: white;
     width: fit-content;
-    font-size: 22px;
+    font-size: 4vh;
     background: var(--mnCl);
-    margin: 20px auto 0;
+    margin: 1vh auto 0;
     padding: 5px 20px;
     border: 1px;
     border-radius: 5px;
@@ -142,7 +144,8 @@ body {
 
 .dblbtn {
     display: initial;
-    margin: 20px 7px
+    margin: 20px 7px;
+
 }
 
 .ch {
@@ -364,8 +367,8 @@ body {
 @media (max-width: 700px) {
     .dvPlc {
         width: 90%;
+        top: 10%;
         left: 5%;
-        font-size: 20px
     }
 
     .name {
