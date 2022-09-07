@@ -8,7 +8,7 @@ function opnDiv(dvOpn, ent, fcs = 'tpScrl') {
      dsply('cntnr', 'block'); dsply(dvOpn, 'block'); enter = ent;
     gebi('divplac').className += ' opPlc';
     setTimeout(() => {
-        gebi('divplac').className = 'dvPlc';fxClk(fcs);
+        gebi('divplac').className = 'dvPlc';fxClk(fcs)
     }, 10);
 
 }
@@ -146,14 +146,16 @@ function dltall() {
 }
 
 
-
 function opnSite() {
-    addEventListener('keyup', (ev) => {
-        if (ev.keyCode === 13) { fxClk(enter); kyBt = 'ent' }
-        if (ev.keyCode === 38) { fxClk(upbt); kyBt = 'up' }
-        if (ev.keyCode === 40) { fxClk(dwbt); kyBt = 'dw' }
-    });
-    gebi('divplac').addEventListener('click', e => { e.stopPropagation(); });
+    
+    
+     if(window.outerWidth > 900){
+        addEventListener('keyup', (ev) => {
+            if (ev.keyCode === 13) { fxClk(enter); kyBt = 'ent' }
+            if (ev.keyCode === 38) { fxClk(upbt); kyBt = 'up' }
+            if (ev.keyCode === 40) { fxClk(dwbt); kyBt = 'dw' }
+        });
+    }
     inp.oninput = () => {
         let vinp = inp.value.toLocaleLowerCase(), en = enWrd[nmbr].toLocaleLowerCase(),
             fr = frWrd[nmbr].toLocaleLowerCase();
@@ -161,7 +163,14 @@ function opnSite() {
             nmbr++; stWrd(); gebi('inpWrd').value = ''; nbWrd++; gebi('mbrWrd').innerText = nbWrd
         }
     }
-
+    const form = document.querySelectorAll("form");
+    form.forEach(el=>{
+        el.addEventListener('submit',  ev =>{
+         ev.preventDefault();
+        
+     })})
+    
+    gebi('divplac').addEventListener('click', e => { e.stopPropagation() });
     /* //////// localStorage for gimer ... ext */
     if (nmGm) { gebi('spNmGm').innerText = nmGm; gebi('nmGm').value = nmGm } else { gebi('spNmGm').innerText = 'Unknown' }
     if (localStorage.lvlTim) {
@@ -169,9 +178,8 @@ function opnSite() {
     } else { valScnd(30) }
    
     // prevent form submit
-    const form = document.querySelectorAll("form");
-    form.forEach(el=>{el.addEventListener('submit',  ev =>{ ev.preventDefault() })})
-   
+    
+    
 
     /*//////// list words \\\\\\\\\  */
     allWrd()
@@ -204,9 +212,9 @@ function cntn() {
         });
         if (localStorage['ch' + el.id] == 'none') { el.click() }
     });
-    gebi('clVu').innerHTML += `<iframe src="https://maktaeliliktroniya.blogspot.com/2022/08/typing-speed.html" 
+    /* gebi('clVu').innerHTML += `<iframe src="https://maktaeliliktroniya.blogspot.com/2022/08/typing-speed.html" 
     frameborder="0"></iframe>`;
-    dsply('clVu', 'none')
+    dsply('clVu', 'none') */
 }
 
 /* ////// create list words */
