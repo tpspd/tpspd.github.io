@@ -2,819 +2,132 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="atr/style.css">
-    <link rel="manifest" href="atr/manifesttpsp.json" />
-    <link rel="icon" href="https://tpspd.github.io/atr/tpsp512.png">
-    <title>Typing Speed </title>
-
-    <style>
-        :root {
-    --mnCl: #2196f3;
-    --gr: #009688
-}
-
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0
-}
-
-body {
-    font-family: 'Open Sans', sans-serif;
-    user-select: none;
-}
-
-::-webkit-scrollbar {
-    width: 9px
-}
-
-::-webkit-scrollbar-track {
-    background-color: #f6f6f6;
-    margin: -4px 0
-}
-
-::-webkit-scrollbar-thumb {
-    background-color: var(--gr);
-    border-radius: 7px
-}
-
-#cntnr {
-    /* continer finch */
-    background-color: #7473739e;
-    width: 100%;
-    height: 100%;
-    display: none;
-    position: fixed;
-    background-size: cover;
-    z-index: 1
-}
-
-.dvPlc {
-    width: 50%;
-    top: 20%;
-    left: 25%;
-    position: fixed;
-    /*font-size :30px;*/
-    z-index: 2;
-    background-color: white;
-    border-radius: 7px;
-    overflow-y: visible;
-    transition: .3s;
-    border: 3px solid var(--gr);
-    text-align: center;
-    transform: scaleY(1)
-}
-
-.hidplac,
-.opPlc {
-    transform: scaleY(0)
-}
-
-.opPlc {
-    transition: 0s
-}
-
-#hid {
-    font-size: 5vh;
-    color: #302e2ed9;
-    float: right;
-    display: block;
-    cursor: pointer;
-    margin: 2% 15px 0px
-}
-
-#gmOvr {
-    color: #d70000;
-    font-size: 50px;
-    display: none;
-    padding: 35px;
-    font-weight: bold
-}
-
-.divCng {
-    font-size: 35px;
-    display: none;
-    padding: 15px;
-    border-radius: 0 0 7px 7px;
-    font-weight: bold
-}
-
-.divCng span {
-    color: var(--gr)
-}
-
-.nwWord {
-    display: none;
-    font-size: 5vh;
-    margin-top: 2vh
-}
-
-.gmNm {
-    font-size: 27px;
-    padding: 15px;
-    display: none
-}
-
-.inpAdd {
-    font-size: 4vh;
-    display: block;
-    text-align: center;
-    margin: 4vh auto;
-    width: 70%;
-    caret-color: var(--mnCl);
-    padding: 0px;
-    color: var(--mnCl);
-    border: none;
-    border-bottom: 2px solid var(--mnCl);
-    transition: .3s
-}
-
-.inpAdd:focus {
-    padding: 7px 7px;
-    width: 75%
-}
-
-.nofcs:focus {
-    outline: none
-}
-
-
-.okbtn {
-    display: block;
-    color: white;
-    width: fit-content;
-    font-size: 4vh;
-    background: var(--mnCl);
-    margin: 1vh auto 0;
-    padding: 5px 20px;
-    border: 1px;
-    border-radius: 5px;
-    cursor: pointer
-}
-
-.dblbtn {
-    display: initial;
-    margin: 20px 7px;
-
-}
-
-.ch {
-    font-size: 25px;
-    margin: 5px
-}
-
-.ch input {
-    width: 15px;
-    height: 15px
-}
-
-.game {
-    background-color: #eee;
-    min-height: 100vh
-}
-
-.container {
-    margin: auto;
-    max-width: 900px
-}
-
-.name {
-    background-color: var(--mnCl);
-    color: white;
-    padding: 30px;
-    font-size: 55px;
-    text-align: center;
-    font-weight: bold
-}
-
-.msg {
-    display: flex;
-    justify-content: space-between;
-    background-color: white;
-    padding: 15px;
-    border-radius: 6px;
-    margin: 5px 0
-}
-
-.msg span {
-    font-weight: bold;
-    color: var(--gr)
-}
-
-.gmr {
-    cursor: pointer;
-    margin-right: 25px
-}
-
-.control {
-    display: flex;
-    justify-content: space-between;
-    background-color: white;
-    padding: 15px;
-    border-radius: 6px
-}
-
-.control span {
-    font-weight: bold;
-    color: var(--gr)
-}
-
-.shoTime {
-    color: var(--gr);
-    font-size: 15px;
-    border-radius: 4px;
-    text-align: center
-}
-
-.shoTime:focus {
-    border: 1px solid var(--mnCl);
-    outline: var(--mnCl) solid 1px
-}
-
-.cntTm {
-    margin: -4px 15px 0;
-    background-color: #00968847
-}
-
-.cntTm div {
-    background-color: var(--gr);
-    width: 100%;
-    height: 4px;
-    border-radius: 2px
-}
-
-.start {
-    font-size: 30px;
-    font-weight: bold;
-    text-align: center;
-    background: var(--gr);
-    color: white;
-    padding: 30px;
-    margin: 20px 30%;
-    cursor: pointer;
-    border-radius: 6px
-}
-
-.wrds {
-    background-color: white;
-    margin: 15px 0;
-    padding: 15px;
-    display: none;
-    flex-wrap: wrap;
-    justify-content: center;
-    border-radius: 6px
-}
-
-.wrds div {
-    margin: 0 10px;
-    text-align: center
-}
-
-.wrds div p {
-    margin: 10px;
-    color: var(--gr);
-    font-size: 20px;
-    cursor: pointer
-}
-
-.wrd {
-    text-align: center;
-    font-weight: bold;
-    font-size: 60px;
-    color: var(--mnCl)
-}
-
-.input {
-    margin: 15px 0;
-    width: 100%;
-    display: block;
-    padding: 15px;
-    border: 3px solid var(--mnCl);
-    font-size: 20px;
-    text-align: center;
-    border-radius: 6px;
-    caret-color: var(--mnCl)
-}
-
-.upcoming {
-    background-color: white;
-    margin: 15px 0;
-    padding: 15px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center
-}
-
-.upcoming div {
-    background-color: var(--mnCl);
-    color: white;
-    font-weight: bold;
-    margin: 4px;
-    padding: 10px;
-    border-radius: 6px
-}
-
-.cnNbAdd {
-    display: flex;
-    justify-content: space-between;
-    align-items: center
-}
-
-.add {
-    color: var(--gr);
-    margin: auto 10px 3px;
-    padding: 15px 17px 0;
-    font-size: 38px;
-    font-weight: bold;
-    cursor: pointer;
-    text-align: right;
-    width: 230px
-}
-
-.name2 {
-    font-size: 34px;
-    padding: 17px;
-    border-radius: 10px 10px 0 0
-}
-
-.name2 span {
-    margin: 1px 15px
-}
-
-#nmbWrd {
-    color: var(--mnCl)
-}
-
-.lngs {
-    font-size: 25px;
-    padding: 8px 10px;
-    width: auto;
-    margin: 11px 5px -5px
-}
-
-.nbWrd {
-    cursor: alias
-}
-
-.upcoming div span {
-    margin: 0 5px
-}
-
-.hidWrd {
-    font-size: 17px;
-    color: white;
-    cursor: pointer
-}
-
-.aldlt {
-    text-align: center;
-    padding: 10 px auto -4px;
-    color: red;
-    width: 100%
-}
-
-@media (max-width: 700px) {
-    .dvPlc {
-        width: 90%;
-        top: 10%;
-        left: 5%;
-    }
-
-    .name {
-        font-size: 35px;
-        padding: 25px
-    }
-
-    .start {
-        font-size: 25px;
-        padding: 20px;
-        margin: 15px 30%
-    }
-
-    .add {
-        font-size: 20px;
-        margin: 0 3px 17px;
-        width: 154px;
-        text-align: center
-    }
-
-    .wrd {
-        font-size: 25px
-    }
-
-    .lngs {
-        font-size: 19px;
-        padding: 6px 6px;
-        margin: auto
-    }
-
-    .upcoming {
-        margin: -16px 0
-    }
-
-    .aldlt {
-        margin-bottom: 10px;
-        width: 100%
-    }
-}
-
-.clClvu {
-    display: none;
-    width: 90%;
-    height: 90%
-}
-    </style>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="atr/style.css">
+  <link rel="manifest" href="atr/manifesttpsp.json" />
+  <link rel="icon" href="https://tpspd.github.io/atr/tpsp512.png">
+  <title>Typing Speed </title>
 </head>
 
 <body>
-    <div id="cntnr" class="hidjs" onclick="hiding()">
-        <div id="divplac" class="dvPlc">
-          <span id="hid" onclick="hiding()">×</span>
-          <hr style="margin-top:8.2vh;">
-          <span id="gmOvr" class="hidjs">Gime Over <button id="okgmOvr" onclick="hiding()"
-              class="okbtn nofcs">Ok</button></span>
-    
-          <div id="cngrtl" class="divCng hidjs"></div>
-    
-          <div id="dvNmGm" class="gmNm hidjs">
-            <form>
-              Yor Name <input type="search" id="nmGm" class="inpAdd nofcs" spellcheck="false"  />
-              <button id="nmbtn" class="okbtn nofcs" onclick="nmGmr()">Ok</button>
-            </form>
-            
-    
-          </div>
-    
-          <div id="chLng" class=" hidjs" style="display: none;">
-            <p style="font-size: 40px;margin: 25px; ">shose yor langes </p>
-            <div class="ch"><input id="enCh" type="checkbox" data-lng=".enCl" checked> <label for="enCh">English</label>
-            </div>
-            <div class="ch"><input id="arCh" type="checkbox" data-lng=".arCl" checked> <label for="arCh">Arabic</label>
-            </div>
-            <div class="ch"><input id="frCh" type="checkbox" data-lng=".frCl" checked> <label for="frCh">French</label>
-            </div>
-            <button id="okchkd" class="okbtn nofcs dblbtn" onclick="hiding()">ok</button>
-          </div>
-    
-    
-          <div id="addWrd" class="nwWord hidjs">
-            add New words
-            <form id="frmAdd">
-              <input id="nwEn" class="inpAdd nofcs enCl" type="text" autocapitalize="off" placeholder="English word"
-                autocomplete="off" onclick="enter = 'nwAr';upbt='nwFr';dwbt='nwAr';chInp(this)" />
-              <input id="nwAr" class="inpAdd nofcs arCl" type="text" autocapitalize="off" placeholder="Arabic word"
-                autocomplete="off" onclick="enter = 'nwFr';upbt='nwEn';dwbt='nwFr';chInp(this)" />
-              <input id="nwFr" class="inpAdd nofcs frCl" type="text" autocapitalize="off" placeholder="French word"
-                autocomplete="off" onclick="enter = 'okAdd';upbt='nwAr';dwbt='nwEn';chInp(this)" />
-              <div style="margin: -2vh auto;height: 4vh; font-size :4vh;">
-                <p id="notAdd" style="color: red;  display:none;">You dont add an word</p>
-                <p id="isAdd" style="color: var(--gr);  display:none;">words have been added</p>
-              </div>
-            </form>
-            <input id="okAdd" class="okbtn dblbtn nofcs" type="button" value="add" onclick="addWrds()"/>
-          </div>
-    
-    
-          <div id="dltAll" class="nwWord hidjs">
-            <p style="color: red;font-size: 40px;margin: 25px; ">Are you sure to delete all the words</p>
-            <button id="yesbtn" class="okbtn dblbtn nofcs" onclick="dltall()">Yess</button>
-            <button class="okbtn dblbtn nofcs" onclick="hiding()">no</button>
-          </div>
-    
-        </div>
-    </div>
-    
-    
-    <div class="game">
-       <div class="name">Typing Speed</div>
-        <div class="container">
-    
-          <div class="msg">
-    
-            <div class="gmr" onclick="opnDiv('dvNmGm','nmbtn','nmGm')"> Gamer : <span id="spNmGm"></span> </div>
-            <div id="tpScrl" class="list"></div>
-          </div>
-    
-          <div class="control">
-            <div class="time">Time left : <span id="tmLft">30</span></div>
-            <div><span id="mbrWrd">0 </span> Words</div>
-            <div>Time :
-              <select id="timeLvl" name="time" class="shoTime " onclick="valScnd(value)">
-                <option value="30">Short </option>
-                <option value="60">Medium </option>
-                <option value="120">Long </option>
-                <option value="300">very Long </option>
-                <option value="∞">infinity </option>
-              </select>
-            </div>
-          </div>
-          <div class="cntTm">
-            <div id="lngTm"></div>
-          </div>
-    
-          <div id="idStart" class="start" onclick="gogame();">Start</div>
-          <div id="wrdDsply" class="wrds">
-            <div class="arCl">
-              <p>ar</p>
-              <div id="lng0" class="wrd"></div>
-            </div>
-            <div class="enCl">
-              <p>En</p>
-              <div id="lng1" class="wrd"></div>
-            </div>
-            <div class="frCl">
-              <p>Fr</p>
-              <div id="lng2" class="wrd"></div>
-            </div>
-          </div>
-          <input id="inpWrd" type="password" onclick="gogame();" class="input nofcs" autocapitalize="off"
-            onpaste="return false" spellcheck="false">
-          <div style="background-color: white;border-radius: 10px;">
-            <div class="name name2">Words</div>
-            <div class="cnNbAdd">
-              <span class="add nbWrd"><span id="nmbWrd"></span> words</span>
-              <button id="btnLng" class="okbtn lngs nofcs" onclick="opnDiv('chLng','okchkd')">Langes</button>
-              <p class="add" onclick="opnDiv('addWrd','nwAr','nwEn')">+ add</p>
-            </div>
-            <div id="cntWrds" class="upcoming"></div>
-          </div>
-        </div>
-       <div id="clVu" class="clClvu"></div>
-    </div>
-    <script type="text/javascript">
-        let hidDiv, inp = gebi('inpWrd'), enter = 'idStart', strt = 1, nmGm = localStorage.nmGmr,
-    arWrd, enWrd, frWrd, nmbr = 0, nbWrd = 0, lftTm, fxCngr, cngrt = '', tmLft, lngTm,
-    upbt = 'nwFr', dwbt = 'nwAr', nmCh = 3, kyBt = 'ent';
+  <div id="cntnr" class="hidjs" onclick="hiding()">
+    <div id="divplac" class="dvPlc">
+      <span id="hid" onclick="hiding()">×</span>
+      <hr style="margin-top:8.2vh;">
+      <span id="gmOvr" class="hidjs">Gime Over <button id="okgmOvr" onclick="hiding()"
+          class="okbtn nofcs">Ok</button></span>
 
-opnSite();
+      <div id="cngrtl" class="divCng hidjs"></div>
 
-function opnDiv(dvOpn, ent, fcs = 'tpScrl') {
-     dsply('cntnr', 'block'); dsply(dvOpn, 'block'); enter = ent;
-    gebi('divplac').className += ' opPlc';
-    setTimeout(() => {
-        gebi('divplac').className = 'dvPlc';fxClk(fcs)
-    }, 10);
-
-}
-
-function hiding() {
-    valScnd(localStorage.lvlTim);
-    inp.value = '';
-    setTimeout(() => { gebi('divplac').className += ' hidplac' }, 20)
-    hidDiv = setTimeout(() => {
-        gebi('divplac').className = 'dvPlc';
-        document.querySelectorAll('.hidjs').forEach(el => { dsply(el.id, 'none') })
-    }, 310);
-    if (cngrt != '') { clearInterval(fxCngr); cngrt = '' }
-}
-
-function nmGmr() { let gNam = gebi('nmGm').value; gebi('spNmGm').innerText = gNam; hiding(); localStorage.nmGmr = gNam }
-
-function topScrl(time) {
-    if (time == '∞') { gebi('tpScrl').innerText = ''; return false }
-    if (localStorage['top' + time]) {
-        gebi('tpScrl').innerHTML = `Top Score : <span >${localStorage['topGmr' + time]} ,
-      ${localStorage['top' + time]}</span> words in <span>${clTm(time, 1)}</span>`
-    } else { gebi('tpScrl').innerText = 'Top Score : no One' }
-}
-/* localStorage.removeItem('top30') */
-function valScnd(time) {
-    topScrl(time); gebi('tmLft').innerText = clTm(time); enter = 'idStart';
-    gebi('mbrWrd').innerText = 0; localStorage.lvlTim = time;
-    if (strt == 0) {
-        clrngTm(); inp.value = '';
-        dsply('wrdDsply', 'none'); dsply('idStart', 'block'); strt = 1;
-    }
-}
-
-function clTm(time, plc = 0) {
-    if (time == '∞') { return '∞' }
-    let mtm = 0, stm, ttlTm, s = '';
-    if (time > 59) { mtm = Math.floor(time / 60); stm = time % 60 } else { stm = time }
-    if (plc == 1) { if (mtm > 0) { if (mtm > 1) { s = 's' } return mtm + ' minute' + s } else { return stm + ' seconds' } }
-    if (stm < 10) { stm = '0' + stm }
-    mtm = '0' + mtm; ttlTm = ' ' + mtm + ':' + stm;
-    return ttlTm
-}
-
-function gogame() {
-    chTyp(inp);
-    if (enWrd.length == 0 || strt == 0) { return false }
-
-    dsply('idStart', 'none'); dsply('wrdDsply', 'flex'); gebi('inpWrd').focus(); enter = 'tpScrl'; strt = 0;
-    gebi('mbrWrd').innerText = 0; nbWrd = 0; lftTm = localStorage.lvlTim;
-    if (lftTm == '∞') { return false }
-    let sntLft, lngLfTm = lftTm * 40, rstLngtm = lngLfTm, rslt;
-    tmLft = setInterval(() => {
-        lftTm--; sntLft = clTm(lftTm); gebi('tmLft').innerText = sntLft;
-        if (lftTm == 0) { clrngTm(); resulte(); }
-    }, 1000);
-
-    lngTm = setInterval(() => {
-        rstLngtm--; rslt = (rstLngtm * 100 / lngLfTm).toFixed(1) + '%';
-        gebi('lngTm').style.width = rslt;
-    }, 25);
-}
-
-function clrngTm() {
-    clearInterval(tmLft); clearInterval(lngTm);
-    gebi('lngTm').style.width = '100%'
-}
-
-function resulte() {
-    if (gebi('cntnr').style.display == 'block') { hiding(); setTimeout(() => { resulte() }, 500); return false }
-    lftTm = localStorage.lvlTim; dsply('wrdDsply', 'none'); dsply('idStart', 'block'); strt = 1; inp.value = '';
-    let tpSc = localStorage['top' + lftTm], nmGmr = gebi('spNmGm').innerText;
-    gebi('tmLft').innerText = clTm(lftTm); dsply('cntnr', 'block');
-
-    if ((nbWrd > 0 && tpSc == undefined) || nbWrd > tpSc) {
-        cngrt = `<div>congratulations <span> ${nmGmr}</span></div>
-               <div>You wrote <span> ${nbWrd}</span> words in <span> ${clTm(lftTm, 1)}</span>
-               <div id="okcng" onclick="hiding()" class="okbtn okCng nofcs">Ok thanks</div></div>`;
-        gebi('cngrtl').innerHTML = cngrt; opnDiv('cngrtl', 'okcng'); gebi('okcng').focus();
-        fxCngr = setInterval(() => { if (gebi('cngrtl').innerHTML != cngrt) { gebi('cngrtl').innerHTML = cngrt } }, 500);
-        localStorage['top' + lftTm] = nbWrd; localStorage['topGmr' + lftTm] = nmGmr; topScrl(lftTm)
-    } else { opnDiv('gmOvr', 'okgmOvr'); }
-    gebi('btnLng').focus();
-}
-
-function hidWrd(rnNmb) {
-    if (enWrd.length == 1) { dltall(); return false }
-    gebi('wrdDiv' + rnNmb).remove();
-    enWrd.splice(rnNmb, 1); arWrd.splice(rnNmb, 1); frWrd.splice(rnNmb, 1);
-    lstWrd(); gebi('nmbWrd').innerText = enWrd.length;
-    wToSt('En', enWrd); wToSt('Ar', arWrd); wToSt('Fr', frWrd);
-}
- 
-function chInp(el) {
-   if (el.style.display == 'none') {
-    const ky={up:upbt ,dw : dwbt , ent:enter};
-    fxClk(ky[kyBt]);
-   }
-} 
-
-function chTyp(el) { el.type = 'search'; setTimeout(() => { el.type = 'text' }, 1000) }
-
-function addWrds() {
-    let inpEn = gebi('nwEn'), inpAr = gebi('nwAr'),
-        inpFr = gebi('nwFr'), tLng = inpEn.value + inpAr.value + inpFr.value;
-    enter = 'nwAr';
-    tLng = rep(tLng, ' ', '');
-    if (tLng == '') {
-        dsply('notAdd', 'block'); dsply('isAdd', 'none');
-        setTimeout(() => { dsply('notAdd', 'none'); }, 1000);
-    } else {
-        dsply('notAdd', 'none'); dsply('isAdd', 'block'); setTimeout(() => { dsply('isAdd', 'none') }, 1000);
-        isAddWrd(inpEn, enWrd, 'En'); isAddWrd(inpAr, arWrd, 'Ar'); isAddWrd(inpFr, frWrd, 'Fr');
-        lstWrd(); gebi('nmbWrd').innerText = enWrd.length;
-        if (enWrd.length == 1) { stWrd() }
-    }
-    setTimeout(() => {
-        fxClk('nwEn');
-    }, 10);
-}
-
-function isAddWrd(inpWrd, arrWrd, lng) {
-    let vlinp = inpWrd.value; inpWrd.value = '';
-    if (ind(vlinp, '@#') > -1) { vlinp = rep(vlinp, '@#', '/@/#/') }
-    arrWrd.unshift(vlinp); wToSt(lng, arrWrd)
-}
-
-function dltall() {
-    cntWrd = gebi('cntWrds').innerHTML = '';
-    dsply('wrdDsply', 'none'); dsply('idStart', 'block');
-    enWrd = []; arWrd = []; frWrd = []; nmbr = 0;
-    localStorage.removeItem('stWrdEn'); localStorage.removeItem('stWrdAr');
-    localStorage.removeItem('stWrdFr'); gebi('nmbWrd').innerText = 0;
-    hiding();
-}
-
-
-function opnSite() {
-    
-    
-     if(navigator.userAgent.toLowerCase().includes('android')){
-        gebi('frmAdd').innerHTML += `<input  class="okbtn dblbtn nofcs"
-        type="submit" value="add" onclick="addWrds()"/>`;
-        dsply('okAdd','none');
-    }else{
-        addEventListener('keyup', (ev) => {
-            if (ev.keyCode === 13) { fxClk(enter); kyBt = 'ent' }
-            if (ev.keyCode === 38) { fxClk(upbt); kyBt = 'up' }
-            if (ev.keyCode === 40) { fxClk(dwbt); kyBt = 'dw' }
-        });
-    }
-    inp.oninput = () => {
-        let vinp = inp.value.toLocaleLowerCase(), en = enWrd[nmbr].toLocaleLowerCase(),
-            fr = frWrd[nmbr].toLocaleLowerCase();
-        if ((vinp == arWrd[nmbr] || vinp == en || vinp == fr) && vinp != '' && strt == 0) {
-            nmbr++; stWrd(); gebi('inpWrd').value = ''; nbWrd++; gebi('mbrWrd').innerText = nbWrd
-        }
-    }
-    const frm = document.querySelectorAll("form");
-    frm.forEach(el=>{
-        el.addEventListener('submit',  ev =>{
-         ev.preventDefault();
+      <div id="dvNmGm" class="gmNm hidjs">
+        <form>
+          Yor Name <input type="search" id="nmGm" class="inpAdd nofcs" spellcheck="false"  />
+          <button id="nmbtn" class="okbtn nofcs" onclick="nmGmr()">Ok</button>
+        </form>
         
-     })})
-    
-    gebi('divplac').addEventListener('click', e => { e.stopPropagation() });
-    /* //////// localStorage for gimer ... ext */
-    if (nmGm) { gebi('spNmGm').innerText = nmGm; gebi('nmGm').value = nmGm } else { gebi('spNmGm').innerText = 'Unknown' }
-    if (localStorage.lvlTim) {
-        valScnd(localStorage.lvlTim)
-    } else { valScnd(30) }
-   
-    // prevent form submit
-    
-    
 
-    /*//////// list words \\\\\\\\\  */
-    allWrd()
-}
+      </div>
 
-function cntn() {
-    let rnNmb, i = 0, nwEn = [], nwAr = [], nwFr = [], lstNmbr = [];
-    while (i < enWrd.length) {
-        rnNmb = Math.floor(Math.random() * enWrd.length);
-        if (ind(lstNmbr, rnNmb) == -1) {
-            lstNmbr.push(rnNmb); i++;
-            nwEn.push(enWrd[rnNmb]); nwAr.push(arWrd[rnNmb]); nwFr.push(frWrd[rnNmb]);
-        }
-    }
-    enWrd = nwEn; arWrd = nwAr; frWrd = nwFr; lstWrd(); stWrd();
-    gebi('nmbWrd').innerText = enWrd.length;
-
-    document.querySelectorAll('.ch input').forEach(el => {
-        el.addEventListener('click', () => {
-            if (el.checked) {
-                nmCh++; chcd('initial')
-            } else {
-                nmCh--; if (nmCh == 0) { el.click(); return false }
-                chcd('none')
-            }
-            function chcd(dsp) {
-                document.querySelectorAll(el.dataset.lng).forEach(chnCl => chnCl.style.display = dsp);
-                localStorage['ch' + el.id] = dsp
-            }
-        });
-        if (localStorage['ch' + el.id] == 'none') { el.click() }
-    });
-    /* gebi('clVu').innerHTML += `<iframe src="https://maktaeliliktroniya.blogspot.com/2022/08/typing-speed.html" 
-    frameborder="0"></iframe>`;
-    dsply('clVu', 'none') */
-}
-
-/* ////// create list words */
-function lstWrd() {
-    let cntWrd = gebi('cntWrds'), dvWrd = '';
-
-    for (let i = 0; i < enWrd.length; i++) {
-        dvWrd += `<div id="wrdDiv${i}"><span id="hidWrd${i}"class="hidWrd"onclick="hidWrd(${i})"
-         >×</span><span class="arCl">${arWrd[i]}</span><span class="enCl">${enWrd[i]}</span>
-         <span class="frCl">${frWrd[i]}</span></div>`;
-    }
-    dvWrd += `<p id="spdlt" class="add aldlt"onclick="opnDiv('dltAll','yesbtn')" >delete all</p>`;
-    cntWrd.innerHTML = dvWrd;
-}
-
-function stWrd() {
-    if (nmbr == enWrd.length) { nmbr = 0 } gebi('lng0').innerText = arWrd[nmbr];
-    gebi('lng1').innerText = enWrd[nmbr]; gebi('lng2').innerText = frWrd[nmbr];
-}
+      <div id="chLng" class=" hidjs" style="display: none;">
+        <p style="font-size: 40px;margin: 25px; ">shose yor langes </p>
+        <div class="ch"><input id="enCh" type="checkbox" data-lng=".enCl" checked> <label for="enCh">English</label>
+        </div>
+        <div class="ch"><input id="arCh" type="checkbox" data-lng=".arCl" checked> <label for="arCh">Arabic</label>
+        </div>
+        <div class="ch"><input id="frCh" type="checkbox" data-lng=".frCl" checked> <label for="frCh">French</label>
+        </div>
+        <button id="okchkd" class="okbtn nofcs dblbtn" onclick="hiding()">ok</button>
+      </div>
 
 
-/* ////// short function \\\\\\\\\\ */
-function ind(inpt, pr, pr2 = 0) { inpt = inpt.indexOf(pr, pr2); return inpt }
-function gebi(pr) { return document.getElementById(pr) }
-function dsply(id, dsply) { gebi(id).style.display = dsply }
-function stToDiv(lng) { let Hist = localStorage['stWrd' + lng]; Hist = Hist.split('@#'); return Hist }
-function wToSt(lng, lsWrd) { localStorage['stWrd' + lng] = lsWrd.join('@#') }
-function rep(inp, pr1, pr2) { return inp.replaceAll(pr1, pr2) }
-function fxClk(id) { gebi(id).focus(); gebi(id).click() }
+      <div id="addWrd" class="nwWord hidjs">
+        add New words
+        <form id="frmAdd">
+          <input id="nwEn" class="inpAdd nofcs enCl" type="text" autocapitalize="off" placeholder="English word"
+            autocomplete="off" onclick="enter = 'nwAr';upbt='nwFr';dwbt='nwAr';chInp(this)" />
+          <input id="nwAr" class="inpAdd nofcs arCl" type="text" autocapitalize="off" placeholder="Arabic word"
+            autocomplete="off" onclick="enter = 'nwFr';upbt='nwEn';dwbt='nwFr';chInp(this)" />
+          <input id="nwFr" class="inpAdd nofcs frCl" type="text" autocapitalize="off" placeholder="French word"
+            autocomplete="off" onclick="enter = 'okAdd';upbt='nwAr';dwbt='nwEn';chInp(this)" />
+          <div style="margin: -2vh auto;height: 4vh; font-size :4vh;">
+            <p id="notAdd" style="color: red;  display:none;">You dont add an word</p>
+            <p id="isAdd" style="color: var(--gr);  display:none;">words have been added</p>
+          </div>
+        </form>
+        <input id="okAdd" class="okbtn dblbtn nofcs" type="button" value="add" onclick="addWrds()"/>
+      </div>
 
-function allWrd() {
 
-    if (localStorage.getItem('stWrdEn')) {
-        enWrd = stToDiv('En'); arWrd = stToDiv('Ar'); frWrd = stToDiv('Fr');
-        cntn()
-    } else {
+      <div id="dltAll" class="nwWord hidjs">
+        <p style="color: red;font-size: 40px;margin: 25px; ">Are you sure to delete all the words</p>
+        <button id="yesbtn" class="okbtn dblbtn nofcs" onclick="dltall()">Yess</button>
+        <button class="okbtn dblbtn nofcs" onclick="hiding()">no</button>
+      </div>
 
-        fetch("https://raw.githubusercontent.com/tpspd/tpspd.github.io/main/atr/wrds.json")
-            .then(rs => rs.json())
-            .then(rp => {
-                enWrd = rp.enWrd; arWrd = rp.arWrd; frWrd = rp.frWrd;
-                wToSt('En', enWrd); wToSt('Ar', arWrd); wToSt('Fr', frWrd);
-                cntn()
-            })
+    </div>
+  </div>
 
-    }
-}
-    </script>
 
+  <div class="game">
+    <div class="name">Typing Speed</div>
+    <div class="container">
+
+      <div class="msg">
+
+        <div class="gmr" onclick="opnDiv('dvNmGm','nmbtn','nmGm')"> Gamer : <span id="spNmGm"></span> </div>
+        <div id="tpScrl" class="list"></div>
+      </div>
+
+      <div class="control">
+        <div class="time">Time left : <span id="tmLft">30</span></div>
+        <div><span id="mbrWrd">0 </span> Words</div>
+        <div>Time :
+          <select id="timeLvl" name="time" class="shoTime " onclick="valScnd(value)">
+            <option value="30">Short </option>
+            <option value="60">Medium </option>
+            <option value="120">Long </option>
+            <option value="300">very Long </option>
+            <option value="∞">infinity </option>
+          </select>
+        </div>
+      </div>
+      <div class="cntTm">
+        <div id="lngTm"></div>
+      </div>
+
+      <div id="idStart" class="start" onclick="gogame();">Start</div>
+      <div id="wrdDsply" class="wrds">
+        <div class="arCl">
+          <p>ar</p>
+          <div id="lng0" class="wrd"></div>
+        </div>
+        <div class="enCl">
+          <p>En</p>
+          <div id="lng1" class="wrd"></div>
+        </div>
+        <div class="frCl">
+          <p>Fr</p>
+          <div id="lng2" class="wrd"></div>
+        </div>
+      </div>
+      <input id="inpWrd" type="password" onclick="gogame();" class="input nofcs" autocapitalize="off"
+        onpaste="return false" spellcheck="false">
+      <div style="background-color: white;border-radius: 10px;">
+        <div class="name name2">Words</div>
+        <div class="cnNbAdd">
+          <span class="add nbWrd"><span id="nmbWrd"></span> words</span>
+          <button id="btnLng" class="okbtn lngs nofcs" onclick="opnDiv('chLng','okchkd')">Langes</button>
+          <p class="add" onclick="opnDiv('addWrd','nwAr','nwEn')">+ add</p>
+        </div>
+        <div id="cntWrds" class="upcoming"></div>
+      </div>
+    </div>
+    <div id="clVu" class="clClvu"></div>
+  </div>
+
+  <script src="atr/jvscrpt.js"></script>
 </body>
 
 </html>
