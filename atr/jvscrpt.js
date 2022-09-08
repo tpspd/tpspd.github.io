@@ -5,10 +5,10 @@ let hidDiv, inp = gebi('inpWrd'), enter = 'idStart', strt = 1, nmGm = localStora
 opnSite();
 
 function opnDiv(dvOpn, ent, fcs = 'tpScrl') {
-     dsply('cntnr', 'block'); dsply(dvOpn, 'block'); enter = ent;
+    dsply('cntnr', 'block'); dsply(dvOpn, 'block'); enter = ent;
     gebi('divplac').className += ' opPlc';
     setTimeout(() => {
-        gebi('divplac').className = 'dvPlc';fxClk(fcs)
+        gebi('divplac').className = 'dvPlc'; fxClk(fcs)
     }, 10);
 
 }
@@ -22,6 +22,7 @@ function hiding() {
         document.querySelectorAll('.hidjs').forEach(el => { dsply(el.id, 'none') })
     }, 310);
     if (cngrt != '') { clearInterval(fxCngr); cngrt = '' }
+    stWrd();
 }
 
 function nmGmr() { let gNam = gebi('nmGm').value; gebi('spNmGm').innerText = gNam; hiding(); localStorage.nmGmr = gNam }
@@ -36,7 +37,7 @@ function topScrl(time) {
 /* localStorage.removeItem('top30') */
 function valScnd(time) {
     topScrl(time); gebi('tmLft').innerText = clTm(time); enter = 'idStart';
-    gebi('mbrWrd').innerText = 0; localStorage.lvlTim = time;
+    gebi('mbrWrd').innerText = 0; localStorage.lvlTim = time;gebi('timeLvl').value=time
     if (strt == 0) {
         clrngTm(); inp.value = '';
         dsply('wrdDsply', 'none'); dsply('idStart', 'block'); strt = 1;
@@ -101,13 +102,13 @@ function hidWrd(rnNmb) {
     lstWrd(); gebi('nmbWrd').innerText = enWrd.length;
     wToSt('En', enWrd); wToSt('Ar', arWrd); wToSt('Fr', frWrd);
 }
- 
+
 function chInp(el) {
-   if (el.style.display == 'none') {
-    const ky={up:upbt ,dw : dwbt , ent:enter};
-    fxClk(ky[kyBt]);
-   }
-} 
+    if (el.style.display == 'none') {
+        const ky = { up: upbt, dw: dwbt, ent: enter };
+        fxClk(ky[kyBt]);
+    }
+}
 
 function chTyp(el) { el.type = 'search'; setTimeout(() => { el.type = 'text' }, 1000) }
 
@@ -122,7 +123,7 @@ function addWrds() {
     } else {
         dsply('notAdd', 'none'); dsply('isAdd', 'block'); setTimeout(() => { dsply('isAdd', 'none') }, 1000);
         isAddWrd(inpEn, enWrd, 'En'); isAddWrd(inpAr, arWrd, 'Ar'); isAddWrd(inpFr, frWrd, 'Fr');
-        lstWrd(); gebi('nmbWrd').innerText = enWrd.length;
+        lstWrd(); gebi('nmbWrd').innerText = enWrd.length;nmbr++;
         if (enWrd.length == 1) { stWrd() }
     }
     setTimeout(() => {
@@ -146,10 +147,14 @@ function dltall() {
 }
 
 
-function opnSite() {
-    
-    
-     if(window.outerWidth > 900){
+async function opnSite() {
+
+
+    if (navigator.userAgent.toLowerCase().includes('android')) {
+        gebi('frmAdd').innerHTML += `<input  class="okbtn dblbtn nofcs"
+        type="submit" value="add" onclick="addWrds()"/>`;
+        dsply('okAdd', 'none');
+    } else {
         addEventListener('keyup', (ev) => {
             if (ev.keyCode === 13) { fxClk(enter); kyBt = 'ent' }
             if (ev.keyCode === 38) { fxClk(upbt); kyBt = 'up' }
@@ -163,26 +168,23 @@ function opnSite() {
             nmbr++; stWrd(); gebi('inpWrd').value = ''; nbWrd++; gebi('mbrWrd').innerText = nbWrd
         }
     }
-    const form = document.querySelectorAll("form");
-    form.forEach(el=>{
-        el.addEventListener('submit',  ev =>{
-         ev.preventDefault();
-        
-     })})
-    
+    const frm = document.querySelectorAll("form");
+    frm.forEach(el => {
+        el.addEventListener('submit', ev => {
+            ev.preventDefault();
+
+        })
+    })
+
     gebi('divplac').addEventListener('click', e => { e.stopPropagation() });
     /* //////// localStorage for gimer ... ext */
     if (nmGm) { gebi('spNmGm').innerText = nmGm; gebi('nmGm').value = nmGm } else { gebi('spNmGm').innerText = 'Unknown' }
     if (localStorage.lvlTim) {
         valScnd(localStorage.lvlTim)
     } else { valScnd(30) }
-   
-    // prevent form submit
-    
-    
-
     /*//////// list words \\\\\\\\\  */
-    allWrd()
+allWrd();
+
 }
 
 function cntn() {
@@ -196,7 +198,6 @@ function cntn() {
     }
     enWrd = nwEn; arWrd = nwAr; frWrd = nwFr; lstWrd(); stWrd();
     gebi('nmbWrd').innerText = enWrd.length;
-
     document.querySelectorAll('.ch input').forEach(el => {
         el.addEventListener('click', () => {
             if (el.checked) {
@@ -215,6 +216,10 @@ function cntn() {
     /* gebi('clVu').innerHTML += `<iframe src="https://maktaeliliktroniya.blogspot.com/2022/08/typing-speed.html" 
     frameborder="0"></iframe>`;
     dsply('clVu', 'none') */
+}
+function chosWrd() {
+    
+
 }
 
 /* ////// create list words */
@@ -246,7 +251,6 @@ function rep(inp, pr1, pr2) { return inp.replaceAll(pr1, pr2) }
 function fxClk(id) { gebi(id).focus(); gebi(id).click() }
 
 function allWrd() {
-
     if (localStorage.getItem('stWrdEn')) {
         enWrd = stToDiv('En'); arWrd = stToDiv('Ar'); frWrd = stToDiv('Fr');
         cntn()
@@ -258,7 +262,7 @@ function allWrd() {
                 enWrd = rp.enWrd; arWrd = rp.arWrd; frWrd = rp.frWrd;
                 wToSt('En', enWrd); wToSt('Ar', arWrd); wToSt('Fr', frWrd);
                 cntn()
-            })
 
+            })
     }
 }
