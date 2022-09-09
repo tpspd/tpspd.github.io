@@ -12,420 +12,429 @@
 
     <style>
     :root {
-        --mnCl: #2196f3;
-        --gr: #009688
-    }
-    
-    * {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0
-    }
-    
-    body {
-        font-family: 'Open Sans', sans-serif;
-        user-select: none;
-    }
-    
-    ::-webkit-scrollbar {
-        width: 9px
-    }
-    
-    ::-webkit-scrollbar-track {
-        background-color: #f6f6f6;
-        margin: -4px 0
-    }
-    
-    ::-webkit-scrollbar-thumb {
-        background-color: var(--gr);
-        border-radius: 7px
-    }
-    
-    #cntnr {
-        /* continer finch */
-        background-color: #7473739e;
-        width: 100%;
-        height: 100%;
-        display: none;
-        position: fixed;
-        background-size: cover;
-        z-index: 1
-    }
-    
+    --mnCl: #2196f3;
+    --gr: #009688
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0
+}
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    /* user-select: none; */
+}
+
+::-webkit-scrollbar {
+    width: 9px
+}
+
+::-webkit-scrollbar-track {
+    background-color: #f6f6f6;
+    margin: -4px 0
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: var(--gr);
+    border-radius: 7px
+}
+
+#cntnr {
+    /* continer finch */
+    background-color: #7473739e;
+    width: 100%;
+    height: 100%;
+    display: none;
+    position: fixed;
+    background-size: cover;
+    z-index: 1
+}
+
+.dvPlc {
+    width: 50%;
+    top: 20%;
+    left: 25%;
+    position: fixed;
+    /*font-size :30px;*/
+    z-index: 2;
+    background-color: white;
+    border-radius: 7px;
+    overflow-y: visible;
+    transition: .3s;
+    border: 3px solid var(--gr);
+    text-align: center;
+    transform: scaleY(1)
+}
+
+.hidplac,
+.opPlc {
+    transform: scaleY(0)
+}
+
+.opPlc {
+    transition: 0s
+}
+
+#hid {
+    font-size: 5vh;
+    color: #302e2ed9;
+    float: right;
+    display: block;
+    cursor: pointer;
+    margin: 2% 15px 0px
+}
+
+#gmOvr {
+    color: #d70000;
+    font-size: 50px;
+    display: none;
+    padding: 35px;
+    font-weight: bold
+}
+
+.divCng {
+    font-size: 35px;
+    display: none;
+    padding: 15px;
+    border-radius: 0 0 7px 7px;
+    font-weight: bold
+}
+
+.divCng span {
+    color: var(--gr)
+}
+
+.nwWord {
+    display: none;
+    font-size: 5vh;
+    margin-top: 2vh
+}
+
+.gmNm {
+    font-size: 27px;
+    padding: 15px;
+    display: none
+}
+
+.inpAdd {
+    font-size: 4vh;
+    display: inline-block;
+    text-align: center;
+    margin: 4vh auto;
+    width: 70%;
+    caret-color: var(--mnCl);
+    padding: 0px;
+    color: var(--mnCl);
+    border: none;
+    border-bottom: 2px solid var(--mnCl);
+    transition: .3s
+}
+
+.inpAdd:focus {
+    padding: 7px 7px;
+    width: 75%
+}
+
+.nofcs:focus {
+    outline: none
+}
+
+.inpAdd+span {
+    font-size: 4vh;
+    display: inline-block;
+    position: absolute;
+    margin-top: 4vh;
+    color: #2196f396;
+    z-index: -1;
+    left: 5%;
+    width: 90%;
+}
+
+.okbtn {
+    display: block;
+    color: white;
+    width: fit-content;
+    font-size: 4vh;
+    background: var(--mnCl);
+    margin: -1vh auto 3vh;
+    padding: 5px 20px;
+    border: 1px;
+    border-radius: 5px;
+    cursor: pointer
+}
+
+.dblbtn {
+    display: initial;
+    margin: 5vh 7px 3vh
+}
+
+.ch {
+    font-size: 25px;
+    margin: 5px
+}
+
+.ch input {
+    width: 15px;
+    height: 15px
+}
+
+.game {
+    background-color: #eee;
+    min-height: 100vh
+}
+
+.container {
+    margin: auto;
+    max-width: 900px
+}
+
+.name {
+    background-color: var(--mnCl);
+    color: white;
+    padding: 30px;
+    font-size: 55px;
+    text-align: center;
+    font-weight: bold
+}
+
+.msg {
+    display: flex;
+    justify-content: space-between;
+    background-color: white;
+    padding: 15px;
+    border-radius: 6px;
+    margin: 5px 0
+}
+
+.msg span {
+    font-weight: bold;
+    color: var(--gr)
+}
+
+.gmr {
+    cursor: pointer;
+    margin-right: 25px
+}
+
+.control {
+    display: flex;
+    justify-content: space-between;
+    background-color: white;
+    padding: 15px;
+    border-radius: 6px
+}
+
+.control span {
+    font-weight: bold;
+    color: var(--gr)
+}
+
+.shoTime {
+    color: var(--gr);
+    font-size: 15px;
+    border-radius: 4px;
+    text-align: center
+}
+
+.shoTime:focus {
+    border: 1px solid var(--mnCl);
+    outline: var(--mnCl) solid 1px
+}
+
+.cntTm {
+    margin: -4px 15px 0;
+    background-color: #00968847
+}
+
+.cntTm div {
+    background-color: var(--gr);
+    width: 100%;
+    height: 4px;
+    border-radius: 2px
+}
+
+.start {
+    font-size: 30px;
+    font-weight: bold;
+    text-align: center;
+    background: var(--gr);
+    color: white;
+    padding: 30px;
+    margin: 20px 30%;
+    cursor: pointer;
+    border-radius: 6px
+}
+
+.wrds {
+    background-color: white;
+    margin: 15px 0;
+    padding: 15px;
+    display: none;
+    flex-wrap: wrap;
+    justify-content: center;
+    border-radius: 6px
+}
+
+.wrds div {
+    margin: 0 10px;
+    text-align: center
+}
+
+.wrds div p {
+    margin: 10px;
+    color: var(--gr);
+    font-size: 20px;
+    cursor: pointer
+}
+
+.wrd {
+    text-align: center;
+    font-weight: bold;
+    font-size: 60px;
+    color: var(--mnCl)
+}
+
+.input {
+    margin: 15px 0;
+    width: 100%;
+    display: block;
+    padding: 15px;
+    border: 3px solid var(--mnCl);
+    font-size: 20px;
+    text-align: center;
+    border-radius: 6px;
+    caret-color: var(--mnCl)
+}
+
+.upcoming {
+    background-color: white;
+    margin: 15px 0;
+    padding: 15px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center
+}
+
+.upcoming div {
+    background-color: var(--mnCl);
+    color: white;
+    font-weight: bold;
+    margin: 4px;
+    padding: 10px;
+    border-radius: 6px
+}
+
+.cnNbAdd {
+    display: flex;
+    justify-content: space-between;
+    align-items: center
+}
+
+.add {
+    color: var(--gr);
+    margin: auto 10px 3px;
+    padding: 15px 17px 0;
+    font-size: 38px;
+    font-weight: bold;
+    cursor: pointer;
+    text-align: right;
+    width: 230px
+}
+
+.name2 {
+    font-size: 34px;
+    padding: 17px;
+    border-radius: 10px 10px 0 0
+}
+
+.name2 span {
+    margin: 1px 15px
+}
+
+#nmbWrd {
+    color: var(--mnCl)
+}
+
+.lngs {
+    font-size: 25px;
+    padding: 8px 10px;
+    width: auto;
+    margin: 11px 5px -5px
+}
+
+.nbWrd {
+    cursor: alias
+}
+
+.upcoming div span {
+    margin: 0 5px
+}
+
+.hidWrd {
+    font-size: 17px;
+    color: white;
+    cursor: pointer
+}
+
+.aldlt {
+    text-align: center;
+    padding: 10 px auto -4px;
+    color: red;
+    width: 100%
+}
+
+@media (max-width: 700px) {
     .dvPlc {
-        width: 50%;
-        top: 20%;
-        left: 25%;
-        position: fixed;
-        /*font-size :30px;*/
-        z-index: 2;
-        background-color: white;
-        border-radius: 7px;
-        overflow-y: visible;
-        transition: .3s;
-        border: 3px solid var(--gr);
-        text-align: center;
-        transform: scaleY(1)
+        width: 90%;
+        top: 10%;
+        left: 5%;
     }
-    
-    .hidplac,
-    .opPlc {
-        transform: scaleY(0)
-    }
-    
-    .opPlc {
-        transition: 0s
-    }
-    
-    #hid {
-        font-size: 5vh;
-        color: #302e2ed9;
-        float: right;
-        display: block;
-        cursor: pointer;
-        margin: 2% 15px 0px
-    }
-    
-    #gmOvr {
-        color: #d70000;
-        font-size: 50px;
-        display: none;
-        padding: 35px;
-        font-weight: bold
-    }
-    
-    .divCng {
-        font-size: 35px;
-        display: none;
-        padding: 15px;
-        border-radius: 0 0 7px 7px;
-        font-weight: bold
-    }
-    
-    .divCng span {
-        color: var(--gr)
-    }
-    
-    .nwWord {
-        display: none;
-        font-size: 5vh;
-        margin-top: 2vh
-    }
-    
-    .gmNm {
-        font-size: 27px;
-        padding: 15px;
-        display: none
-    }
-    
-    .inpAdd {
-        font-size: 4vh;
-        display: block;
-        text-align: center;
-        margin: 4vh auto;
-        width: 70%;
-        caret-color: var(--mnCl);
-        padding: 0px;
-        color: var(--mnCl);
-        border: none;
-        border-bottom: 2px solid var(--mnCl);
-        transition: .3s
-    }
-    
-    .inpAdd:focus {
-        padding: 7px 7px;
-        width: 75%
-    }
-    
-    .nofcs:focus {
-        outline: none
-    }
-    
-    
-    .okbtn {
-        display: block;
-        color: white;
-        width: fit-content;
-        font-size: 4vh;
-        background: var(--mnCl);
-        margin: 1vh auto 0;
-        padding: 5px 20px;
-        border: 1px;
-        border-radius: 5px;
-        cursor: pointer
-    }
-    
-    .dblbtn {
-        display: initial;
-        margin: 20px 7px;
-    
-    }
-    
-    .ch {
-        font-size: 25px;
-        margin: 5px
-    }
-    
-    .ch input {
-        width: 15px;
-        height: 15px
-    }
-    
-    .game {
-        background-color: #eee;
-        min-height: 100vh
-    }
-    
-    .container {
-        margin: auto;
-        max-width: 900px
-    }
-    
+
     .name {
-        background-color: var(--mnCl);
-        color: white;
-        padding: 30px;
-        font-size: 55px;
-        text-align: center;
-        font-weight: bold
+        font-size: 35px;
+        padding: 25px
     }
-    
-    .msg {
-        display: flex;
-        justify-content: space-between;
-        background-color: white;
-        padding: 15px;
-        border-radius: 6px;
-        margin: 5px 0
-    }
-    
-    .msg span {
-        font-weight: bold;
-        color: var(--gr)
-    }
-    
-    .gmr {
-        cursor: pointer;
-        margin-right: 25px
-    }
-    
-    .control {
-        display: flex;
-        justify-content: space-between;
-        background-color: white;
-        padding: 15px;
-        border-radius: 6px
-    }
-    
-    .control span {
-        font-weight: bold;
-        color: var(--gr)
-    }
-    
-    .shoTime {
-        color: var(--gr);
-        font-size: 15px;
-        border-radius: 4px;
-        text-align: center
-    }
-    
-    .shoTime:focus {
-        border: 1px solid var(--mnCl);
-        outline: var(--mnCl) solid 1px
-    }
-    
-    .cntTm {
-        margin: -4px 15px 0;
-        background-color: #00968847
-    }
-    
-    .cntTm div {
-        background-color: var(--gr);
-        width: 100%;
-        height: 4px;
-        border-radius: 2px
-    }
-    
+
     .start {
-        font-size: 30px;
-        font-weight: bold;
-        text-align: center;
-        background: var(--gr);
-        color: white;
-        padding: 30px;
-        margin: 20px 30%;
-        cursor: pointer;
-        border-radius: 6px
+        font-size: 25px;
+        padding: 20px;
+        margin: 15px 30%
     }
-    
-    .wrds {
-        background-color: white;
-        margin: 15px 0;
-        padding: 15px;
-        display: none;
-        flex-wrap: wrap;
-        justify-content: center;
-        border-radius: 6px
-    }
-    
-    .wrds div {
-        margin: 0 10px;
+
+    .add {
+        font-size: 20px;
+        margin: 0 3px 17px;
+        width: 154px;
         text-align: center
     }
-    
-    .wrds div p {
-        margin: 10px;
-        color: var(--gr);
-        font-size: 20px;
-        cursor: pointer
-    }
-    
+
     .wrd {
-        text-align: center;
-        font-weight: bold;
-        font-size: 60px;
-        color: var(--mnCl)
+        font-size: 25px
     }
-    
-    .input {
-        margin: 15px 0;
-        width: 100%;
-        display: block;
-        padding: 15px;
-        border: 3px solid var(--mnCl);
-        font-size: 20px;
-        text-align: center;
-        border-radius: 6px;
-        caret-color: var(--mnCl)
-    }
-    
-    .upcoming {
-        background-color: white;
-        margin: 15px 0;
-        padding: 15px;
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center
-    }
-    
-    .upcoming div {
-        background-color: var(--mnCl);
-        color: white;
-        font-weight: bold;
-        margin: 4px;
-        padding: 10px;
-        border-radius: 6px
-    }
-    
-    .cnNbAdd {
-        display: flex;
-        justify-content: space-between;
-        align-items: center
-    }
-    
-    .add {
-        color: var(--gr);
-        margin: auto 10px 3px;
-        padding: 15px 17px 0;
-        font-size: 38px;
-        font-weight: bold;
-        cursor: pointer;
-        text-align: right;
-        width: 230px
-    }
-    
-    .name2 {
-        font-size: 34px;
-        padding: 17px;
-        border-radius: 10px 10px 0 0
-    }
-    
-    .name2 span {
-        margin: 1px 15px
-    }
-    
-    #nmbWrd {
-        color: var(--mnCl)
-    }
-    
+
     .lngs {
-        font-size: 25px;
-        padding: 8px 10px;
-        width: auto;
-        margin: 11px 5px -5px
+        font-size: 19px;
+        padding: 6px 6px;
+        margin: auto
     }
-    
-    .nbWrd {
-        cursor: alias
+
+    .upcoming {
+        margin: -16px 0
     }
-    
-    .upcoming div span {
-        margin: 0 5px
-    }
-    
-    .hidWrd {
-        font-size: 17px;
-        color: white;
-        cursor: pointer
-    }
-    
+
     .aldlt {
-        text-align: center;
-        padding: 10 px auto -4px;
-        color: red;
+        margin-bottom: 10px;
         width: 100%
     }
-    
-    @media (max-width: 700px) {
-        .dvPlc {
-            width: 90%;
-            top: 10%;
-            left: 5%;
-        }
-    
-        .name {
-            font-size: 35px;
-            padding: 25px
-        }
-    
-        .start {
-            font-size: 25px;
-            padding: 20px;
-            margin: 15px 30%
-        }
-    
-        .add {
-            font-size: 20px;
-            margin: 0 3px 17px;
-            width: 154px;
-            text-align: center
-        }
-    
-        .wrd {
-            font-size: 25px
-        }
-    
-        .lngs {
-            font-size: 19px;
-            padding: 6px 6px;
-            margin: auto
-        }
-    
-        .upcoming {
-            margin: -16px 0
-        }
-    
-        .aldlt {
-            margin-bottom: 10px;
-            width: 100%
-        }
-    }
-    
-    .clClvu {
-        display: none;
-        width: 90%;
-        height: 90%
-    } 
+}
+
+.clClvu {
+    display: none;
+    width: 90%;
+    height: 90%
+}
     </style>
 </head>
 
@@ -437,24 +446,28 @@
           <span id="gmOvr" class="hidjs">Gime Over <button id="okgmOvr" onclick="hiding()"
               class="okbtn nofcs">Ok</button></span>
     
-          <div id="cngrtl" class="divCng hidjs"></div>
+          <div id="cngrtl" class="divCng hidjs" ></div>
     
           <div id="dvNmGm" class="gmNm hidjs">
-            <form>
-              Yor Name <input type="search" id="nmGm" class="inpAdd nofcs" spellcheck="false"  />
+              Yor Name <br>
+              <div  id="nmGm" class="inpAdd nofcs" onclick="enter='nmbtn'" contenteditable ></div>
+              <br>
               <button id="nmbtn" class="okbtn nofcs" onclick="nmGmr()">Ok</button>
-            </form>
-            
-    
           </div>
     
           <div id="chLng" class=" hidjs" style="display: none;">
             <p style="font-size: 40px;margin: 25px; ">shose yor langes </p>
-            <div class="ch"><input id="enCh" type="checkbox" data-lng=".enCl" checked> <label for="enCh">English</label>
+            <div class="ch">
+              <input id="arCh" type="checkbox" data-lng=".arCl" checked>
+              <label for="arCh">Arabic</label>
             </div>
-            <div class="ch"><input id="arCh" type="checkbox" data-lng=".arCl" checked> <label for="arCh">Arabic</label>
+            <div class="ch">
+              <input id="enCh" type="checkbox" data-lng=".enCl" checked>
+              <label for="enCh">English</label>
             </div>
-            <div class="ch"><input id="frCh" type="checkbox" data-lng=".frCl" checked> <label for="frCh">French</label>
+            <div class="ch">
+              <input id="frCh" type="checkbox" data-lng=".frCl" checked>
+              <label for="frCh">French</label>
             </div>
             <button id="okchkd" class="okbtn nofcs dblbtn" onclick="hiding()">ok</button>
           </div>
@@ -462,19 +475,24 @@
     
           <div id="addWrd" class="nwWord hidjs">
             add New words
-            <form id="frmAdd">
-              <input id="nwEn" class="inpAdd nofcs enCl" type="text" autocapitalize="off" placeholder="English word"
-                autocomplete="off" onclick="enter = 'nwAr';upbt='nwFr';dwbt='nwAr';chInp(this)" />
-              <input id="nwAr" class="inpAdd nofcs arCl" type="text" autocapitalize="off" placeholder="Arabic word"
-                autocomplete="off" onclick="enter = 'nwFr';upbt='nwEn';dwbt='nwFr';chInp(this)" />
-              <input id="nwFr" class="inpAdd nofcs frCl" type="text" autocapitalize="off" placeholder="French word"
-                autocomplete="off" onclick="enter = 'okAdd';upbt='nwAr';dwbt='nwEn';chInp(this)" />
-              <div style="margin: -2vh auto;height: 4vh; font-size :4vh;">
-                <p id="notAdd" style="color: red;  display:none;">You dont add an word</p>
-                <p id="isAdd" style="color: var(--gr);  display:none;">words have been added</p>
-              </div>
-            </form>
-            <input id="okAdd" class="okbtn dblbtn nofcs" type="button" value="add" onclick="addWrds()"/>
+            <div id="nwAr" class="inpAdd nofcs arCl" contenteditable
+              onclick="enter = 'nwEn';upbt='nwFr';dwbt='nwEn';chInp(this)">
+            </div>
+            <span  class="arCl">Arabic word</span>
+            <div id="nwEn" class="inpAdd nofcs enCl" contenteditable
+            onclick="enter = 'nwFr';upbt='nwAr';dwbt='nwFr';chInp(this)">
+            </div>
+            <span class="enCl">English word</span>
+            <div id="nwFr" class="inpAdd nofcs frCl" contenteditable
+            onclick="enter = 'okAdd';upbt='nwEn';dwbt='nwAr';chInp(this)">
+            </div>
+            <span class="frCl">French word</span>
+            <div style="margin: -2vh auto;height: 4vh; font-size :4vh;">
+              <p id="notAdd" style="color: red;  display:none;">You dont add an word</p>
+              <p id="isAdd" style="color: var(--gr);  display:none;">words have been added</p>
+            </div>
+            <button id="okAdd" class="okbtn dblbtn nofcs" onclick="addWrds()" >add</button>
+            <button  class="okbtn dblbtn nofcs" onclick="hiding()" >close</button>
           </div>
     
     
@@ -537,7 +555,7 @@
             <div class="cnNbAdd">
               <span class="add nbWrd"><span id="nmbWrd"></span> words</span>
               <button id="btnLng" class="okbtn lngs nofcs" onclick="opnDiv('chLng','okchkd')">Langes</button>
-              <p class="add" onclick="opnDiv('addWrd','nwAr','nwEn')">+ add</p>
+              <p class="add" onclick="opnDiv('addWrd','nwEn','nwAr')">+ add</p>
             </div>
             <div id="cntWrds" class="upcoming"></div>
           </div>
@@ -570,10 +588,13 @@ function hiding() {
         document.querySelectorAll('.hidjs').forEach(el => { dsply(el.id, 'none') })
     }, 310);
     if (cngrt != '') { clearInterval(fxCngr); cngrt = '' }
-    stWrd();
 }
 
-function nmGmr() { let gNam = gebi('nmGm').value; gebi('spNmGm').innerText = gNam; hiding(); localStorage.nmGmr = gNam }
+function nmGmr() {
+    let gNam = gebi('nmGm').innerText;
+    gebi('spNmGm').innerText = gNam; hiding();
+    localStorage.nmGmr = gNam;
+}
 
 function topScrl(time) {
     if (time == '∞') { gebi('tpScrl').innerText = ''; return false }
@@ -585,7 +606,7 @@ function topScrl(time) {
 /* localStorage.removeItem('top30') */
 function valScnd(time) {
     topScrl(time); gebi('tmLft').innerText = clTm(time); enter = 'idStart';
-    gebi('mbrWrd').innerText = 0; localStorage.lvlTim = time;gebi('timeLvl').value=time
+    gebi('mbrWrd').innerText = 0; localStorage.lvlTim = time; gebi('timeLvl').value = time
     if (strt == 0) {
         clrngTm(); inp.value = '';
         dsply('wrdDsply', 'none'); dsply('idStart', 'block'); strt = 1;
@@ -609,7 +630,7 @@ function gogame() {
     dsply('idStart', 'none'); dsply('wrdDsply', 'flex'); gebi('inpWrd').focus(); enter = 'tpScrl'; strt = 0;
     gebi('mbrWrd').innerText = 0; nbWrd = 0; lftTm = localStorage.lvlTim;
     if (lftTm == '∞') { return false }
-    let sntLft, lngLfTm = lftTm * 40, rstLngtm = lngLfTm, rslt;
+    let sntLft, lngLfTm = lftTm * 25, rstLngtm = lngLfTm, rslt;
     tmLft = setInterval(() => {
         lftTm--; sntLft = clTm(lftTm); gebi('tmLft').innerText = sntLft;
         if (lftTm == 0) { clrngTm(); resulte(); }
@@ -618,7 +639,7 @@ function gogame() {
     lngTm = setInterval(() => {
         rstLngtm--; rslt = (rstLngtm * 100 / lngLfTm).toFixed(1) + '%';
         gebi('lngTm').style.width = rslt;
-    }, 25);
+    }, 40);
 }
 
 function clrngTm() {
@@ -649,6 +670,7 @@ function hidWrd(rnNmb) {
     enWrd.splice(rnNmb, 1); arWrd.splice(rnNmb, 1); frWrd.splice(rnNmb, 1);
     lstWrd(); gebi('nmbWrd').innerText = enWrd.length;
     wToSt('En', enWrd); wToSt('Ar', arWrd); wToSt('Fr', frWrd);
+    stWrd();
 }
 
 function chInp(el) {
@@ -658,12 +680,12 @@ function chInp(el) {
     }
 }
 
-function chTyp(el) { el.type = 'search'; setTimeout(() => { el.type = 'text' }, 1000) }
+function chTyp(el) { el.type = 'search'; el.type = 'text' /* setTimeout(() => {  }, 1000) */ }
 
 function addWrds() {
     let inpEn = gebi('nwEn'), inpAr = gebi('nwAr'),
-        inpFr = gebi('nwFr'), tLng = inpEn.value + inpAr.value + inpFr.value;
-    enter = 'nwAr';
+        inpFr = gebi('nwFr'), tLng = inpEn.innerText + inpAr.innerText + inpFr.innerText;
+    enter = 'nwEn';
     tLng = rep(tLng, ' ', '');
     if (tLng == '') {
         dsply('notAdd', 'block'); dsply('isAdd', 'none');
@@ -671,16 +693,13 @@ function addWrds() {
     } else {
         dsply('notAdd', 'none'); dsply('isAdd', 'block'); setTimeout(() => { dsply('isAdd', 'none') }, 1000);
         isAddWrd(inpEn, enWrd, 'En'); isAddWrd(inpAr, arWrd, 'Ar'); isAddWrd(inpFr, frWrd, 'Fr');
-        lstWrd(); gebi('nmbWrd').innerText = enWrd.length;nmbr++;
-        if (enWrd.length == 1) { stWrd() }
+        lstWrd(); gebi('nmbWrd').innerText = enWrd.length; stWrd()
     }
-    setTimeout(() => {
-        fxClk('nwEn');
-    }, 10);
+    fxClk('nwAr');
 }
 
 function isAddWrd(inpWrd, arrWrd, lng) {
-    let vlinp = inpWrd.value; inpWrd.value = '';
+    let vlinp = inpWrd.innerText; inpWrd.innerText = '';
     if (ind(vlinp, '@#') > -1) { vlinp = rep(vlinp, '@#', '/@/#/') }
     arrWrd.unshift(vlinp); wToSt(lng, arrWrd)
 }
@@ -694,44 +713,58 @@ function dltall() {
     hiding();
 }
 
+function opnSite() {
+    addEventListener('keydown', (ev) => {
+        let evKy = ev.key;
+        if (evKy == 'Enter' || evKy == 'ArrowDown' || evKy == 'ArrowUp') {
+            ev.preventDefault();
+            if (evKy == 'Enter') { fxClk(enter); kyBt = 'ent' }
+            if (evKy == 'ArrowDown') { fxClk(upbt); kyBt = 'up' }
+            if (evKy == 'ArrowUp') { fxClk(dwbt); kyBt = 'dw' }
+        }
+    });
 
-async function opnSite() {
+    const inpAdd = document.querySelectorAll(".inpAdd");
+    inpAdd.forEach(el => {
+
+        el.addEventListener('keydown', () => {
+            inpAdd.forEach(el2 => {
+                setTimeout(() => {
+                    if (el2.innerText == '' && el2.style.display!='none') {
+                        el2.nextElementSibling.style.display = 'inline-block'
+                    } else { el2.nextElementSibling.style.display = 'none' }
+                }, 10);
+
+            })
+        })
+    });
 
 
-    if (navigator.userAgent.toLowerCase().includes('android')) {
-        gebi('frmAdd').innerHTML += `<input  class="okbtn dblbtn nofcs"
-        type="submit" value="add" onclick="addWrds()"/>`;
-        dsply('okAdd', 'none');
-    } else {
-        addEventListener('keyup', (ev) => {
-            if (ev.keyCode === 13) { fxClk(enter); kyBt = 'ent' }
-            if (ev.keyCode === 38) { fxClk(upbt); kyBt = 'up' }
-            if (ev.keyCode === 40) { fxClk(dwbt); kyBt = 'dw' }
-        });
-    }
     inp.oninput = () => {
         let vinp = inp.value.toLocaleLowerCase(), en = enWrd[nmbr].toLocaleLowerCase(),
             fr = frWrd[nmbr].toLocaleLowerCase();
         if ((vinp == arWrd[nmbr] || vinp == en || vinp == fr) && vinp != '' && strt == 0) {
-            nmbr++; stWrd(); gebi('inpWrd').value = ''; nbWrd++; gebi('mbrWrd').innerText = nbWrd
+            nmbr++; stWrd(); inp.value = ''; nbWrd++; gebi('mbrWrd').innerText = nbWrd
         }
+
     }
-    const frm = document.querySelectorAll("form");
-    frm.forEach(el => {
-        el.addEventListener('submit', ev => {
-            ev.preventDefault();
 
-        })
-    })
-
+    /* const frm = document.querySelectorAll("form");
+     frm.forEach(el => {
+         el.addEventListener('submit', ev => {
+             ev.preventDefault();
+ 
+         })
+     })
+  */
     gebi('divplac').addEventListener('click', e => { e.stopPropagation() });
     /* //////// localStorage for gimer ... ext */
-    if (nmGm) { gebi('spNmGm').innerText = nmGm; gebi('nmGm').value = nmGm } else { gebi('spNmGm').innerText = 'Unknown' }
+    if (nmGm) { gebi('spNmGm').innerText = nmGm; gebi('nmGm').innerText = nmGm } else { gebi('spNmGm').innerText = 'Unknown' }
     if (localStorage.lvlTim) {
         valScnd(localStorage.lvlTim)
     } else { valScnd(30) }
     /*//////// list words \\\\\\\\\  */
-allWrd();
+    allWrd();
 
 }
 
@@ -749,13 +782,14 @@ function cntn() {
     document.querySelectorAll('.ch input').forEach(el => {
         el.addEventListener('click', () => {
             if (el.checked) {
-                nmCh++; chcd('initial')
+                nmCh++; chcd('inline-block')
             } else {
                 nmCh--; if (nmCh == 0) { el.click(); return false }
                 chcd('none')
             }
             function chcd(dsp) {
                 document.querySelectorAll(el.dataset.lng).forEach(chnCl => chnCl.style.display = dsp);
+
                 localStorage['ch' + el.id] = dsp
             }
         });
@@ -766,7 +800,7 @@ function cntn() {
     dsply('clVu', 'none') */
 }
 function chosWrd() {
-    
+
 
 }
 
@@ -814,7 +848,7 @@ function allWrd() {
             })
     }
 }
-     </script>
+    </script>
 
 </body>
 
