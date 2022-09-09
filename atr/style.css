@@ -11,7 +11,7 @@
 
 body {
     font-family: 'Open Sans', sans-serif;
-    user-select: none;
+    /* user-select: none; */
 }
 
 ::-webkit-scrollbar {
@@ -107,7 +107,7 @@ body {
 
 .inpAdd {
     font-size: 4vh;
-    display: block;
+    display: inline-block;
     text-align: center;
     margin: 4vh auto;
     width: 70%;
@@ -128,6 +128,16 @@ body {
     outline: none
 }
 
+.inpAdd+span {
+    font-size: 4vh;
+    display: inline-block;
+    position: absolute;
+    margin-top: 4vh;
+    color: #2196f396;
+    z-index: -1;
+    left: 5%;
+    width: 90%;
+}
 
 .okbtn {
     display: block;
@@ -135,7 +145,7 @@ body {
     width: fit-content;
     font-size: 4vh;
     background: var(--mnCl);
-    margin: 1vh auto 0;
+    margin: -1vh auto 3vh;
     padding: 5px 20px;
     border: 1px;
     border-radius: 5px;
@@ -144,8 +154,7 @@ body {
 
 .dblbtn {
     display: initial;
-    margin: 20px 7px;
-
+    margin: 5vh 7px 3vh
 }
 
 .ch {
