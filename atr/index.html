@@ -128,6 +128,7 @@ body {
     padding: 0px;
     color: var(--mnCl);
     border: none;
+   /*text-transform: lowercase;*/
     border-bottom: 2px solid var(--mnCl);
     transition: .3s
 }
@@ -439,15 +440,14 @@ body {
 </head>
 
 <body>
+<div id="aaa"></div>
     <div id="cntnr" class="hidjs" onclick="hiding()">
         <div id="divplac" class="dvPlc">
           <span id="hid" onclick="hiding()">×</span>
           <hr style="margin-top:8.2vh;">
           <span id="gmOvr" class="hidjs">Gime Over <button id="okgmOvr" onclick="hiding()"
               class="okbtn nofcs">Ok</button></span>
-    
-          <div id="cngrtl" class="divCng hidjs" ></div>
-    
+    <div id="cngrtl" class="divCng hidjs" ></div>
           <div id="dvNmGm" class="gmNm hidjs">
               Yor Name <br>
               <div  id="nmGm" class="inpAdd nofcs" onclick="enter='nmbtn'" contenteditable ></div>
@@ -475,15 +475,15 @@ body {
     
           <div id="addWrd" class="nwWord hidjs">
             add New words
-            <div id="nwAr" class="inpAdd nofcs arCl" contenteditable
+            <div id="nwAr" class="inpAdd nofcs arCl" contenteditable autocapitalize='off'
               onclick="enter = 'nwEn';upbt='nwFr';dwbt='nwEn';chInp(this)">
             </div>
             <span  class="arCl">Arabic word</span>
-            <div id="nwEn" class="inpAdd nofcs enCl" contenteditable
+            <div id="nwEn" class="inpAdd nofcs enCl" contenteditable autocapitalize='off'
             onclick="enter = 'nwFr';upbt='nwAr';dwbt='nwFr';chInp(this)">
             </div>
             <span class="enCl">English word</span>
-            <div id="nwFr" class="inpAdd nofcs frCl" contenteditable
+            <div id="nwFr" class="inpAdd nofcs frCl" contenteditable autocapitalize='off'
             onclick="enter = 'okAdd';upbt='nwEn';dwbt='nwAr';chInp(this)">
             </div>
             <span class="frCl">French word</span>
@@ -520,8 +520,8 @@ body {
             <div class="time">Time left : <span id="tmLft">30</span></div>
             <div><span id="mbrWrd">0 </span> Words</div>
             <div>Time :
-              <select id="timeLvl" name="time" class="shoTime " onclick="valScnd(value)">
-                <option value="30">Short </option>
+              <select id="timeLvl" name="time" onchange="valScnd(value)" class="shoTime " >
+                <option value="30" >Short </option>
                 <option value="60">Medium </option>
                 <option value="120">Long </option>
                 <option value="300">very Long </option>
@@ -714,31 +714,40 @@ function dltall() {
 }
 
 function opnSite() {
-    addEventListener('keydown', (ev) => {
-        let evKy = ev.key;
+
+let idInp,txtInp ;
+window.addEventListener('keyup', (ev) => {
+        let evKy = ev.key,kyCod=ev.keyCode;
+
+if(txtInp.indexOf('\n',0)>-1){kyBt = 'ent';
+txtInp = txtInp.replaceAll('\n','');idInp.innerText =txtInp;fxClk(enter); return false}
         if (evKy == 'Enter' || evKy == 'ArrowDown' || evKy == 'ArrowUp') {
+
             ev.preventDefault();
             if (evKy == 'Enter') { fxClk(enter); kyBt = 'ent' }
             if (evKy == 'ArrowDown') { fxClk(upbt); kyBt = 'up' }
             if (evKy == 'ArrowUp') { fxClk(dwbt); kyBt = 'dw' }
         }
     });
-
     const inpAdd = document.querySelectorAll(".inpAdd");
     inpAdd.forEach(el => {
 
-        el.addEventListener('keydown', () => {
+        el.addEventListener('keyup', () => {
+idInp = el;
+txtInp=el.innerText;
+ 
             inpAdd.forEach(el2 => {
-                setTimeout(() => {
-                    if (el2.innerText == '' && el2.style.display!='none') {
-                        el2.nextElementSibling.style.display = 'inline-block'
-                    } else { el2.nextElementSibling.style.display = 'none' }
-                }, 10);
+
+               setTimeout(() => {
+
+                    if ((el2.innerText != '' || el2.style.display =='none')&& el.id !='nmGm' ) {
+                        el2.nextElementSibling.style.display = 'none'
+                    } else { el2.nextElementSibling.style.display = 'inline-block' }
+                },0);
 
             })
         })
     });
-
 
     inp.oninput = () => {
         let vinp = inp.value.toLocaleLowerCase(), en = enWrd[nmbr].toLocaleLowerCase(),
@@ -749,14 +758,6 @@ function opnSite() {
 
     }
 
-    /* const frm = document.querySelectorAll("form");
-     frm.forEach(el => {
-         el.addEventListener('submit', ev => {
-             ev.preventDefault();
- 
-         })
-     })
-  */
     gebi('divplac').addEventListener('click', e => { e.stopPropagation() });
     /* //////// localStorage for gimer ... ext */
     if (nmGm) { gebi('spNmGm').innerText = nmGm; gebi('nmGm').innerText = nmGm } else { gebi('spNmGm').innerText = 'Unknown' }
