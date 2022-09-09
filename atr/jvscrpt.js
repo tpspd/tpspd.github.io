@@ -22,10 +22,13 @@ function hiding() {
         document.querySelectorAll('.hidjs').forEach(el => { dsply(el.id, 'none') })
     }, 310);
     if (cngrt != '') { clearInterval(fxCngr); cngrt = '' }
-    stWrd();
 }
 
-function nmGmr() { let gNam = gebi('nmGm').value; gebi('spNmGm').innerText = gNam; hiding(); localStorage.nmGmr = gNam }
+function nmGmr() {
+    let gNam = gebi('nmGm').innerText;
+    gebi('spNmGm').innerText = gNam; hiding();
+    localStorage.nmGmr = gNam;
+}
 
 function topScrl(time) {
     if (time == '∞') { gebi('tpScrl').innerText = ''; return false }
@@ -37,7 +40,7 @@ function topScrl(time) {
 /* localStorage.removeItem('top30') */
 function valScnd(time) {
     topScrl(time); gebi('tmLft').innerText = clTm(time); enter = 'idStart';
-    gebi('mbrWrd').innerText = 0; localStorage.lvlTim = time;gebi('timeLvl').value=time
+    gebi('mbrWrd').innerText = 0; localStorage.lvlTim = time; gebi('timeLvl').value = time
     if (strt == 0) {
         clrngTm(); inp.value = '';
         dsply('wrdDsply', 'none'); dsply('idStart', 'block'); strt = 1;
@@ -61,7 +64,7 @@ function gogame() {
     dsply('idStart', 'none'); dsply('wrdDsply', 'flex'); gebi('inpWrd').focus(); enter = 'tpScrl'; strt = 0;
     gebi('mbrWrd').innerText = 0; nbWrd = 0; lftTm = localStorage.lvlTim;
     if (lftTm == '∞') { return false }
-    let sntLft, lngLfTm = lftTm * 40, rstLngtm = lngLfTm, rslt;
+    let sntLft, lngLfTm = lftTm * 25, rstLngtm = lngLfTm, rslt;
     tmLft = setInterval(() => {
         lftTm--; sntLft = clTm(lftTm); gebi('tmLft').innerText = sntLft;
         if (lftTm == 0) { clrngTm(); resulte(); }
@@ -70,7 +73,7 @@ function gogame() {
     lngTm = setInterval(() => {
         rstLngtm--; rslt = (rstLngtm * 100 / lngLfTm).toFixed(1) + '%';
         gebi('lngTm').style.width = rslt;
-    }, 25);
+    }, 40);
 }
 
 function clrngTm() {
@@ -101,6 +104,7 @@ function hidWrd(rnNmb) {
     enWrd.splice(rnNmb, 1); arWrd.splice(rnNmb, 1); frWrd.splice(rnNmb, 1);
     lstWrd(); gebi('nmbWrd').innerText = enWrd.length;
     wToSt('En', enWrd); wToSt('Ar', arWrd); wToSt('Fr', frWrd);
+    stWrd();
 }
 
 function chInp(el) {
@@ -110,12 +114,12 @@ function chInp(el) {
     }
 }
 
-function chTyp(el) { el.type = 'search'; setTimeout(() => { el.type = 'text' }, 1000) }
+function chTyp(el) { el.type = 'search'; el.type = 'text' /* setTimeout(() => {  }, 1000) */ }
 
 function addWrds() {
     let inpEn = gebi('nwEn'), inpAr = gebi('nwAr'),
-        inpFr = gebi('nwFr'), tLng = inpEn.value + inpAr.value + inpFr.value;
-    enter = 'nwAr';
+        inpFr = gebi('nwFr'), tLng = inpEn.innerText + inpAr.innerText + inpFr.innerText;
+    enter = 'nwEn';
     tLng = rep(tLng, ' ', '');
     if (tLng == '') {
         dsply('notAdd', 'block'); dsply('isAdd', 'none');
@@ -123,16 +127,13 @@ function addWrds() {
     } else {
         dsply('notAdd', 'none'); dsply('isAdd', 'block'); setTimeout(() => { dsply('isAdd', 'none') }, 1000);
         isAddWrd(inpEn, enWrd, 'En'); isAddWrd(inpAr, arWrd, 'Ar'); isAddWrd(inpFr, frWrd, 'Fr');
-        lstWrd(); gebi('nmbWrd').innerText = enWrd.length;nmbr++;
-        if (enWrd.length == 1) { stWrd() }
+        lstWrd(); gebi('nmbWrd').innerText = enWrd.length; stWrd()
     }
-    setTimeout(() => {
-        fxClk('nwEn');
-    }, 10);
+    fxClk('nwAr');
 }
 
 function isAddWrd(inpWrd, arrWrd, lng) {
-    let vlinp = inpWrd.value; inpWrd.value = '';
+    let vlinp = inpWrd.innerText; inpWrd.innerText = '';
     if (ind(vlinp, '@#') > -1) { vlinp = rep(vlinp, '@#', '/@/#/') }
     arrWrd.unshift(vlinp); wToSt(lng, arrWrd)
 }
@@ -146,44 +147,58 @@ function dltall() {
     hiding();
 }
 
+function opnSite() {
+    addEventListener('keydown', (ev) => {
+        let evKy = ev.key;
+        if (evKy == 'Enter' || evKy == 'ArrowDown' || evKy == 'ArrowUp') {
+            ev.preventDefault();
+            if (evKy == 'Enter') { fxClk(enter); kyBt = 'ent' }
+            if (evKy == 'ArrowDown') { fxClk(upbt); kyBt = 'up' }
+            if (evKy == 'ArrowUp') { fxClk(dwbt); kyBt = 'dw' }
+        }
+    });
 
-async function opnSite() {
+    const inpAdd = document.querySelectorAll(".inpAdd");
+    inpAdd.forEach(el => {
+
+        el.addEventListener('keydown', () => {
+            inpAdd.forEach(el2 => {
+                setTimeout(() => {
+                    if (el2.innerText == '' && el2.style.display!='none') {
+                        el2.nextElementSibling.style.display = 'inline-block'
+                    } else { el2.nextElementSibling.style.display = 'none' }
+                }, 10);
+
+            })
+        })
+    });
 
 
-    if (navigator.userAgent.toLowerCase().includes('android')) {
-        gebi('frmAdd').innerHTML += `<input  class="okbtn dblbtn nofcs"
-        type="submit" value="add" onclick="addWrds()"/>`;
-        dsply('okAdd', 'none');
-    } else {
-        addEventListener('keyup', (ev) => {
-            if (ev.keyCode === 13) { fxClk(enter); kyBt = 'ent' }
-            if (ev.keyCode === 38) { fxClk(upbt); kyBt = 'up' }
-            if (ev.keyCode === 40) { fxClk(dwbt); kyBt = 'dw' }
-        });
-    }
     inp.oninput = () => {
         let vinp = inp.value.toLocaleLowerCase(), en = enWrd[nmbr].toLocaleLowerCase(),
             fr = frWrd[nmbr].toLocaleLowerCase();
         if ((vinp == arWrd[nmbr] || vinp == en || vinp == fr) && vinp != '' && strt == 0) {
-            nmbr++; stWrd(); gebi('inpWrd').value = ''; nbWrd++; gebi('mbrWrd').innerText = nbWrd
+            nmbr++; stWrd(); inp.value = ''; nbWrd++; gebi('mbrWrd').innerText = nbWrd
         }
+
     }
-    const frm = document.querySelectorAll("form");
-    frm.forEach(el => {
-        el.addEventListener('submit', ev => {
-            ev.preventDefault();
 
-        })
-    })
-
+    /* const frm = document.querySelectorAll("form");
+     frm.forEach(el => {
+         el.addEventListener('submit', ev => {
+             ev.preventDefault();
+ 
+         })
+     })
+  */
     gebi('divplac').addEventListener('click', e => { e.stopPropagation() });
     /* //////// localStorage for gimer ... ext */
-    if (nmGm) { gebi('spNmGm').innerText = nmGm; gebi('nmGm').value = nmGm } else { gebi('spNmGm').innerText = 'Unknown' }
+    if (nmGm) { gebi('spNmGm').innerText = nmGm; gebi('nmGm').innerText = nmGm } else { gebi('spNmGm').innerText = 'Unknown' }
     if (localStorage.lvlTim) {
         valScnd(localStorage.lvlTim)
     } else { valScnd(30) }
     /*//////// list words \\\\\\\\\  */
-allWrd();
+    allWrd();
 
 }
 
@@ -201,13 +216,14 @@ function cntn() {
     document.querySelectorAll('.ch input').forEach(el => {
         el.addEventListener('click', () => {
             if (el.checked) {
-                nmCh++; chcd('initial')
+                nmCh++; chcd('inline-block')
             } else {
                 nmCh--; if (nmCh == 0) { el.click(); return false }
                 chcd('none')
             }
             function chcd(dsp) {
                 document.querySelectorAll(el.dataset.lng).forEach(chnCl => chnCl.style.display = dsp);
+
                 localStorage['ch' + el.id] = dsp
             }
         });
@@ -218,7 +234,7 @@ function cntn() {
     dsply('clVu', 'none') */
 }
 function chosWrd() {
-    
+
 
 }
 
