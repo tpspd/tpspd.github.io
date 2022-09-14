@@ -513,7 +513,7 @@ margin-top:calc(4vh + 7px);
               <p id="isAdd" style="color: var(--gr);  display:none;">words have been added</p>
             </div>
             <button id="okAdd" class="okbtn dblbtn nofcs" onclick="addWrds()" >add</button>
-            <button  class="okbtn dblbtn nofcs" onclick="hiding()" >close</button>
+            <button  class="okbtn dblbtn nofcs" onclick="gebi('nwAr').focus();hiding()" >close</button>
           </div>
     
     
@@ -605,14 +605,17 @@ function opnDiv(dvOpn, ent, fcs = 'tpScrl') {
 function hiding() {
     valScnd(localStorage.lvlTim);
     inp.value = '';
-setTimeout(() => {
- if(wrdAdd){lstWrd();stWrd();wrdAdd=false}
-},400);
-    setTimeout(() => { gebi('divplac').className += ' hidplac' }, 20)
+    setTimeout(() => { gebi('divplac').className += ' hidplac' ;}, 20)
     hidDiv = setTimeout(() => {
         gebi('divplac').className = 'dvPlc';
-        document.querySelectorAll('.hidjs').forEach(el => { dsply(el.id, 'none') })
-    }, 310);
+        document.querySelectorAll('.hidjs').forEach(el => { dsply(el.id, 'none'); 
+setTimeout(() => {
+if(wrdAdd){lstWrd();
+ stWrd(); gebi('idStart').focus();wrdAdd=false}
+},40) ;
+
+})
+    }, 320);
     if (cngrt != '') { clearInterval(fxCngr); cngrt = '' }
 }
 
@@ -781,11 +784,16 @@ i++;
 if(i>2){i=0}
  inpAdd[i].style.backgroundColor='red';*/
 
-b.forEach(el2 => {allTxt += el2.innerText})
-if(!allTxt){
-gebi('okAdd').style.backgroundColor='#2196f396'
+if(!txtInp){ b.forEach(el2 => {
+allTxt += el2.innerText})
+if(allTxt){gebi('okAdd').style.backgroundColor='var(--mnCl)';allTxt='' }else{
+ gebi('okAdd').style.backgroundColor='#2196f396'
+}
 }else{ gebi('okAdd').style.backgroundColor='var(--mnCl)';allTxt=''
 }
+
+
+
                setTimeout(() => {
 
                     if ((el.innerText != '' || el.style.display =='none')&& el.id !='nmGm' ) {
@@ -881,6 +889,7 @@ for (;i<cnt;i++) {
 
 lpng(enWrd.length);
 dvWrd += `<p id="spdlt" class="add aldlt"onclick="opnDiv('dltAll','yesbtn')" >delete all</p>`;
+cntWrd.innerHTML="";
     cntWrd.innerHTML=dvWrd;
     
 gebi('nmbWrd').innerText = enWrd.length; 
