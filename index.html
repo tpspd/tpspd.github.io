@@ -7,7 +7,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="manifest" href="atr/manifesttpsp.json" />
     <link rel="icon" href="https://tpspd.github.io/atr/tpsp512.png">
-<link rel="stylesheet" href="https://necolas.github.io/normalize.css/latest/normalize.css">
     <title>Typing Speed </title>
 
     <style>
@@ -527,7 +526,7 @@ margin-top:calc(4vh + 7px);
         </div>
       </div>
     
-    
+                
       <div class="game">
         <div class="name">Typing Speed</div>
         <div class="container">
@@ -555,7 +554,7 @@ margin-top:calc(4vh + 7px);
             <div id="lngTm"></div>
           </div>
     
-          <div id="idStart" class="start" onclick="gogame();">Start</div>
+          <div id="idStart" class="start" #6aff78#6aff78onclick="gogame();">Start</div>
           <div id="wrdDsply" class="wrds">
             <div class="arCl">
               <p>ar</p>
@@ -718,7 +717,7 @@ function addWrds() {
         inpFr = gebi('nwFr'), tLng = inpEn.innerText + inpAr.innerText + inpFr.innerText;
     enter = 'nwEn';
     tLng = rep(tLng, ' ', '');
-    if (tLng == '') {
+    if (!tLng) {
         dsply('notAdd', 'block'); dsply('isAdd', 'none');
         setTimeout(() => { dsply('notAdd', 'none'); }, 1000);
     } else {
@@ -755,7 +754,7 @@ function dltall() {
 
 function opnSite() {
 
-let idInp,txtInp ;
+let idInp,txtInp,allTxt='' ;
 document.addEventListener('keyup', (ev) => {
         let evKy = ev.key;
 
@@ -769,8 +768,9 @@ txtInp = txtInp.replaceAll('\n','');idInp.innerText =txtInp;fxClk(enter); return
             if (evKy == 'ArrowUp') { fxClk(dwbt); kyBt = 'dw' }
         }
     });
-   let inpAdd =  document.querySelectorAll(".inpAdd");
-inpAdd.forEach((el) => {
+//   let inpAdd =  document.querySelectorAll(".inpAdd");
+document.querySelectorAll(".inpAdd").forEach((el,a,b) => {
+
 ['input','focus'].forEach(ev=>{
         el.addEventListener(ev, () => {
 idInp = el;
@@ -780,17 +780,21 @@ let i=ind;
 i++;
 if(i>2){i=0}
  inpAdd[i].style.backgroundColor='red';*/
-            inpAdd.forEach(el2 => {
 
+b.forEach(el2 => {allTxt += el2.innerText})
+if(!allTxt){
+gebi('okAdd').style.backgroundColor='#2196f396'
+}else{ gebi('okAdd').style.backgroundColor='var(--mnCl)';allTxt=''
+}
                setTimeout(() => {
 
-                    if ((el2.innerText != '' || el2.style.display =='none')&& el.id !='nmGm' ) {
-                        el2.nextElementSibling.style.display = 'none'
-                    } else { el2.nextElementSibling.style.display = 'inline-block' }
+                    if ((el.innerText != '' || el.style.display =='none')&& el.id !='nmGm' ) {
+                        el.nextElementSibling.style.display = 'none'
+                    } else { el.nextElementSibling.style.display = 'inline-block' }
                 },0);
 
             })
-        })
+    
 })
     });
 
@@ -833,7 +837,7 @@ lngs =el.dataset.lng;
                 nmCh++; chcd('inline-block')
             } else {
                 nmCh--;
-//gebi('aaa').innerText='hggggyy '+nmCh;
+/*//gebi('aaa').innerText='hggggyy '+nmCh;*/
 
 if (nmCh < 1) {setTimeout(()=>{gebi(el.id).click()},0); return false}
 chcd('none')
@@ -851,7 +855,7 @@ chcd('none')
  
     
         if (localStorage['ch' + el.id] == 'none') { el.click() }
-//localStorage['ch' + el.id].remove()
+
     });
 
 lstWrd(); stWrd();
