@@ -15,7 +15,7 @@
     --mnCl: #2196f3;
     --gr: #009688;
 }
-
+/**/
 * {
     box-sizing: border-box;
     margin: 0;
@@ -764,7 +764,7 @@ function dltall() {
 
 function opnSite() {
 
-let idInp,txtInp='',allTxt='' ;
+let idInp,txtInp,allTxt='' ;
 document.addEventListener('keyup', (ev) => {
         let evKy = ev.key;
 
@@ -791,21 +791,20 @@ i++;
 if(i>2){i=0}
  inpAdd[i].style.backgroundColor='red';*/
 
-
-
-
-               setTimeout(() => {
-
-                    if ((txtInp || el.style.display =='none')&& el.id !='nmGm' ) {
-                        el.nextElementSibling.style.display = 'none';
-gebi('okAdd').style.backgroundColor='var(--mnCl)';allTxt=''
-                    } else { el.nextElementSibling.style.display = 'inline-block';
-b.forEach(el2 => {allTxt += el2.innerText})
-  if(allTxt==''){ gebi('okAdd').style.backgroundColor='#2196f396' }else{
-  gebi('okAdd').style.backgroundColor='var(--mnCl)';allTxt=''
- }
+if(!txtInp ){ 
+b.forEach(el2 => {if(el2.id != 'nmGm'){allTxt += el2.innerText}});
+if(allTxt){
+gebi('okAdd').style.backgroundColor='var(--mnCl)';allTxt='' }else{ gebi('okAdd').style.backgroundColor='#2196f396'
 }
-                },0);
+}else{ gebi('okAdd').style.backgroundColor='var(--mnCl)';allTxt=''
+}
+
+
+
+                if ((el.innerText != '' || el.style.display =='none')&& el.id !='nmGm' ) {
+                        el.nextElementSibling.style.display = 'none'
+                    } else { el.nextElementSibling.style.display = 'inline-block' }
+     
 
             })
     
