@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="manifest" href="atr/manifesttpsp.json" />
     <link rel="icon" href="https://tpspd.github.io/atr/tpsp512.png">
+<link rel="stylesheet" href="https://necolas.github.io/normalize.css/8.0.1/normalize.css">
     <title>Typing Speed </title>
 
     <style>
@@ -488,6 +489,9 @@ margin-top:calc(4vh + 7px);
               <input id="frCh" type="checkbox" data-lng=".frCl" checked>
               <label for="frCh">French</label>
             </div>
+<div style="margin: 0 auto -4vh;height: 4vh; font-size :3vh;">
+              <p id="plWt" style="color: var(--gr);  display:none;">please wait</p>
+</div>
             <button id="okchkd" class="okbtn nofcs dblbtn" onclick="hiding()">ok</button>
           </div>
     
@@ -511,10 +515,11 @@ margin-top:calc(4vh + 7px);
             <div style="margin: -2vh auto;height: 4vh; font-size :4vh;">
               <p id="notAdd" style="color: red;  display:none;">You dont add an word</p>
               <p id="isAdd" style="color: var(--gr);  display:none;">words have been added</p>
+<p id="svng" style="color: var(--gr);  display:none;">saving...</p>
             </div>
-            <button id="okAdd" class="okbtn dblbtn nofcs" onclick="addWrds()" >add</button>
-            <button  class="okbtn dblbtn nofcs" onclick="gebi('nwAr').focus();hiding()" >close</button>
-          </div>
+            <button id="okAdd" class="okbtn dblbtn nofcs" style="background-color: #2196f396"  onclick="addWrds()" >add</button>
+            <button  class="okbtn dblbtn nofcs" onclick="hiding()" >close</button>
+          </div> 
     
     
           <div id="dltAll" class="nwWord hidjs">
@@ -554,19 +559,19 @@ margin-top:calc(4vh + 7px);
             <div id="lngTm"></div>
           </div>
     
-          <div id="idStart" class="start" #6aff78#6aff78onclick="gogame();">Start</div>
+          <div id="idStart" class="start" onclick="gogame();">Start</div>
           <div id="wrdDsply" class="wrds">
-            <div class="arCl">
+            <div class="ar">
               <p>ar</p>
               <div id="lng0" class="wrd"></div>
             </div>
-            <div class="enCl">
+            <div class="en">
               <p>En</p>
               <div id="lng1" class="wrd">
 
 </div>
             </div>
-            <div class="frCl">
+            <div class="fr">
               <p>Fr</p>
               <div id="lng2" class="wrd"></div>
             </div>
@@ -605,16 +610,18 @@ function opnDiv(dvOpn, ent, fcs = 'tpScrl') {
 function hiding() {
     valScnd(localStorage.lvlTim);
     inp.value = '';
+gebi('nwAr').focus();
+if(wrdAdd){ dsply('notAdd', 'none');dsply('isAdd', 'none');dsply('svng', 'block');
+ setTimeout(() => {
+lstWrd(); stWrd(); dsply('svng', 'none')
+},10) ;
+wrdAdd=false}
+
     setTimeout(() => { gebi('divplac').className += ' hidplac' ;}, 20)
     hidDiv = setTimeout(() => {
+gebi('idStart').focus();
         gebi('divplac').className = 'dvPlc';
-        document.querySelectorAll('.hidjs').forEach(el => { dsply(el.id, 'none'); 
-setTimeout(() => {
-if(wrdAdd){lstWrd();
- stWrd(); gebi('idStart').focus();wrdAdd=false}
-},40) ;
-
-})
+        document.querySelectorAll('.hidjs').forEach(el => { dsply(el.id, 'none')})
     }, 320);
     if (cngrt != '') { clearInterval(fxCngr); cngrt = '' }
 }
@@ -845,17 +852,16 @@ lngs =el.dataset.lng;
                 nmCh++; chcd('inline-block')
             } else {
                 nmCh--;
-/*//gebi('aaa').innerText='hggggyy '+nmCh;*/
-
-if (nmCh < 1) {setTimeout(()=>{gebi(el.id).click()},0); return false}
+if (nmCh < 1) {setTimeout(()=>{gebi(el.id).click()},0);return false}
 chcd('none')
-
-
 }
             function chcd(dsp) {
-    setTimeout(()=>{
-  document.querySelectorAll(lngs).forEach(chnCl => chnCl.style.display = dsp)
-},0)
+
+dsply('plWt','block')
+el.disabled=true
+
+setTimeout(()=>{
+  document.querySelectorAll(lngs).forEach(chnCl =>{ chnCl.style.display = dsp});dsply('plWt','none'); el.disabled=false},100)
                 localStorage['ch' + el.id] = dsp
             }            
 
