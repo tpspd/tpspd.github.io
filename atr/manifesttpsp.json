@@ -11,7 +11,7 @@
         "type": "image/png", 
         "sizes": "512x512" 
     } ],
-    "start_url": "https://tpspd.github.io/index.html", 
+    "start_url": "https://tpspd.github.io", 
     "background_color": "#3367D6", 
     "display": "standalone", 
     "theme_color": "#3367D6" 
