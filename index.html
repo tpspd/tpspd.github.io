@@ -764,7 +764,7 @@ function dltall() {
 
 function opnSite() {
 
-let idInp,txtInp,allTxt ;
+let idInp,txtInp,allTxt='' ;
 document.addEventListener('keyup', (ev) => {
         let evKy = ev.key;
 
@@ -793,8 +793,8 @@ if(i>2){i=0}
 
 if(!txtInp){ b.forEach(el2 => {
 allTxt += el2.innerText})
-if(allTxt){gebi('okAdd').style.backgroundColor='var(--mnCl)';allTxt='' }else{
- gebi('okAdd').style.backgroundColor='#2196f396'
+if(allTxt==''){ gebi('okAdd').style.backgroundColor='#2196f396' }else{
+gebi('okAdd').style.backgroundColor='var(--mnCl)';allTxt=''
 }
 }else{ gebi('okAdd').style.backgroundColor='var(--mnCl)';allTxt=''
 }
