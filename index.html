@@ -510,16 +510,16 @@ display:none;
             <div id="nwAr" class="inpAdd nofcs arCl" contenteditable autocapitalize='off'
               onclick="chInp(this,'nwEn','nwFr')">
             </div>
-            <span  class="arCl">Arabic word</span>
+            <span  class="ar">Arabic word</span>
 
             <div id="nwEn" class="inpAdd nofcs enCl" contenteditable autocapitalize='off'
             onclick="chInp(this,'nwFr','nwAr')">
             </div>
-            <span class="enCl">English word</span>
+            <span class="en">English word</span>
             <div id="nwFr" class="inpAdd nofcs frCl" contenteditable autocapitalize='off'
             onclick="chInp(this,'okAdd','nwEn','nwAr')">
             </div>
-            <span class="frCl">French word</span>
+            <span class="fr">French word</span>
             <div style="margin: -2vh auto;height: 4vh; font-size :4vh;">
               <p id="notAdd" style="color: red;  display:none;">You dont add an word</p>
               <p id="isAdd" style="color: var(--gr);  display:none;">words have been added</p>
@@ -749,9 +749,9 @@ isEdt(arWrd, 'Ar');isEdt(frWrd, 'Fr');
 isEdt(enWrd, 'En');
 
 gebi('wrdDiv'+i).innerHTML=`<span class="hidWrd" onclick="hidWrd(${i})">×</span>
-<span class="arCl">${arWrd[i]}</span>
-<span class="enCl">${enWrd[i]}</span>
-<span class="frCl">${frWrd[i]}</span>`;
+<span class="ar">${arWrd[i]}</span>
+<span class="en">${enWrd[i]}</span>
+<span class="fr">${frWrd[i]}</span>`;
 
 function isEdt( arr, lng) {
     let vlinp = gebi('nw'+lng).innerText; 
@@ -942,9 +942,9 @@ function lpng(cnt){
 for (;i<cnt;i++) {
  dvWrd+= `<div id="wrdDiv${i}" onclick=" mdf(${i})">
 <span class="hidWrd" onclick="hidWrd(${i})">×</span>
-<span class="arCl">${arWrd[i]}</span>
-<span class="enCl">${enWrd[i]}</span>
-<span class="frCl">${frWrd[i]}</span>
+<span class="ar">${arWrd[i]}</span>
+<span class="en">${enWrd[i]}</span>
+<span class="fr">${frWrd[i]}</span>
 </div>`;
 }
 }
