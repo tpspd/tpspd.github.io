@@ -525,7 +525,7 @@ display:none;
             <div style="margin: -2vh auto;height: 4vh; font-size :4vh;">
               <p id="notAdd" style="color: red;  display:none;">You dont add an word</p>
               <p id="isAdd" style="color: var(--gr);  display:none;">words have been added</p>
-<p id="svng" style="color: var(--gr);  display:none;">saving...</p>
+              <p id="svng" style="color: var(--gr);  display:none;">saving...</p>
             </div>
             <button id="okAdd" class="okbtn dblbtn nofcs" style="background-color: #2196f396"  onclick="addWrds()" >add</button>
             <button  class="okbtn dblbtn nofcs" onclick="hiding()" >close</button>
@@ -617,7 +617,7 @@ gebi('nmW').innerText=i;
  mdInp('En',enWrd[i]);   mdInp('Fr',frWrd[i]); mdInp('Ar',arWrd[i]);  wrdEdt=true; 
 
 function mdInp(lng,arr) {gebi('nw'+lng).innerText=arr;
-gebi('nw'+lng).nextElementSibling.style.display = 'none' 
+if(arr){ gebi('nw'+lng).nextElementSibling.style.display = 'none'}
 }
 }
 
