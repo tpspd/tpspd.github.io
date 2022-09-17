@@ -616,7 +616,9 @@ gebi('okAdd').innerText=  'edit';
 gebi('nmW').innerText=i;
  mdInp('En',enWrd[i]);   mdInp('Fr',frWrd[i]); mdInp('Ar',arWrd[i]);  wrdEdt=true; 
 
-function mdInp(lng,arr) {gebi('nw'+lng).innerText=arr;fxClk('nw'+lng)}
+function mdInp(lng,arr) {gebi('nw'+lng).innerText=arr;
+gebi('nw'+lng).nextElementSibling.style.display = 'none' 
+}
 }
 
 function opnDiv(dvOpn, ent, fcs = 'tpScrl') {
