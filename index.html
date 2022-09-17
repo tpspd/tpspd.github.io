@@ -320,7 +320,7 @@ margin-top:calc(4vh + 7px);
     justify-content: center
 }
 
-.upcoming div{
+.upcoming p{
     background-color: var(--mnCl);
     color: white;
     font-weight: bold;
@@ -394,7 +394,9 @@ margin-top:calc(4vh + 7px);
         top: 10%;
         left: 5%;
     }
-
+.hidWrd{
+font-size:20px;
+}
     .name {
         font-size: 35px;
         padding: 25px
@@ -607,7 +609,7 @@ display:none;
 opnSite();
 
 function mdf(i) {
-if(afPl){afPl=false;return 0}
+if(afPl){afPl=false; return 0}
  opnDiv('addWrd','nwEn','nwAr');
 gebi('pAdd').innerText = 'edit words';
 gebi('okAdd').innerText=  'edit';
@@ -615,7 +617,6 @@ gebi('nmW').innerText=i;
  mdInp('En',enWrd[i]);   mdInp('Fr',frWrd[i]); mdInp('Ar',arWrd[i]);  wrdEdt=true; 
 
 function mdInp(lng,arr) {gebi('nw'+lng).innerText=arr;fxClk('nw'+lng)}
-
 }
 
 function opnDiv(dvOpn, ent, fcs = 'tpScrl') {
@@ -722,12 +723,18 @@ function resulte() {
 function hidWrd(nm) {
 afPl=true;
     if (enWrd.length == 1) { dltall(); return false }
-let lng=enWrd.length-1
+let lng=enWrd.length-1,ldv=gebi('wrdDiv' + lng);
    gebi('wrdDiv' + nm).remove();
+
 dlt(arWrd,'Ar');dlt(enWrd,'En');dlt(frWrd,'Fr');
 
+ldv.innerHTML=`<p onclick="mdf(${nm})"><span class="ar">${arWrd[nm]}</span>
+<span class="en">${enWrd[nm]}</span>
+<span class="fr">${frWrd[nm]}</span>
+<span class="hidWrd" onclick="hidWrd(${nm})">×</span></p>`;
+
+ldv.id='wrdDiv'+nm ;
 function dlt(v1,v2){[v1[nm],v1[lng]]=[v1[lng],v1[nm]];v1.splice(lng,1);wToSt(v2,v1)}
-    
     gebi('nmbWrd').innerText = lng;
     stWrd() 
 }
@@ -748,10 +755,10 @@ arWrd[i]=gebi('nwAr').innerText;
 isEdt(arWrd, 'Ar');isEdt(frWrd, 'Fr');
 isEdt(enWrd, 'En');
 
-gebi('wrdDiv'+i).innerHTML=`<span class="hidWrd" onclick="hidWrd(${i})">×</span>
-<span class="ar">${arWrd[i]}</span>
+gebi('wrdDiv'+i).innerHTML=`<p onclick="mdf(${i})"><span class="ar">${arWrd[i]}</span>
 <span class="en">${enWrd[i]}</span>
-<span class="fr">${frWrd[i]}</span>`;
+<span class="fr">${frWrd[i]}</span>
+<span class="hidWrd" onclick="hidWrd(${i})">×</span></p> `;
 
 function isEdt( arr, lng) {
     let vlinp = gebi('nw'+lng).innerText; 
@@ -940,17 +947,12 @@ function lstWrd() {
 
 function lpng(cnt){
 for (;i<cnt;i++) {
- dvWrd+= `<div id="wrdDiv${i}" onclick=" mdf(${i})">
-<span class="hidWrd" onclick="hidWrd(${i})">×</span>
-<span class="ar">${arWrd[i]}</span>
-<span class="en">${enWrd[i]}</span>
-<span class="fr">${frWrd[i]}</span>
-</div>`;
+ dvWrd+= `<div id="wrdDiv${i}"><p onclick="mdf(${i})"><span class="ar">${arWrd[i]}</span><span class="en">${enWrd[i]}</span><span class="fr">${frWrd[i]}</span><span class="hidWrd" onclick="hidWrd(${i})">×</span></p></div>`;
 }
 }
 
 lpng(enWrd.length);
-dvWrd += `<p id="spdlt" class="add aldlt"onclick="opnDiv('dltAll','yesbtn')" >delete all</p>`;
+dvWrd += `<div id="spdlt" class="add aldlt"onclick="opnDiv('dltAll','yesbtn')" >delete all</div>`;
 cntWrd.innerHTML="";
     cntWrd.innerHTML=dvWrd;
     
