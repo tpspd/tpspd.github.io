@@ -326,6 +326,7 @@ margin-top:calc(4vh + 7px);
     font-weight: bold;
     margin: 4px;
     padding: 10px;
+text-align:center;
     border-radius: 6px
 }
 
@@ -376,6 +377,7 @@ margin-top:calc(4vh + 7px);
 }
 
 .hidWrd {
+    float:right;
     font-size: 17px;
     color: white;
     cursor: pointer
@@ -783,13 +785,10 @@ setTimeout(() => {
  dsply('isAdd', 'none')
 }, 1000);
   isAddWrd(inpEn, enWrd, 'En'); isAddWrd(inpAr, arWrd, 'Ar'); isAddWrd(inpFr, frWrd, 'Fr');
-let ldv= document.createElement("div"),prnt= gebi('cntWrds');
+let ldv= document.createElement("div") ;
 ldv.id='wrdDiv'+lng ;
-ldv.innerHTML= inDv(lng)
-
-
-
-prnt.insertBefore(ldv,prnt.children[0]);
+ldv.innerHTML= inDv(lng);
+gebi('cntWrds').prepend(ldv);
  vidInp();
     }
     fxClk('nwAr');
@@ -802,10 +801,7 @@ function isAddWrd(inpWrd, arrWrd, lng) {
     arrWrd.push(vlinp); wToSt(lng, arrWrd)
 }
 function inDv(i){
-return `<p onclick="mdf(${i})"><span class="hidWrd" onclick="hidWrd(${i})">×</span><span class="${ds.ar}">${arWrd[i]}</span>
-<span class="${ds.en}">${enWrd[i]}</span>
-<span class="${ds.fr}">${frWrd[i]}</span>
-</p>`
+return `<p onclick="mdf(${i})"><span class="hidWrd" onclick="hidWrd(${i})">×</span><span class="${ds.ar}">${arWrd[i]}</span><span class="${ds.en}">${enWrd[i]}</span><span class="${ds.fr}">${frWrd[i]}</span></p>`
 }
 function vidInp(){
 inpAdd.forEach(el => {
@@ -934,7 +930,7 @@ function lstWrd() {
 
 function lpng(cnt){
 for (;i<cnt;i++) {
- dvWrd+= `<div id="wrdDiv${i}"><p onclick="mdf(${i})"><span class="hidWrd" onclick="hidWrd(${i})">×</span><span class="${ds.ar}">${arWrd[i]}</span><span class="${ds.en}">${enWrd[i]}</span><span class="${ds.fr}">${frWrd[i]}</span></p></div>`;
+ dvWrd+= `<div id="wrdDiv${i}">${inDv(i)}</div>`;
 }
 }
 
