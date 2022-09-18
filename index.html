@@ -466,6 +466,7 @@ display:none;
     transform: rotate(360deg);
   }
 }
+.n{ display:none}
     </style>
 </head>
 
@@ -488,15 +489,15 @@ display:none;
           <div id="chLng" class=" hidjs" style="display: none;">
             <p style="font-size: 40px;margin: 25px; ">shose yor langes </p>
             <div class="ch">
-              <input id="arCh" type="checkbox" data-lng=".ar" checked>
+              <input id="arCh" type="checkbox"  value="ar" checked>
               <label for="arCh">Arabic</label>
             </div>
             <div class="ch">
-              <input id="enCh" type="checkbox" data-lng=".en" checked>
+              <input id="enCh" type="checkbox"  value="en" checked>
               <label for="enCh">English</label>
             </div>
             <div class="ch">
-              <input id="frCh" type="checkbox" data-lng=".fr" checked>
+              <input id="frCh" type="checkbox"  value="fr" checked>
               <label for="frCh">French</label>
             </div>
 <div style="margin: 0 auto -4vh;height: 4vh; font-size :3vh;">
@@ -603,7 +604,7 @@ display:none;
 
     <script type="text/javascript">
         let hidDiv, inp = gebi('inpWrd'), enter = 'idStart', strt = 1, nmGm = localStorage.nmGmr,
-    arWrd, enWrd, frWrd, nmbr = 0, nbWrd = 0, lftTm, fxCngr, cngrt = '', tmLft,wrdEdt=false, lngTm,wrdAdd=false,afPl=false, inpAdd =  document.querySelectorAll(".inpAdd"),
+    arWrd, enWrd, frWrd, nmbr = 0, nbWrd = 0, lftTm, fxCngr, cngrt = '', tmLft,wrdEdt=false, lngTm,wrdAdd=false,afPl=false, inpAdd =  document.querySelectorAll(".inpAdd"),ds={"ar":'',"en":'',"fr":''},
     upbt = 'nwFr', dwbt = 'nwAr', nmCh = 3, kyBt = 'ent';
 
 opnSite();
@@ -730,10 +731,9 @@ let lng=enWrd.length-1,ldv=gebi('wrdDiv' + lng);
    gebi('wrdDiv' + nm).remove();
 
 dlt(arWrd,'Ar');dlt(enWrd,'En');dlt(frWrd,'Fr');
-
-ldv.innerHTML=`<p onclick="mdf(${nm})"><span class="ar">${arWrd[nm]}</span>
-<span class="en">${enWrd[nm]}</span>
-<span class="fr">${frWrd[nm]}</span>
+ldv.innerHTML=`<p onclick="mdf(${nm})"><span class="${ds.ar}">${arWrd[nm]}</span>
+<span class="${ds.en}">${enWrd[nm]}</span>
+<span class="${ds.fr}">${frWrd[nm]}</span>
 <span class="hidWrd" onclick="hidWrd(${nm})">×</span></p>`;
 
 ldv.id='wrdDiv'+nm ;
@@ -760,9 +760,9 @@ arWrd[i]=gebi('nwAr').innerText;
 isEdt(arWrd, 'Ar');isEdt(frWrd, 'Fr');
 isEdt(enWrd, 'En');
 
-gebi('wrdDiv'+i).innerHTML=`<p onclick="mdf(${i})"><span class="ar">${arWrd[i]}</span>
-<span class="en">${enWrd[i]}</span>
-<span class="fr">${frWrd[i]}</span>
+gebi('wrdDiv'+i).innerHTML=`<p onclick="mdf(${i})"><span class="${ds.ar}">${arWrd[i]}</span>
+<span class="${ds.en}">${enWrd[i]}</span>
+<span class="${ds.fr}">${frWrd[i]}</span>
 <span class="hidWrd" onclick="hidWrd(${i})">×</span></p> `;
 
 function isEdt( arr, lng) {
@@ -795,8 +795,7 @@ setTimeout(() => {
  dsply('isAdd', 'none')
 }, 1000);
   isAddWrd(inpEn, enWrd, 'En'); isAddWrd(inpAr, arWrd, 'Ar'); isAddWrd(inpFr, frWrd, 'Fr');
- wrdAdd=true; 
-vidInp();
+wrdAdd=true;   vidInp();
     }
     fxClk('nwAr');
 document.querySelectorAll(".inpAdd").forEach(el => {
@@ -812,8 +811,8 @@ function isAddWrd(inpWrd, arrWrd, lng) {
 }
 function vidInp(){
 inpAdd.forEach(el => {
-if(el.style.display !='none'){
 el.innerText='';
+if(el.style.display !='none'){
 el.nextElementSibling.style.display = 'inline-block' 
 }
 })
@@ -902,30 +901,24 @@ function cntn() {
     enWrd = nwEn; arWrd = nwAr; frWrd = nwFr; 
 
     gebi('nmbWrd').innerText = enWrd.length;
-    document.querySelectorAll('.ch input').forEach(el => {let lngs;
+    document.querySelectorAll('.ch input').forEach(el => {let ln=el.value;
         el.addEventListener('change', () => {
-lngs =el.dataset.lng;
-            if (el.checked) {
-                nmCh++; chcd('inline-block')
-            } else {
-                nmCh--;
-if (nmCh < 1) {setTimeout(()=>{gebi(el.id).click()},0);return false}
-chcd('none')
+            if (el.checked) { chcd('inline-block','',1) } else {
+if (nmCh <2) {el.checked=true;return false}
+chcd('none','n',-1)
 }
-            function chcd(dsp) {
-
-dsply('plWt','block')
-el.disabled=true
-
+ dsply('plWt','block');   
 setTimeout(()=>{
-  document.querySelectorAll(lngs).forEach(chnCl =>{ chnCl.style.display = dsp});dsply('plWt','none'); el.disabled=false},100)
-                localStorage['ch' + el.id] = dsp
-            }            
-
-        });
- 
+ lstWrd(); stWrd(); dsply('plWt','none')
+},100)
+  });
+ function chcd(dsp,n,nm) {
+ds[ln]=n;  nmCh+=nm;
+  document.querySelectorAll('.'+ln).forEach(chnCl =>{ chnCl.style.display = dsp});
+  localStorage['ch' + el.id] = dsp
+   }            
     
-        if (localStorage['ch' + el.id] == 'none') { el.click() }
+        if (localStorage['ch' + el.id] == 'none' ){ chcd('none','n',-1);el.checked = false}
 
     });
 
@@ -941,7 +934,7 @@ function lstWrd() {
 
 function lpng(cnt){
 for (;i<cnt;i++) {
- dvWrd+= `<div id="wrdDiv${i}"><p onclick="mdf(${i})"><span class="ar">${arWrd[i]}</span><span class="en">${enWrd[i]}</span><span class="fr">${frWrd[i]}</span><span class="hidWrd" onclick="hidWrd(${i})">×</span></p></div>`;
+ dvWrd+= `<div id="wrdDiv${i}"><p onclick="mdf(${i})"><span class="${ds.ar}">${arWrd[i]}</span><span class="${ds.en}">${enWrd[i]}</span><span class="${ds.fr}">${frWrd[i]}</span><span class="hidWrd" onclick="hidWrd(${i})">×</span></p></div>`;
 }
 }
 
