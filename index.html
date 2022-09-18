@@ -525,7 +525,7 @@ display:none;
             <div style="margin: -2vh auto;height: 4vh; font-size :4vh;">
               <p id="notAdd" style="color: red;  display:none;">You dont add an word</p>
               <p id="isAdd" style="color: var(--gr);  display:none;">words have been added</p>
-              <p id="svng" style="color: var(--gr);  display:none;">saving...</p>
+<p id="svng" style="color: var(--gr);  display:none;">saving...</p>
             </div>
             <button id="okAdd" class="okbtn dblbtn nofcs" style="background-color: #2196f396"  onclick="addWrds()" >add</button>
             <button  class="okbtn dblbtn nofcs" onclick="hiding()" >close</button>
@@ -616,8 +616,9 @@ gebi('okAdd').innerText=  'edit';
 gebi('nmW').innerText=i;
  mdInp('En',enWrd[i]);   mdInp('Fr',frWrd[i]); mdInp('Ar',arWrd[i]);  wrdEdt=true; 
 
-function mdInp(lng,arr) {gebi('nw'+lng).innerText=arr;
-if(arr){ gebi('nw'+lng).nextElementSibling.style.display = 'none'}
+function mdInp(lng,arr) {
+gebi('nw'+lng).innerText=arr;
+if(arr){gebi('nw'+lng).nextElementSibling.style.display = 'none'}
 }
 }
 
@@ -752,6 +753,8 @@ enter=ent;      upbt=up;     dwbt=dw;
 function chTyp(el) { el.type = 'search';  /*setTimeout(() => { el.type = 'text'  }, 1000)*/  }
 
 function edt() {
+let tLng = alvlin(); tLng = rep(tLng, ' ', '');
+if(!tLng){ return false}
 let i =gebi('nmW').innerText*1;
 arWrd[i]=gebi('nwAr').innerText;
 isEdt(arWrd, 'Ar');isEdt(frWrd, 'Fr');
@@ -778,11 +781,9 @@ vidInp();     wrdEdt=false
 }
 
 function addWrds() {
-if(gebi('pAdd').innerText !='add New words'){
-edt(); return 0
-}
+if(rinTxt('pAdd') !='add New words'){edt(); return 0}
     let inpEn = gebi('nwEn'), inpAr = gebi('nwAr'),
-        inpFr = gebi('nwFr'), tLng = inpEn.innerText + inpAr.innerText + inpFr.innerText;
+        inpFr = gebi('nwFr'), tLng = alvlin();
     enter = 'nwEn';
     tLng = rep(tLng, ' ', '');
     if (!tLng) {
@@ -830,8 +831,7 @@ function dltall() {
 }
 
 function opnSite() {
-
-let idInp,txtInp,allTxt='' ;
+let idInp,txtInp ;
 document.addEventListener('keyup', (ev) => {
         let evKy = ev.key;
 
@@ -852,20 +852,12 @@ inpAdd.forEach((el,a,b) => {
         el.addEventListener(ev, () => {
 idInp = el;
 txtInp=el.innerText;
-/*document.querySelector("all[ind]")
-let i=ind;
-i++;
-if(i>2){i=0}
- inpAdd[i].style.backgroundColor='red';*/
 
 if(!txtInp ){ 
-b.forEach(el2 => {if(el2.id != 'nmGm'){allTxt += el2.innerText}});
-if(allTxt){
-gebi('okAdd').style.backgroundColor='var(--mnCl)';allTxt='' }else{ gebi('okAdd').style.backgroundColor='#2196f396'
+if(alvlin()){gebi('okAdd').style.backgroundColor='var(--mnCl)'}else{ gebi('okAdd').style.backgroundColor='#2196f396'
 }
-}else{ gebi('okAdd').style.backgroundColor='var(--mnCl)';allTxt=''
+}else{ gebi('okAdd').style.backgroundColor='var(--mnCl)'
 }
-
 
 
                 if (el.innerText != '' || el.style.display =='none' ) {
@@ -881,7 +873,7 @@ gebi('okAdd').style.backgroundColor='var(--mnCl)';allTxt='' }else{ gebi('okAdd')
     inp.oninput = () => {
         let vinp = inp.value.toLocaleLowerCase(), en = enWrd[nmbr].toLocaleLowerCase(),
             fr = frWrd[nmbr].toLocaleLowerCase();
-        if ((vinp == arWrd[nmbr] || vinp == en || vinp == fr) && vinp != '' && strt == 0) {
+        if (ind([arWrd[nmbr] ,en ,fr],vinp)>-1 && vinp  && strt == 0) {
             nmbr++; stWrd(); inp.value = ''; nbWrd++; gebi('mbrWrd').innerText = nbWrd
         }
 
@@ -962,8 +954,9 @@ gebi('nmbWrd').innerText = enWrd.length;
 }
 
 function stWrd() {
-    if (nmbr == enWrd.length) { nmbr = 0 } gebi('lng0').innerText = arWrd[nmbr];
-    gebi('lng1').innerText = enWrd[nmbr]; gebi('lng2').innerText = frWrd[nmbr];
+    if (nmbr == enWrd.length) { nmbr = 0 } 
+inTxt('lng0',arWrd[nmbr]);
+    inTxt('lng1',enWrd[nmbr]); inTxt('lng2',frWrd[nmbr]);
 }
 
 
@@ -975,6 +968,9 @@ function stToDiv(lng) { let Hist = localStorage['stWrd' + lng]; Hist = Hist.spli
 function wToSt(lng, lsWrd) { localStorage['stWrd' + lng] = lsWrd.join('@#') }
 function rep(inp, pr1, pr2) { return inp.replaceAll(pr1, pr2) }
 function fxClk(id) { gebi(id).focus(); gebi(id).click() }
+function rinTxt(id) {return gebi(id).innerText}
+function inTxt(id,vl) { gebi(id).innerText=vl}
+function alvlin(){return rinTxt('nwAr')+rinTxt('nwEn')+rinTxt('nwFr')}
 
 async function allWrd() {
 function strg(st){return localStorage.getItem(st)}
@@ -992,6 +988,7 @@ function strg(st){return localStorage.getItem(st)}
     }
 cntn()
 }
+
     </script>
 
 </body>
