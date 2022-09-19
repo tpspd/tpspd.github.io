@@ -187,7 +187,7 @@ function hidWrd(nm) {
     dvdlt.className = 'hdDv';
     setTimeout(()=> {
         dvdlt.remove(); ldv.id = 'wrdDiv'+nm;
-    }, 200)
+    }, 300)
     dlt(arWrd, 'Ar'); dlt(enWrd, 'En'); dlt(frWrd, 'Fr');
     ldv.innerHTML = inDv(nm);
 
