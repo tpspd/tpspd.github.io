@@ -1,6 +1,6 @@
 :root {
     --mnCl: #2196f3;
-    --gr: #009688
+    --gr: #009688;
 }
 
 * {
@@ -27,7 +27,6 @@ body {
     background-color: var(--gr);
     border-radius: 7px
 }
-
 #cntnr {
     /* continer finch */
     background-color: #7473739e;
@@ -44,7 +43,6 @@ body {
     top: 20%;
     left: 25%;
     position: fixed;
-    /*font-size :30px;*/
     z-index: 2;
     background-color: white;
     border-radius: 7px;
@@ -61,6 +59,7 @@ body {
 }
 
 .opPlc {
+
     transition: 0s
 }
 
@@ -137,6 +136,10 @@ body {
     z-index: -1;
     left: 5%;
     width: 90%;
+    transition: .3s
+}
+.inpAdd:focus+span {
+    margin-top: calc(4vh + 7px);
 }
 
 .okbtn {
@@ -145,7 +148,7 @@ body {
     width: fit-content;
     font-size: 4vh;
     background: var(--mnCl);
-    margin: -1vh auto 3vh;
+    margin: 2vh auto 3vh;
     padding: 5px 20px;
     border: 1px;
     border-radius: 5px;
@@ -241,7 +244,6 @@ body {
     height: 4px;
     border-radius: 2px
 }
-
 .start {
     font-size: 30px;
     font-weight: bold;
@@ -297,19 +299,31 @@ body {
 
 .upcoming {
     background-color: white;
+    /*position: relative;*/
     margin: 15px 0;
     padding: 15px;
     display: flex;
     flex-wrap: wrap;
-    justify-content: center
-}
+    justify-content: center;
 
+}
 .upcoming div {
+    /*display: inline-block;*/
+    transition: 0.2s;
+}
+.hdDv {
+    transform: scale(0);
+}
+.adDv {
+    transform: scale(1);
+}
+.upcoming p {
     background-color: var(--mnCl);
     color: white;
     font-weight: bold;
     margin: 4px;
     padding: 10px;
+    text-align: center;
     border-radius: 6px
 }
 
@@ -352,14 +366,15 @@ body {
 }
 
 .nbWrd {
-    cursor: alias
+    cursor: alias;
 }
 
-.upcoming div span {
-    margin: 0 5px
+.upcoming span {
+    margin: 0 5px;
 }
 
 .hidWrd {
+    float: right;
     font-size: 17px;
     color: white;
     cursor: pointer
@@ -369,7 +384,7 @@ body {
     text-align: center;
     padding: 10 px auto -4px;
     color: red;
-    width: 100%
+    width: 100%;
 }
 
 @media (max-width: 700px) {
@@ -378,7 +393,9 @@ body {
         top: 10%;
         left: 5%;
     }
-
+    .hidWrd {
+        font-size: 20px;
+    }
     .name {
         font-size: 35px;
         padding: 25px
@@ -413,7 +430,7 @@ body {
 
     .aldlt {
         margin-bottom: 10px;
-        width: 100%
+        width: 100%;
     }
 }
 
@@ -421,4 +438,33 @@ body {
     display: none;
     width: 90%;
     height: 90%
+}
+#plWt {
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-left: -25px;
+    margin-top: 5px;
+    border-radius: 50%;
+    border: 5px solid var(--gr);
+    transition: transform 0.3s;
+    border-left-color: transparent;
+    animation-name: spin;
+    animation-duration: .3s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    display: none;
+}
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+.n {
+    display: none
 }
