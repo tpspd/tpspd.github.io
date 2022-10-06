@@ -438,7 +438,7 @@ body {
     width: 90%;
     height: 90%
 }
-#plWt {
+.wt {
     width: 50px;
     height: 50px;
     position: absolute;
@@ -449,8 +449,8 @@ body {
     border-radius: 50%;
     border: 5px solid var(--gr);
     border-left-color: transparent;
-    animation: spin .3s linear infinite;
-    display: none;
+    transform: translat(-50%,50%);
+    animation: spin .3s linear infinite
 }
 @keyframes spin {
     0% {
