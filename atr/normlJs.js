@@ -42,13 +42,14 @@ function opnSite() {
      
       document.addEventListener("keydown", ky=>{  
         if (ky.key  == 'Enter') {
-            ky.preventDefault(); if(ind('nwEn@#nwFr@#nwAr@#okAdd',enter)<0 ) {fxClk(enter)}
+            ky.preventDefault();
+             if(enter==('okAdd'|'nwFr'|'nwAr'|'nwEn'|'nmbtn')) {fxClk(enter);}
         }
       }) 
 
      document.addEventListener("keyup", r => { 
         let t = r.key;
-         if (enter==('nwEn'||'nwFr'||'nwAr'||'okAdd') && e.indexOf("\n", 0) > -1  ) return kyBt = "ent", e = e.replaceAll("\n", ""), n.innerText = e, fxClk(enter), !1;("Enter" == t || "ArrowDown" == t || "ArrowUp" == t) && (r.preventDefault(), "Enter" == t && (fxClk(enter), kyBt = "ent"), "ArrowUp" == t && (fxClk(upbt), kyBt = "up"), "ArrowDown" == t && (fxClk(dwbt), kyBt = "dw")) });
+         if (enter==('nwEn'|'nwFr'|'nwAr'|'okAdd'|'nmbtn') && e.indexOf("\n", 0) > -1  ) return kyBt = "ent", e = e.replaceAll("\n", ""), n.innerText = e, fxClk(enter), !1;("Enter" == t || "ArrowDown" == t || "ArrowUp" == t) && (r.preventDefault(), "Enter" == t && (fxClk(enter), kyBt = "ent"), "ArrowUp" == t && (fxClk(upbt), kyBt = "up"), "ArrowDown" == t && (fxClk(dwbt), kyBt = "dw")) });
     
     document.querySelectorAll(".inpAdd").forEach((r) => { 
     ["input", "focus"].forEach(t => { 
