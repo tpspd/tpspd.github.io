@@ -26,7 +26,7 @@ function edt() { let n = alvlin(); if (!(n = rep(n, " ", ""))) return !1; let e 
 function r(n, r) { let t = gebi("nw" + r).innerText; ind(t = t.trim(), "@#") > -1 && (t = rep(t, "@#", "/@/#/")), n[e] = t, wToSt(r, n) } arWrd[e] = gebi("nwAr").innerText, r(arWrd, "Ar"), r(frWrd, "Fr"), r(enWrd, "En"), gebi("wrdDiv" + e).innerHTML = inDv(e), hiding() } 
 function fedt() { gebi("pAdd").innerText = "add New words", gebi("okAdd").innerText = "add", vidInp(), wrdEdt = !1 } 
 function addWrds() { 
-    if ("add New words" != rinTxt("pAdd")) return edt(), 0; 
+    if ("add New words" != rinTxt("pAdd")){ return false}
     let n = gebi("nwEn"), e = gebi("nwAr"), r = gebi("nwFr"), t = alvlin(), i = enWrd.length;
      if (enter = "nwEn", t = rep(t, " ", "")) { dsply("notAdd", "none"), dsply("isAdd", "block"), setTimeout(() => { dsply("isAdd", "none") }, 1e3), isAddWrd(n, enWrd, "En"), isAddWrd(e, arWrd, "Ar"), isAddWrd(r, frWrd, "Fr");
       let d = document.createElement("div"); d.id = "wrdDiv" + i, d.className = "hdDv", d.innerHTML = inDv(i), gebi("cntWrds").prepend(d), vidInp(), setTimeout(() => { d.className = "adDv" }, 0) } else dsply("notAdd", "block"), dsply("isAdd", "none"), setTimeout(() => { dsply("notAdd", "none") }, 1e3); fxClk("nwAr"), gebi("nmbWrd").innerText = enWrd.length } 
@@ -38,16 +38,16 @@ function inDv(n) {
 function vidInp() { inpAdd.forEach(n => { n.innerText = "", "none" != n.style.display && (n.nextElementSibling.style.display = "inline-block") }) } 
 function dltall() { cntWrd = gebi("cntWrds").innerHTML = "", enWrd = [], arWrd = [], frWrd = [], nmbr = 0, localStorage.removeItem("stWrdEn"), localStorage.removeItem("stWrdAr"), localStorage.removeItem("stWrdFr"), gebi("nmbWrd").innerText = 0, hiding() } 
 function opnSite() {
-     let n, e, platform = (navigator.userAgentData?.platform || navigator.platform)?.toLowerCase();
-     if(ind(platform,'linix@#windows@#mac')){
+     let n, e;
+     
         document.addEventListener("keydown", ky=>{ 
-        if (ky.key  == 'Enter'&& enter == "idStart") {ky.preventDefault();fxClk(enter)}
-    })
-    }else{
+            if (ky.key  == 'Enter') {ky.preventDefault(); if(enter == "idStart") {fxClk(enter)}}
+    }) 
+    
      document.addEventListener("keyup", r => { 
         let t = r.key;
          if (e.indexOf("\n", 0) > -1) return kyBt = "ent", e = e.replaceAll("\n", ""), n.innerText = e, fxClk(enter), !1; ("Enter" == t || "ArrowDown" == t || "ArrowUp" == t) && (r.preventDefault(), "Enter" == t && (fxClk(enter), kyBt = "ent"), "ArrowDown" == t && (fxClk(upbt), kyBt = "up"), "ArrowUp" == t && (fxClk(dwbt), kyBt = "dw")) });
-     } 
+    
     document.querySelectorAll(".inpAdd").forEach((r) => { 
     ["input", "focus"].forEach(t => { 
         r.addEventListener(t, () => { n = r, (e = r.innerText) ? gebi("okAdd").style.backgroundColor = "var(--mnCl)" : alvlin() ? gebi("okAdd").style.backgroundColor = "var(--mnCl)" : gebi("okAdd").style.backgroundColor = "#2196f396", setTimeout(() => { "" != r.innerText || "none" == r.style.display ? r.nextElementSibling.style.display = "none" : r.nextElementSibling.style.display = "inline-block" }, 0) }) }) });
