@@ -1,183 +1,168 @@
-<!DOCTYPE html>
-<html lang="en">
-
+<!doctype html>
+<html lang=en>
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#2196f3"/>
-    <link rel="manifest" href="atr/manifesttpsp.json" />
-    <link rel="icon" href="https://tpspd.github.io/atr/tpsp512.png">
-    <link rel="stylesheet" href="https://necolas.github.io/normalize.css/8.0.1/normalize.css">
-    <link rel="stylesheet" href="atr/style.css">
-    <title>Typing Speed </title>
-
-
+<meta charset=UTF-8>
+<meta http-equiv=X-UA-Compatible content="IE=edge">
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=theme-color content=#0289f5>
+<link rel=manifest href=atr/manifesttpsp.json>
+<link rel=icon href=https://tpspd.github.io/atr/tpsp512.png>
+<link rel=stylesheet href=https://necolas.github.io/normalize.css/8.0.1/normalize.css>
+<link rel=stylesheet href=atr/style.css>
+<title>Typing Speed </title>
 </head>
-
 <body>
-    <div id="aaa"></div>
-    <div id="cntnr" class="hidjs" onclick="hiding()">
-        <div id="divplac" class="dvPlc">
-            <span id="hid" onclick="hiding()">×</span>
-            <hr style="margin-top:8.2vh;">
-            <span id="gmOvr" class="hidjs">Gime Over <button id="okgmOvr" onclick="hiding()"
-                class="okbtn nofcs">Ok</button></span>
-            <div id="cngrtl" class="divCng hidjs"></div>
-            <div id="dvNmGm" class="gmNm hidjs">
-                Yor Name <br>
-                <div id="nmGm" class="inpAdd nofcs" onclick="enter='nmbtn'" contenteditable></div>
-                <br>
-                <button id="nmbtn" class="okbtn nofcs" onclick="nmGmr()">Ok</button>
-            </div>
-
-            <div id="chLng" class=" hidjs" style="display: none;">
-                <p style="font-size: 40px;margin: 25px; ">
-                    shose yor langes
-                </p>
-                <div class="ch">
-                    <input id="arCh" type="checkbox" value="ar" checked>
-                    <label for="arCh">Arabic</label>
-                </div>
-                <div class="ch">
-                    <input id="enCh" type="checkbox" value="en" checked>
-                    <label for="enCh">English</label>
-                </div>
-                <div class="ch">
-                    <input id="frCh" type="checkbox" value="fr" checked>
-                    <label for="frCh">French</label>
-                </div>
-                <div style="position:rolative/*margin: 0 auto -4vh;height: 4vh; font-size :3vh;*/">
-                    <span id="plWt" class="n"></span>
-                </div>
-                <button id="okchkd" class="okbtn nofcs dblbtn" onclick="hiding()">ok</button>
-            </div>
-
-
-            <div id="addWrd" class="nwWord hidjs">
-                <p id='pAdd'>
-                    add New words
-                </p>
-                <p id='nmW' style="display:none"></p>
-                <div id="nwAr" class="inpAdd nofcs ar" contenteditable autocapitalize='off'
-                    onclick="chInp(this,'nwEn','nwFr')">
-                </div>
-                <span class="ar">Arabic word</span>
-
-                <div id="nwEn" class="inpAdd nofcs en" contenteditable autocapitalize='off'
-                    onclick="chInp(this,'nwFr','nwAr')">
-                </div>
-                <span class="en">English word</span>
-                <div id="nwFr" class="inpAdd nofcs fr" contenteditable autocapitalize='off'
-                    onclick="chInp(this,'okAdd','nwEn','nwAr')">
-                </div>
-                <span class="fr">French word</span>
-                <div style="margin: -2vh auto;height: 4vh; font-size :4vh;">
-                    <p id="notAdd" style="color: red;  display:none;">
-                        You dont add an word
-                    </p>
-                    <p id="isAdd" style="color: var(--gr);  display:none;">
-                        words have been added
-                    </p>
-                </div>
-                <button id="okAdd" class="okbtn dblbtn nofcs" style="background-color: #2196f396" onclick="addWrds()">add</button>
-                <button class="okbtn dblbtn nofcs" onclick="hiding()">close</button>
-            </div>
-
-
-            <div id="dltAll" class="nwWord hidjs">
-                <p style="color: red;font-size: 40px;margin: 25px; ">
-                    Are you sure to delete all the words
-                </p>
-                <button id="yesbtn" class="okbtn dblbtn nofcs" onclick="dltall()">Yess</button>
-                <button class="okbtn dblbtn nofcs" onclick="hiding()">no</button>
-            </div>
-
-        </div>
-    </div>
-
-
-    <div class="game">
-        <div class="name">
-            Typing Speed
-        </div>
-        <div class="container">
-
-            <div class="msg">
-
-                <div class="gmr" onclick="opnDiv('dvNmGm','nmbtn','nmGm')">
-                    Gamer : <span id="spNmGm"></span>
-                </div>
-                <div id="tpScrl" class="list"></div>
-            </div>
-
-            <div class="control">
-                <div class="time">
-                    Time left : <span id="tmLft">30</span>
-                </div>
-                <div>
-                    <span id="mbrWrd">0 </span> Words
-                </div>
-                <div>
-                    Time :
-                    <select id="timeLvl" name="time" onchange="valScnd(value)" class="shoTime ">
-                        <option value="30">Short </option>
-                        <option value="60">Medium </option>
-                        <option value="120">Long </option>
-                        <option value="300">very Long </option>
-                        <option value="∞">infinity </option>
-                    </select>
-                </div>
-            </div>
-            <div class="cntTm">
-                <div id="lngTm"></div>
-            </div>
-
-            <div id="idStart" class="start" onclick="gogame();">
-                Start
-            </div>
-            <div id="wrdDsply" class="wrds">
-                <div class="ar">
-                    <p>
-                        ar
-                    </p>
-                    <div id="lng0" class="wrd"></div>
-                </div>
-                <div class="en">
-                    <p>
-                        En
-                    </p>
-                    <div id="lng1" class="wrd">
-
-                    </div>
-                </div>
-                <div class="fr">
-                    <p>
-                        Fr
-                    </p>
-                    <div id="lng2" class="wrd"></div>
-                </div>
-            </div>
-            <input id="inpWrd" type="password" onclick="gogame();" class="input nofcs" autocapitalize="off"
-            onpaste="return false" spellcheck="false">
-            <div style="background-color: white;border-radius: 10px;">
-                <div class="name name2">
-                    Words
-                </div>
-                <div class="cnNbAdd">
-                    <span class="add nbWrd"><span id="nmbWrd"></span> words</span>
-                    <button id="btnLng" class="okbtn lngs nofcs" onclick="opnDiv('chLng','okchkd')">Langes</button>
-                    <p class="add" onclick="opnDiv('addWrd','nwEn','nwAr')">
-                        + add
-                    </p>
-                </div>
-                <div id="cntWrds"class="upcoming"></div>
-            </div>
-        </div>
-        <div id="clVu" class="clClvu"></div>
-    </div>
-
-    <script src="atr/jvscrpt.js"></script>
-
+<div id=cntnr class=hidjs onclick=hiding()>
+<div id=divplac class=dvPlc>
+<span class=clrear onclick=hiding()>×</span>
+<hr style=margin-top:8.2vh>
+<span id=gmOvr class=hidjs>Gime Over <button id=okgmOvr onclick=hiding() class="okbtn nofcs">Ok</button></span>
+<div id=cngrtl class="divCng hidjs"></div>
+<div id=dvNmGm class="gmNm hidjs">
+Yor Name <br>
+<div id=nmGm class="inpAdd nofcs" onclick='enter="nmbtn"' contenteditable></div>
+<br>
+<button id=nmbtn class="okbtn nofcs" onclick=nmGmr()>Ok</button>
+</div>
+<div id=chLng class=hidjs style=display:none>
+<p style=font-size:40px;margin:25px>
+shose yor langes
+</p>
+<div class=ch>
+<input id=arCh type=checkbox value=ar checked>
+<label for=arCh>Arabic</label>
+</div>
+<div class=ch>
+<input id=enCh type=checkbox value=en checked>
+<label for=enCh>English</label>
+</div>
+<div class=ch>
+<input id=frCh type=checkbox value=fr checked>
+<label for=frCh>French</label>
+</div>
+<div style=position:rolative>
+<span id=plWt class=n></span>
+</div>
+<button id=okchkd class="okbtn nofcs dblbtn" onclick=hiding()>ok</button>
+</div>
+<div id=addWrd class="nwWord hidjs">
+<p id=pAdd> add New words </p>
+<p id=nmW style=display:none></p>
+<span onclick=trnslt()>
+<svg xmlns=http://www.w3.org/2000/svg height=24 width=24><path d="m12 20.45-.85-2.525H5.225q-.7 0-1.187-.5-.488-.5-.488-1.2V5.25q0-.7.488-1.2.487-.5 1.187-.5H10.3l.75 2.525h7.725q.725 0 1.2.475t.475 1.225V18.75q0 .7-.475 1.2t-1.2.5ZM7.9 14.2q1.475 0 2.4-.938.925-.937.925-2.462v-.325q0-.125-.05-.25h-3.35v1.3h1.9q-.175.6-.65.937-.475.338-1.15.338-.825 0-1.412-.612-.588-.613-.588-1.463 0-.85.588-1.45.587-.6 1.412-.6.375 0 .712.137.338.138.613.413l1.025-.975q-.45-.45-1.062-.713Q8.6 7.275 7.9 7.275q-1.425 0-2.425 1.012-1 1.013-1 2.438 0 1.45 1 2.463 1 1.012 2.425 1.012Zm5.65.425.475-.45q-.275-.375-.537-.7-.263-.325-.488-.7Zm1.075-1.1q.6-.675.9-1.313.3-.637.425-1.012h-3.375l.25.9h.825q.175.325.412.687.238.363.563.738Zm-1.775 6.1h5.925q.375 0 .613-.25.237-.25.237-.6v-11q0-.375-.237-.613-.238-.237-.613-.237H11.3l1 3.425h1.675v-.875h.85v.875h3.1v.85H16.85q-.225.8-.638 1.562-.412.763-.987 1.438l2.3 2.275-.6.6-2.3-2.275-.775.775.7 2.35Z"/></svg>
+</span>
+<div>
+<span class=sndClr>
+<span class="sound arSound" data-lng=nwAr></span>
+<span class=clrear data-lng=nwAr>×</span>
+</span>
+<div id=nwAr class="inpAdd nofcs ar" contenteditable autocapitalize=off onclick='chInp(this,"nwEn","nwFr")' dir=rtl></div>
+<span class=ar>Arabic word</span>
+</div>
+<div>
+<span class=sndClr>
+<span class="sound soundFrEn" data-lng=nwEn data-voi=en></span>
+<span class=clrear data-lng=nwEn>×</span>
+</span>
+<div id=nwEn class="inpAdd nofcs en" contenteditable autocapitalize=off onclick='chInp(this,"nwFr","nwAr")'></div>
+<span class=en>English word</span>
+</div>
+<div>
+<span class=sndClr>
+<span class="sound soundFrEn" data-lng=nwFr data-voi=fr></span>
+<span class=clrear data-lng=nwFr>×</span>
+</span>
+<div id=nwFr class="inpAdd nofcs fr" contenteditable autocapitalize=off onclick='chInp(this,"okAdd","nwEn","nwAr")'></div>
+<span class=fr>French word</span>
+</div>
+<div style="margin:-2vh auto;height:4vh;font-size:4vh">
+<p id=notAdd style=color:red;display:none>
+You dont add an word
+</p>
+<p id=isAdd style=color:var(--gr);display:none>
+words have been added
+</p>
+</div>
+<button id=okAdd class="okbtn dblbtn nofcs" style=background-color:var(--mnClOp) onclick=addWrds()>add</button>
+<button class="okbtn dblbtn nofcs" onclick=hiding()>close</button>
+</div>
+<div id=dltAll class="nwWord hidjs">
+<p style=color:red;font-size:40px;margin:25px>
+Are you sure to delete all the words
+</p>
+<button id=yesbtn class="okbtn dblbtn nofcs" onclick=dltall()>Yess</button>
+<button class="okbtn dblbtn nofcs" onclick=hiding()>no</button>
+</div>
+</div>
+</div>
+<div class=game>
+<h1 class=name>
+Typing Speed
+</h1>
+<div class=container>
+<div id=google_translate_element></div>
+<div class=msg>
+<div class=gmr onclick='opnDiv("dvNmGm","nmbtn","nmGm")'>
+Gamer : <span id=spNmGm></span>
+</div>
+<div id=tpScrl class=list></div>
+</div>
+<div class=control>
+<div class=time>
+Time left : <span id=tmLft>30</span>
+</div>
+<div>
+<span id=mbrWrd>0 </span> Words
+</div>
+<div>
+Time :
+<select id=timeLvl name=time onchange=valScnd(value) class=shoTime>
+<option value=30> Short </option>
+<option value=60> Medium </option>
+<option value=120> Long </option>
+<option value=300> very Long </option>
+<option value=∞> infinity </option>
+</select>
+</div>
+</div>
+<div class=cntTm>
+<div id=lngTm></div>
+</div>
+<div id=idStart class=start onclick=gogame()> Start </div>
+<div id=wrdDsply class=wrds>
+<div class=ar>
+<span class="sound arSound" data-lng=lng0></span>
+<span>Ar </span>
+<div id=lng0 class=wrd></div>
+</div>
+<div class=en>
+<span class="sound soundFrEn" data-lng=lng1 data-voi=en></span>
+<span> En</span>
+<div id=lng1 class=wrd></div>
+</div>
+<div class=fr>
+<span class="sound soundFrEn" data-lng=lng2 data-voi=fr></span>
+<span>Fr</span>
+<div id=lng2 class=wrd></div>
+</div>
+</div>
+<input id=inpWrd type=password onclick=gogame() class="input nofcs" autocapitalize=off onpaste=return!1 spellcheck=false>
+<div style=background-color:#fff;border-radius:10px>
+<div class="name name2">
+Words
+</div>
+<div class=cnNbAdd>
+<span class="add nbWrd"><span id=nmbWrd></span> words</span>
+<button id=btnLng class="okbtn lngs nofcs" onclick='opnDiv("chLng","okchkd")'>Langes</button>
+<p class=add onclick='opnDiv("addWrd","nwEn","nwAr")'>
++ add
+</p>
+</div>
+<div id=cntWrds class=upcoming></div>
+</div>
+</div>
+<div id=clVu class=clClvu></div>
+</div>
+<script src=atr/jvscrpt.js></script>
 </body>
 </html>
