@@ -11,6 +11,7 @@
     padding: 0;
     font-family: sans-serif;
     -webkit-tap-highlight-color :transparent;
+    /* user-select: none; */
 }
 .design::before{
     font-family: 'Font Awesome 5 Free';
@@ -22,7 +23,7 @@
 }
 body {
     font-family: 'Open Sans', sans-serif;
-    /* user-select: none; */
+    
 }
 
 ::-webkit-scrollbar {
@@ -131,7 +132,7 @@ body {
     margin-bottom: 2vh;
 }
 .nwWord .trnslt{
-    display: block;
+    display: none;
     position: absolute;
     top: 4vh;
     left: 7%;
@@ -141,7 +142,8 @@ body {
     cursor: pointer;
 }
 .nwWord .trnslt:hover::before{
-    animation: animTrans 2s linear 1
+    display: block;
+    animation: animTrans 2s linear 1;
 }
 @keyframes animTrans {
     0% {
@@ -157,8 +159,7 @@ body {
         opacity: 0;
     }
 }
-.nwWord .trnslt::before,
-.nwWord .trnslt::after{
+.nwWord .trnslt::before{
     content: "Auto Translate";
     position: absolute;
     font-size: 12px;
@@ -168,23 +169,15 @@ body {
     padding: 5px;
     z-index: 2;
     border-radius: 4px;
-    opacity: 0;
+    opacity: 1;
+    display: none;
     transition: .3s ;
-    transition-delay: .3s;
 }
 .nwWord .trnslt::before{
     background-color: #333;
     bottom: 100%;
 }
 
-
- .nwWord .trnslt::after{
-    content: "You did not put any word";
-    background-color: rgb(255, 94, 0);
-    top: calc(100% + 5px);
-    width: 50px;
-    animation: var(--animation)
-} 
 .nwWord >div{
     position: relative;
 }
@@ -202,6 +195,7 @@ body {
     padding: 0;
     z-index: 2;
 }
+
 .nwWord .sound svg{
     position: absolute;
     height: 25px;
@@ -218,6 +212,25 @@ body {
 .nwWord .sound svg.active{
     display: inline-block;
 }
+
+/* .nwWord .sound::after{
+    content: "This device does not support audio";
+    position: absolute;
+    background-color: rgb(255, 94, 0);
+    top: calc(100% + 5px);
+    left: 50%;
+    width: 50px;
+    animation: var(--animation);
+    display: inline-block;
+    font-size: 12px;
+    transform: translateX(-50%);
+    color: white;
+    padding: 5px;
+    z-index: 2;
+    border-radius: 4px;
+    opacity: 1;
+    transition: .3s ;
+}  */
 
 .gmNm {
     font-size: 27px;
@@ -432,8 +445,7 @@ body {
 
 .upcoming {
     background-color: white;
-    /*position: relative;*/
-    margin: 15px 0;
+    margin: 15px 0 0;
     padding: 15px;
     display: flex;
     flex-wrap: wrap;
@@ -468,8 +480,7 @@ body {
 
 .add {
     color: var(--gr);
-    margin: auto 10px 3px;
-    padding: 15px 17px 0;
+    margin: 15px 15px 0 0;
     font-size: 38px;
     font-weight: bold;
     cursor: pointer;
@@ -500,6 +511,8 @@ body {
 
 .nbWrd {
     cursor: alias;
+    font-size: 33px;
+    margin: 15px 0 0;
 }
 
 .upcoming span {
@@ -570,26 +583,33 @@ body {
     width: 90%;
     height: 90%
 }
+.footer{
+    height: 40px;
+    background-color: var(--mnCl);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 17px;
+    color: white;
+    font-weight: bold;
+}
 .wt {
     width: 50px;
     height: 50px;
     position: absolute;
-    left: 50%;
-    top: 50%;
-    margin-left: -25px;
-    margin-top: 5px;
+    left: calc(50% - 25px);
+    top: calc(50% - 25px);
     border-radius: 50%;
     border: 5px solid var(--gr);
     border-left-color: transparent;
-    transform: translat(-50%,50%);
-    animation: spin .3s linear infinite
+    animation: spin .3s linear infinite;
 }
 @keyframes spin {
     0% {
         transform: rotate(0deg);
     }
     100% {
-        transform: rotate(360deg);
+        transform:  rotate(360deg);
     }
 }
 .n {
