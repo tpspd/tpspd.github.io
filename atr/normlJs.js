@@ -1,4 +1,4 @@
-let hidDiv, inp = gebi("inpWrd"), enter = "idStart", strt = 1, nmGm = localStorage.nmGmr, arWrd, enWrd, frWrd, nmbr = 0, nbWrd = 0, lftTm, fxCngr, cngrt = "", tmLft, wrdEdt = !1, lngTm, afPl = !1, inpAdd = document.querySelectorAll(".inpAdd"), ds = { ar: "", en: "", fr: "" }, upbt = "nwFr", dwbt = "nwAr", nmCh = 3, kyBt = "ent"; 
+let hidDiv='', inp = gebi("inpWrd"), enter = "idStart", strt = 1, nmGm = localStorage.nmGmr, arWrd, enWrd, frWrd, nmbr = 0, nbWrd = 0, lftTm, fxCngr, cngrt = "", tmLft, wrdEdt = !1, lngTm, afPl = !1, inpAdd = document.querySelectorAll(".inpAdd"), ds = { ar: "", en: "", fr: "" }, upbt = "nwFr", dwbt = "nwAr", nmCh = 3, kyBt = "ent"; 
 
 function mdf(n) { if (afPl) return afPl = !1, 0; 
     function e(n, e) { gebi("nw" + n).innerText = e, e && (gebi("nw" + n).nextElementSibling.style.display = "none") } opnDiv("addWrd", "nwEn", "nwAr"), gebi("pAdd").innerText = "edit words", gebi("okAdd").innerText = "edit", gebi("nmW").innerText = n, e("En", enWrd[n]), e("Fr", frWrd[n]), e("Ar", arWrd[n]), wrdEdt = !0 } 
