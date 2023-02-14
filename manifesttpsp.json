@@ -1,0 +1,30 @@
+{ 
+    "short_name": "typing speed", 
+    "name": "typing speed", 
+    "display": "standalone", 
+    "background_color": "#3367D6", 
+    "theme_color": "#3367D6" ,
+    "orientation": "portrait",
+    "scope": "/",
+    "start_url": "/index.html", 
+    "splash_pages": null,
+    "icons": [
+        {  
+        "src": "/atr/tpsp192.png", 
+        "sizes": "192x192",
+        "type": "image/png"
+        },
+        {
+            "src": "/atr/tpsp512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        } ,
+        {
+            "src": "/atr/icon-192-maskable.png",
+            "sizes": "96x96",
+            "type": "image/png",
+            "purpose": "maskable"
+        }
+    ]
+}
+
