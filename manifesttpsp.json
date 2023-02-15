@@ -6,7 +6,7 @@
     "theme_color": "#3367D6" ,
     "orientation": "portrait",
     "scope": "/",
-    "start_url": "/index.html", 
+    "start_url": "index.html", 
     "splash_pages": null,
     "icons": [
         {  
