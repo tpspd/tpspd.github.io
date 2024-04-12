@@ -564,7 +564,6 @@ transition: .3s ;
 @media (max-width: 700px) {
     .dvPlc {
         width: 90%;
-        left: 5%;
     }
 
     .hidWrd {
