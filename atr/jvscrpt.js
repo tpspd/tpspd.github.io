@@ -332,7 +332,7 @@ function opnSite() {
         }
     });
 
-    slctAll('.nwWord .clear').forEach(e => {//clear input
+    slctAll('.nwWord .clrear').forEach(e => {//clear input
         e.onclick = () => {
             gebi(e.dataset.lng).innerText = '';
             gebi(e.dataset.lng).focus()
