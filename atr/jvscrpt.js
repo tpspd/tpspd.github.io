@@ -393,7 +393,7 @@ let deferredPrompt;
     deferredPrompt = null; */
 /* // Optionally, send analytics event to indicate successful install
 console.log('PWA was installed'); */
-/*  }); */
+/*  }); */ 
 
 window.addEventListener('beforeinstallprompt', (e) => {
     e.preventDefault();
