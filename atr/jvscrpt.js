@@ -385,38 +385,40 @@ function cntn() {
 
 /* instalation app */
 let deferredPrompt;
+let buttonInstall = gebi('dwnld');
 /* if app is instal */
-/* window.addEventListener('appinstalled', () => {
+ window.addEventListener('appinstalled', () => {
     // Hide the app-provided install promotion
-    gebi('dwnld').className ='n';
+    buttonInstall.className ='n';
     // Clear the deferredPrompt so it can be garbage collected
-    deferredPrompt = null; */
+    deferredPrompt = null;
 /* // Optionally, send analytics event to indicate successful install
 console.log('PWA was installed'); */
-/*  }); */ 
+  });  
 
 window.addEventListener('beforeinstallprompt', (e) => {
     e.preventDefault();
     deferredPrompt = e;
-    // Update UI notify the user they can install the PWA
-    let os = navigator.userAgent.toLocaleLowerCase();
-
-    if (os.includes('android') || os.includes('ipad') || os.includes('iphone')) {
-        gebi('dvdw').className = 'blck';
-    }
+      buttonInstall.className = 'blck';
+   
 
 });
 
-let buttonInstall = gebi('dwnld');
+
 buttonInstall.addEventListener('click', async () => {
-    gebi('dvdw').className = 'n';
-    deferredPrompt.prompt();
-    /* if (vUp.dwAapp >0) {
+    if(deferredPrompt){
+        deferredPrompt.prompt();
+        deferredPrompt.userChoice.then((choiceResult) =>{
+            if(choiceResult.outcome == "accepted"){
+                buttonInstall.className = 'n';
+            }
+        })
+    }
+     /* 
+    if (vUp.dwAapp >0) {
         
-    } */
-    /* 
+    }
         const { outcome } = await deferredPrompt.userChoice;
-    
         console.log(`User response to the install prompt: ${outcome}`); */
     deferredPrompt = null;
 });
