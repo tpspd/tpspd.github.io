@@ -5,8 +5,8 @@
     "background_color": "#3367D6", 
     "theme_color": "#3367D6" ,
     "orientation": "portrait",
-    "scope": "https://tpspd.github.io/",
-    "start_url": "https://tpspd.github.io/index.html", 
+    "scope": "https://tpspd.github.io/manifestflder/",
+    "start_url": "https://tpspd.github.io/manifestflder/index.html", 
     "splash_pages": null,
       "icons": [
         { "src": "https://tpspd.github.io/manifestflder/favicon.ico", "type": "image/x-icon", "sizes": "16x16 32x32" },
