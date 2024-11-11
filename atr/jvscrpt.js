@@ -384,16 +384,16 @@ function cntn() {
 }
 
 /* instalation app */
-let deferredPrompt;
+/* let deferredPrompt;
 let buttonInstall = gebi('dwnld');
-/* if app is instal */
+// if app is instal /
  window.addEventListener('appinstalled', () => {
     // Hide the app-provided install promotion
     buttonInstall.className ='n';
     // Clear the deferredPrompt so it can be garbage collected
     deferredPrompt = null;
-/* // Optionally, send analytics event to indicate successful install
-console.log('PWA was installed'); */
+// Optionally, send analytics event to indicate successful install
+console.log('PWA was installed'); 
   });  
 
 window.addEventListener('beforeinstallprompt', (e) => {
@@ -414,15 +414,15 @@ buttonInstall.addEventListener('click', async () => {
             }
         })
     }
-     /* 
+     
     if (vUp.dwAapp >0) {
         
     }
         const { outcome } = await deferredPrompt.userChoice;
-        console.log(`User response to the install prompt: ${outcome}`); */
+        console.log(`User response to the install prompt: ${outcome}`); 
     deferredPrompt = null;
 });
-
+ */
 
 
 
