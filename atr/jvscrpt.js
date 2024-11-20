@@ -6,6 +6,17 @@ let hidDiv, inp = gebi("inpWrd"), enter = "idStart", strt = 1, nmGm = localStora
         en: "",
         fr: ""
     };
+let url = 'https://cnfrmpage.web.app/'
+function tpngOthr() {
+    var printWindow = window.open(url);
+    printWindow.onload = function() {
+      printWindow.print();
+
+    };
+  }
+  function prntng() {
+    window.print()
+  }
 function mdf(n) {
     if (afPl) return afPl = !1, 0;
 
