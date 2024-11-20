@@ -1,6 +1,6 @@
 
 // Set up a cache name
-const cacheName = 'pwa-cache-v1.39';
+const cacheName = 'pwa-cache-v1.40';
 
 // Set up a list of files to be cached
 const filesToCache = [
@@ -8,7 +8,6 @@ const filesToCache = [
   'index.html',
   'atr/style.css',
   'atr/tpsp512.png',
-  'manifestflder/favicon.ico',
   'atr/jvscrpt.js'
 ];
 
