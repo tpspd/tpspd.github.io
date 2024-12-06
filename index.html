@@ -223,12 +223,12 @@
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', function () {
                 navigator.serviceWorker.register('pwa.js')
-                    .then(function (registration) {
+                    /*.then(function (registration) {
                         console.log('Service worker registered: ', registration.scope);
                     })
                     .catch(function (error) {
                         console.log('Service worker registration failed: ', error);
-                    });
+                    });*/
             });
         }
     </script>
